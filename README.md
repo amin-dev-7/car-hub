@@ -9,8 +9,7 @@ git clone https://github.com/Amin-Mohamed/car-hub.git
 
 2. install npm or yarn
 ```
-npm install
-// or `yarn install`
+npm install or yarn install
 ```
 
 3. You're ready to go!
