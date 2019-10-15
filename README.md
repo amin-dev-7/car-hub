@@ -1,4 +1,4 @@
-# car-hub
+# Car-Hub
 My final project for school, a mobile-first web application for selling and buying cars.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
