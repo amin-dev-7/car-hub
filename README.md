@@ -1,8 +1,10 @@
 # Car-Hub
 
-**My final project for school, a mobile-first web application for selling and buying cars.<br><br>This application is built using MERN Stack.**
+***My final project for school, a mobile-first web application for selling and buying cars.<br><br>This application is built using MERN Stack.*** <br>
 
-<img src="https://media.giphy.com/media/8UHSFMTCnK80EQQiSd/giphy.gif" width="850" height="400" />
+
+<img src="https://media.giphy.com/media/8UHSFMTCnK80EQQiSd/giphy.gif" width="850" height="400" /> <br>
+
 
 
 ## Installation Guide
