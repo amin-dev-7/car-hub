@@ -47,5 +47,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)<br>
-Copyright (c) 2019 Amin
+[MIT](https://choosealicense.com/licenses/mit/)
