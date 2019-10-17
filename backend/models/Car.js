@@ -6,6 +6,10 @@ const carForSaleSchema = new Schema({
     type: String,
     required: true
   },
+  ad_description: {
+    type: String,
+    required: true
+  },
   car_brand: {
     type: String,
     required: true
@@ -18,19 +22,11 @@ const carForSaleSchema = new Schema({
     type: Number,
     required: true
   },
-  location: {
+  car_category: {
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  fuel: {
+  car_fuel: {
     type: String,
     required: true
   },
@@ -38,11 +34,19 @@ const carForSaleSchema = new Schema({
     type: String,
     required: true
   },
-  ustomerId: {
+  price: {
+    type: Number,
+    required: true
+  },
+  location: {
     type: String,
     required: true
   },
-  date_dded: {
+  userId: {
+    type: String,
+    required: true
+  },
+  date_added: {
     type: Date,
     default: Date.now()
   }
