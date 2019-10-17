@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-const User = require('../models/User');
+let User = require('../models/User');
 
 router.route('/').get((req, res) => {
   User.find()
@@ -10,36 +10,39 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
-router.post('/register', (req, res) => {
-  const {
-    user_name,
-    user_email,
-    user_mobile,
-    password
-  } = req.body;
+router.route('/register').post((req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const mobile = req.body.mobile;
+  const password = req.body.password;
 
-  // if (!user_name || !user_email || !password) {
-  //   return res.status(400).json({
-  //     msg: 'Please enter all fields'
-  //   });
-  // }
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      msg: 'Please enter all fields'
+    });
+  }
 
-  // email = email.toLowerCase();
-  // email = email.trim();
+  email = email.toLowerCase();
+  email = email.trim();
 
   // CHECK IF USER EXIST
-  User.findOne({ user_email })
-    .then(user => {
-      if (user) return res.status(400).json({
-        msg: 'User already exists'
-      });
-      // NEW USER
-      const newUser = new User({
-        user_name,
-        user_email,
-        user_mobile,
-        password
-      });
+  User.findOne({ email })
+  .then(user => {
+    if(user) return res.status(400).json({
+      msg: 'User already exists'
+     });
+
+    // NEW USER
+    const newUser = new User({
+    name,
+    email,
+    mobile,
+    password
+  });
+
+  newUser.save()
+    .then(() => res.json('User added!'))
+    .catch(err => res.status(400).json('Error: ' + err));
   });
 });
 

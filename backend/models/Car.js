@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const {Schema, model} = mongoose;
+
+const Schema = mongoose.Schema;
 
 const carForSaleSchema = new Schema({
   ad_title: {
@@ -54,4 +55,4 @@ const carForSaleSchema = new Schema({
   timestamps: true,
 });
 
-module.exports = model('Car', carForSaleSchema);
+module.exports = mongoose.model('Car', carForSaleSchema);

@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const cars = require('../models/Car');
+
+let Cars = require('../models/Car');
 
 router.route('/').get((req, res) => {
-  cars.find()
-    .then(cars => res.json(cars))
+  Cars.find()
+    .then(Cars => res.json(Cars))
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
