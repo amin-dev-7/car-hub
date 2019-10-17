@@ -9,28 +9,37 @@ This application is built using MERN Stack.<br><br>
 ## Installation Guide
 1. Clone the repository
 ```
-git clone https://github.com/Amin-Mohamed/car-hub.git
+ $ git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
 2. Follow this steps to install npm
 
       Server
       ```
-      cd backend
-      npm install
+      $ cd backend
+      $ npm install
       ```
 
       Client
       ```
-      cd ..
-      cd client
-      npm install
-      cd ..
-      npm install
-      npm start
+      $ cd ..
+      $ cd client
+      $ npm install
       ```
+      
+      Root
+      ```
+      $ cd ..
+      $ npm install
+      $ npm start
+      
+      # Visit http://localhost:3000/
+      ```
+3. MongoDB
 
-3. You're ready to go!
+      Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas
+
+4. You're ready to go!
 
 
 ## License
