@@ -1,5 +1,4 @@
 const mongo = require('./mongo');
+const logger = require('./logger');
 
-module.exports = {
-mongo
-};
+module.exports = { mongo, logger }
