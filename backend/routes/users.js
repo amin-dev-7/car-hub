@@ -4,12 +4,6 @@ const bcrypt = require('bcrypt');
 
 let User = require('../models/User');
 
-router.route('/').get((req, res) => {
-  User.find()
-    .then(User => res.json(User))
-    .catch(err => res.status(400).json('Error: ' + err))
-});
-
 // ADD USER
 router.route('/register').post((req, res) => {
   const name = req.body.name;
