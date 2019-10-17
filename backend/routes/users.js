@@ -12,9 +12,9 @@ router.route('/').get((req, res) => {
 
 router.route('/register').post((req, res) => {
   const name = req.body.name;
-  const email = req.body.email;
+  let email = req.body.email;
   const mobile = req.body.mobile;
-  const password = req.body.password;
+  let password = bcrypt.hashSync(req.body.password, 10);
 
   if (!name || !email || !password) {
     return res.status(400).json({
