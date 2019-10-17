@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema, model} = mongoose;
 
-const carsForSaleSchema = new Schema({
+const carForSaleSchema = new Schema({
   ad_title: {
     type: String,
     required: true
@@ -50,4 +50,4 @@ const carsForSaleSchema = new Schema({
   timestamps: true,
 });
 
-module.exports = model('Cars', carsForSaleSchema);
+module.exports = model('Car', carForSaleSchema);

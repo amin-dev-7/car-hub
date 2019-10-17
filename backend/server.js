@@ -13,10 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 const cars = require('./routes/cars');
-const customers = require('./routes/customers');
+const users = require('./routes/users');
 
 app.use('/cars', cars);
-app.use('/customers', customers)
+app.use('/users', users)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Express server listening on: ${PORT}`));

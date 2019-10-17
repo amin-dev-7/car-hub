@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const customers = require('../models/Customers');
+const users = require('../models/User');
 
 router.route('/').get((req, res) => {
-  customers.find()
-    .then(customers => res.json(customers))
+  users.find()
+    .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
