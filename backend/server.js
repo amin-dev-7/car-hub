@@ -1,6 +1,5 @@
 require('dotenv').config();
 const {mongo} = require('./config');
-const path = require('path');
 const express = require('express');
 const cors = require('cors');
 
@@ -13,7 +12,11 @@ app.use(express.urlencoded({
 app.use(cors());
 app.use(express.json());
 
-const router = require(path.join(__dirname, 'routes'));
+const cars = require('./routes/cars');
+const customers = require('./routes/customers');
+
+app.use('/cars', cars);
+app.use('/customers', customers)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Express server listening on: ${PORT}`));
