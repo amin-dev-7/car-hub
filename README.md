@@ -14,21 +14,21 @@ git clone https://github.com/Amin-Mohamed/car-hub.git
 
 2. Follow this steps to install npm
 
-  Server
-  ```
-  cd backend
-  npm install
-  ```
-  
-  Client
-  ```
-  cd ..
-  cd client
-  npm install
-  cd ..
-  npm install
-  npm start
-  ```
+      Server
+      ```
+      cd backend
+      npm install
+      ```
+
+      Client
+      ```
+      cd ..
+      cd client
+      npm install
+      cd ..
+      npm install
+      npm start
+      ```
 
 3. You're ready to go!
 
