@@ -10,10 +10,11 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err))
 });
 
+// ADD USER
 router.route('/register').post((req, res) => {
   const name = req.body.name;
   let email = req.body.email;
-  const mobile = req.body.mobile;
+  const mobile = Number(req.body.mobile);
   let password = bcrypt.hashSync(req.body.password, 10);
 
   if (!name || !email || !password) {
@@ -44,6 +45,29 @@ router.route('/register').post((req, res) => {
     .then(() => res.json('User added!'))
     .catch(err => res.status(400).json('Error: ' + err));
   });
+});
+
+// GET USER BY ID
+router.route('/:id').get((req, res) => {
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// UPDATE USER BY ID
+router.route('/update/:id').post((req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.name = req.body.name;
+      user.email = req.body.email;
+      user.mobile = Number(req.body.mobile);
+      user.password = bcrypt.hashSync(req.body.password, 10);
+
+      user.save()
+        .then(() => res.json('User updated!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
