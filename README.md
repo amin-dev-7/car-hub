@@ -12,13 +12,26 @@ This application is built using MERN Stack.<br><br>
 git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
-2. install npm or yarn
-```
-npm install or yarn install
-```
+2. Follow this steps to install npm
+
+      Server
+      ```
+      cd backend
+      npm install
+      ```
+
+      Client
+      ```
+      cd ..
+      cd client
+      npm install
+      cd ..
+      npm install
+      npm start
+      ```
 
 3. You're ready to go!
 
 
 ## License
-[Copyright](LICENSE) © [MIT](https://choosealicense.com/licenses/mit/)
+© [MIT](https://choosealicense.com/licenses/mit/)
