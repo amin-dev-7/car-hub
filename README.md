@@ -12,9 +12,9 @@ This application is built using MERN Stack.<br><br>
 git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
-2. install npm or yarn
+2. install npm
 ```
-npm install or yarn install
+npm start
 ```
 
 3. You're ready to go!
