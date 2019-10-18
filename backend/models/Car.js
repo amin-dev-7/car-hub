@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const carForSaleSchema = new Schema({
+const carSchema = new Schema({
   ad_title: {
     type: String,
     required: true
@@ -24,26 +24,23 @@ const carForSaleSchema = new Schema({
     required: true
   },
   car_category: {
-    type: String,
-    required: true
+    type: Array,
+    default: ['SUV', 'sedan', 'halvcombi', 'coupe']
   },
   car_fuel: {
-    type: String,
-    required: true
+    type: Array,
+    required: true,
+    default: ['bensin', 'diesel', 'hyprid', 'el']
   },
   gearbox: {
-    type: String,
-    required: true
+    type: Array,
+    default: ['manuell', 'automat']
   },
   price: {
     type: Number,
     required: true
   },
   location: {
-    type: String,
-    required: true
-  },
-  userId: {
     type: String,
     required: true
   },
@@ -55,4 +52,5 @@ const carForSaleSchema = new Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model('Car', carForSaleSchema);
+module.exports = mongoose.model('Car', carSchema);
+

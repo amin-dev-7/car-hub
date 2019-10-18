@@ -1,58 +1,60 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
-let User = require('../models/User');
+const User = require('../models/User');
+const Car = require('../models/Car');
 
 // ADD USER
-router.route('/register').post((req, res) => {
-  const name = req.body.name;
+router.route('/register').post(async (req, res)  => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   let email = req.body.email;
   const mobile = Number(req.body.mobile);
   let password = bcrypt.hashSync(req.body.password, 10);
 
-  if (!name || !email || !password) {
+  if (!firstName || !lastName || !email || !password) {
     return res.status(400).json({
       msg: 'Please enter all fields'
     });
   }
 
-  email = email.toLowerCase();
-  email = email.trim();
-
-  // CHECK IF USER EXIST
-  User.findOne({ email })
-  .then(user => {
-    if(user) return res.status(400).json({
-      msg: 'User already exists'
-     });
-
-    // NEW USER
-    const newUser = new User({
-    name,
-    email,
-    mobile,
-    password
+  const newUser = new User({
+  firstName, lastName, email, mobile, password
   });
 
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-  });
+  try {
+    const userExiset = await User.findOne({ email })
+    if (userExiset) {
+      res.status(400).json({
+        msg: 'User already existss'
+        });
+    }
+    await newUser.save();
+    res.status(200).json('User added!');
+  }
+  catch {
+    res.status(404).json('not added');
+  }
 });
 
 // GET USER BY ID
-router.route('/:id').get((req, res) => {
-  User.findById(req.params.id)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route('/:userId').get(async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const getUserById = await User.findById(userId);
+    res.status(200).json(getUserById);
+  } catch {
+    res.status(404).json('no id')
+  }
 });
 
 // UPDATE USER BY ID
-router.route('/update/:id').post((req, res) => {
-  User.findById(req.params.id)
+router.route('/update/:userId').post((req, res) => {
+
+  User.findById(req.params.userId)
     .then(user => {
-      user.name = req.body.name;
+      user.firstName = req.body.firstName;
+      user.lastName = req.body.lastName;
       user.email = req.body.email;
       user.mobile = Number(req.body.mobile);
       user.password = bcrypt.hashSync(req.body.password, 10);
@@ -65,3 +67,39 @@ router.route('/update/:id').post((req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+  // CHECK IF USER EXIST
+  // User.findOne({ email })
+  // .then(user => {
+  //   if(user) return res.status(400).json({
+  //     msg: 'User already exists'
+  //    });
+
+  // NEW USER
+
+
+  // User.findOne({ email })
+  // .then(user => {
+  //   if(user) return res.status(400).json({
+  //     msg: 'User already exists'
+  //    });
+  // const userExiset = User.findOne({ email })
+  // if (userExiset) {
+  //   res.status(400).json({
+  //     msg: 'User already exists'
+  //     });
+  // }
+  // if(user) return res.status(400).json({
+  //   msg: 'User already exists'
+  //   });
+
+
+
+  // newUser.save()
+  //   .then(() => res.json('User added!'))
+  //   .catch(err => res.status(400).json('Error: ' + err));
+  // });
