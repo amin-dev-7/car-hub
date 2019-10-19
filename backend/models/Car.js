@@ -1,40 +1,38 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const carSchema = new Schema({
-  ad_title: {
+  adTitle: {
     type: String,
     required: true
   },
-  ad_description: {
+  adDescription: {
     type: String,
     required: true
   },
-  car_brand: {
+  carCategory: {
     type: String,
     required: true
   },
-  car_model: {
+  carBrand: {
     type: String,
     required: true
   },
-  car_model_year: {
+  carModel: {
+    type: String,
+    required: true
+  },
+  carModelYear: {
     type: Number,
     required: true
   },
-  car_category: {
-    type: Array,
-    default: ['SUV', 'sedan', 'halvcombi', 'coupe']
-  },
-  car_fuel: {
-    type: Array,
+  carFuel: {
+    type: String,
     required: true,
-    default: ['bensin', 'diesel', 'hyprid', 'el']
   },
   gearbox: {
-    type: Array,
-    default: ['manuell', 'automat']
+    type: String,
+    required: true,
   },
   price: {
     type: Number,
@@ -44,9 +42,9 @@ const carSchema = new Schema({
     type: String,
     required: true
   },
-  date_added: {
-    type: Date,
-    default: Date.now()
+  seller: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 }, {
   timestamps: true,
