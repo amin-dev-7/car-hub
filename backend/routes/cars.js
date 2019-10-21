@@ -1,10 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
-const carControllers = require('../controllers/cars');
+const carController = require('../controllers/cars');
+const userController = require('../controllers/users/index');
 
 router.route('/')
-  .get(carControllers.getAllCars);
+  .get(carController.getAllCars)
+  .post(carController.addCartoSeller);
+
+router.route('/userId')
+  .put(carController.updateCarByUserID)
+  .delete(carController.deleteCarByUserID);
+
+
+
+
+// router.route('/:userId/cars')
+//   .post(userController.addCarSeller);
 
 // router.route('/add').post((req, res) => {
 //   const adTitle = req.body.adTitle;

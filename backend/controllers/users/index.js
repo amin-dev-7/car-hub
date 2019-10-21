@@ -4,7 +4,7 @@ const User = require('../../models/User');
 
 module.exports = {
 
-  getUserById: (async (req, res) => {
+  getUserById: async (req, res) => {
     try {
       const userId = req.params.userId;
       const user = await User.findById(userId);
@@ -12,9 +12,9 @@ module.exports = {
     } catch {
       res.status(404).json('wrong id')
     }
-  }),
+  },
 
-  updateUserById: ((req, res) => {
+  updateUserById: (req, res) => {
     User.findById(req.params.userId)
       .then(user => {
         user.firstName = req.body.firstName;
@@ -28,9 +28,9 @@ module.exports = {
           .catch(err => res.status(400).json('Error: ' + err));
       })
       .catch(err => res.status(400).json('Error: ' + err));
-  }),
+  },
 
-  addCarToUser: (async (req, res) => {
+  addCarToUser: async (req, res) => {
     const userId = req.params.userId;
     const newCar = new Car(req.body);
     try {
@@ -43,9 +43,9 @@ module.exports = {
     } catch {
       res.status(400).send('not posted')
     }
-  }),
+  },
 
-  getUserCarsByUserId: (async (req, res) => {
+  getUserCarsByUserId: async (req, res) => {
     try {
       const userId = req.params.userId;
       const user = await User.findById(userId).populate('cars');
@@ -53,6 +53,5 @@ module.exports = {
     } catch {
       res.status(400).send('wrong id')
     }
-  })
-
+  },
 };
