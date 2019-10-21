@@ -14,20 +14,17 @@ module.exports = {
     }
   },
 
-  updateUserById: (req, res) => {
-    User.findById(req.params.userId)
-      .then(user => {
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.email = req.body.email;
-        user.mobile = Number(req.body.mobile);
-        user.password = bcrypt.hashSync(req.body.password, 10);
-
-        user.save()
-          .then(() => res.json('User updated!'))
-          .catch(err => res.status(400).json('Error: ' + err));
-      })
-      .catch(err => res.status(400).json('Error: ' + err));
+  updateUserById: async(req, res, next) => {
+    const userId = req.params.userId;
+    const user = req.body;
+    try{
+    user.password = bcrypt.hashSync(req.body.password, 10);
+    const update = user.update = await User.findByIdAndUpdate(userId, user);
+    res.status(200).json(update);
+    }catch(err) {
+    next(err)
+    console.log(err);
+    }
   },
 
   addCarToUser: async (req, res) => {

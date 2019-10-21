@@ -8,7 +8,7 @@ module.exports = {
       const cars = await Car.find({});
       res.status(200).json(cars)
     }catch {
-      res.status(400).json('no users');
+      res.status(404).send('No users found');
     }
   },
 
@@ -49,16 +49,15 @@ module.exports = {
 
     const newCar = req.body;
     delete newCar.seller;
-
     try {
       const car = new Car(newCar);
       car.seller = seller;
       await car.save();
-
       seller.cars.push(car);
       await seller.save();
+      res.status(200).send('car has been added');
     } catch {
-
+      res.status(404).send('No cars has been added');
     }
   }
 

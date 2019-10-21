@@ -6,7 +6,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useFindAndModify: true,
+  useFindAndModify: false,
 }, (error) => {
   if (error) {
     console.error(`Mongoose connection failed with the following error ${error}`);
