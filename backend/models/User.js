@@ -27,7 +27,9 @@ const userSchema = new Schema({
   cars: [{
     type: Schema.Types.ObjectId,
     ref: 'Car'
-  }]
+  }],
+}, {
+  timestamps: true,
 });
 
 module.exports = mongoose.model('User', userSchema);

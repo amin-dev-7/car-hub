@@ -5,7 +5,8 @@ const logger = require(path.join(__dirname, 'logger'));
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: true,
 }, (error) => {
   if (error) {
     console.error(`Mongoose connection failed with the following error ${error}`);

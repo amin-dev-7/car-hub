@@ -8,12 +8,10 @@ router.route('/')
   .get(carController.getAllCars)
   .post(carController.addCartoSeller);
 
-router.route('/userId')
+router.route('/:carId')
+  .get(carController.getCarById)
   .put(carController.updateCarByUserID)
   .delete(carController.deleteCarByUserID);
-
-
-
 
 // router.route('/:userId/cars')
 //   .post(userController.addCarSeller);
