@@ -33,24 +33,3 @@ const userSchema = new Schema({
 });
 
 module.exports = mongoose.model('User', userSchema);
-
-// {
-//   "adTitle": "asdasd",
-//   "adDescription": "ASasasdsdfdsfdsD",
-//   "carCategory": "1111",
-//   "carBrand": "44",
-//   "carModel": "asd",
-//   "carModelYear": 1991,
-//   "carFuel": "disesl",
-//   "gearbox": "1dsa",
-//   "price": 1234,
-//   "location": "götwboasdasdasdrg"
-// }
-
-// {
-//   "firstName": "asdasd",
-//   "lastName": "ASasasdsdfdsfdsD",
-//   "email": "1111",
-//   "mobile": "44",
-//   "password": "44"
-// }

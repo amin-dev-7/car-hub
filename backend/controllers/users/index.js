@@ -10,20 +10,19 @@ module.exports = {
       const user = await User.findById(userId);
       res.status(200).json(user);
     } catch {
-      res.status(404).json('wrong id')
+      res.status(404).json('Wrong id')
     }
   },
 
   updateUserById: async(req, res, next) => {
     const userId = req.params.userId;
     const user = req.body;
-    try{
+    try {
     user.password = bcrypt.hashSync(req.body.password, 10);
     const update = user.update = await User.findByIdAndUpdate(userId, user);
     res.status(200).json(update);
-    }catch(err) {
-    next(err)
-    console.log(err);
+    } catch(err){
+      res.status(404).json('Wrong id')
     }
   },
 
@@ -35,10 +34,10 @@ module.exports = {
       newCar.seller = user;
       await newCar.save();
       user.cars.push(newCar);
-      await user.save();
-      res.status(200).json('car added');
-    } catch {
-      res.status(400).send('not posted')
+      const car = await user.save();
+      res.status(200).json(car);
+    } catch{
+      res.status(400).send('Could not add the car')
     }
   },
 
@@ -47,8 +46,8 @@ module.exports = {
       const userId = req.params.userId;
       const user = await User.findById(userId).populate('cars');
       res.status(200).json(user);
-    } catch {
-      res.status(400).send('wrong id')
+    } catch{
+      res.status(400).send('Wrong id')
     }
   },
 

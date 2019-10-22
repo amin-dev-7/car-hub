@@ -36,20 +36,20 @@ module.exports = {
         });
       } else {
         // CREATE A NEW USER
-        await newUser.save();
-        res.status(200).json('User added!');
+        const user = await newUser.save();
+        res.status(200).json(user);
       }
     } catch {
-      res.status(400).json('user not added');
+      res.status(400).json('User not added');
     }
   },
 
-  getAllUsers: async (req, res) =>{
+  getAllUsersAndCars: async (req, res) =>{
     try {
-      const users = await User.find({});
+      const users = await User.find({}).populate('cars');
       res.status(200).json(users);
     }catch {
-      res.status(400).json('no users');
+      res.status(400).json('No users');
     }
   }
 };

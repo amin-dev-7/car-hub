@@ -5,7 +5,7 @@ const userController = require('../controllers/users/index');
 const registerController = require('../controllers/users/register');
 
 router.route('/')
-  .get(registerController.getAllUsers)
+  .get(registerController.getAllUsersAndCars);
 
 router.route('/register')
   .post(registerController.register);
