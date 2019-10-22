@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const userController = require('../controllers/users/index');
+const userController = require('../controllers/users/users');
 const registerController = require('../controllers/users/register');
 
 router.route('/')
@@ -16,6 +16,7 @@ router.route('/:userId')
 
 router.route('/:userId/cars')
   .post(userController.addCarToUser)
-  .get(userController.getUserCarsByUserId);
+  .get(userController.getSellerCars);
+  // ADD DeleteByUserId AND UpdateByUserId METHODs??
 
 module.exports = router;

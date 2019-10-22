@@ -8,8 +8,8 @@ router.route('/')
 
 router.route('/:carId')
   .get(carController.getCarById)
-  .put(carController.updateCarByUserID)
-  .delete(carController.deleteCarByUserID);
+  .put(carController.updateCarByCarId)
+  .delete(carController.deleteCarByCarId);
 
 module.exports = router;
 
