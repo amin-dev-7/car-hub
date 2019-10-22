@@ -15,8 +15,8 @@ router.route('/:userId')
   .put(userController.updateUserById);
 
 router.route('/:userId/cars')
-  .post(userController.addCarToUser)
+  .post(userController.addCarForSale)
   .get(userController.getSellerCars);
-  // ADD DeleteByUserId AND UpdateByUserId METHODs??
+  // ADD DeleteByUserId AND UpdateByUserId METHODS??
 
 module.exports = router;

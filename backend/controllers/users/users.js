@@ -26,7 +26,7 @@ module.exports = {
     }
   },
 
-  addCarToUser: async (req, res) => {
+  addCarForSale: async (req, res) => {
     const userId = req.params.userId;
     const newCar = new Car(req.body);
     try {
