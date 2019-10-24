@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Index from '../../pages/Index';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <div>
+        {/* ROUTES */}
+
+        <Route path="/" exact component={Index} />
+      </div>
+    </Router>
   );
 }
 
