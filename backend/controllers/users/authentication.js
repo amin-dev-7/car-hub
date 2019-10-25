@@ -3,37 +3,33 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken')
 
 module.exports = {
-  // SIGN UP
-  register: async (req, res) => {
+  authentication: async (req, res) => {
     try {
-      const firstName = req.body.firstName;
-      const lastName = req.body.lastName;
       let email = req.body.email;
-      const mobile = Number(req.body.mobile);
       let password = bcrypt.hashSync(req.body.password, 10);
 
       // VALIDATION
-      if (!firstName || !lastName || !email || !password) {
+      if (!email || !password) {
         return res.status(400).json({
           msg: 'Please enter all fields'
         });
       }
 
-      const newUser = new User({
-        firstName, lastName, email, mobile, password
-      });
-
-      // CHECK IF USER ALREADY EXIST
-      const userExiset = await User.findOne({
+      // CHECK IF USER EXIST
+      const user = await User.findOne({
         email
       });
+      if (!user) return res.status(400).json({
+        error: 'User dose not exist'
+      })
 
-      if (userExiset) return res.status(400).json({
-        error: 'User already existss'
+      // Validate password
+      const isMatch = bcrypt.compare(password, user.password);
+
+      if (!isMatch) return res.status(400).json({
+        error: 'invalid password or user name'
       });
 
-      // CREATE A NEW USER AND TOKEN
-      const user = await newUser.save();
       jwt.sign({
           id: user.id
         },
@@ -54,17 +50,8 @@ module.exports = {
           });
         }
       )
-      } catch (err){
-        res.status(404).json(`error: ${err}`)
-      }
-    },
-
-  getAllUsersAndCars: async (req, res) => {
-    try {
-      const users = await User.find({}).populate('cars');
-      res.status(200).json(users);
-    } catch (err){
+    } catch (err) {
       res.status(404).json(`error: ${err}`)
     }
-  }
-};
+  },
+}
