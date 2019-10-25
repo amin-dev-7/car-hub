@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../../models/User');
+const jwt = require('jsonwebtoken')
 
 module.exports = {
   // SIGN UP
@@ -32,7 +33,26 @@ module.exports = {
       } else {
         // CREATE A NEW USER
         const user = await newUser.save();
-        res.status(200).json(user);
+        jwt.sign({
+            id: user.id
+          },
+          process.env.jwtSecret, {
+            expiresIn: 3600
+          },
+          (err, token) => {
+            if (err) throw err;
+            res.json({
+              token,
+              user: {
+                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                mobile: user.mobile
+              }
+            })
+          }
+        )
       }
       } catch (err){
         res.status(404).json(`error: ${err}`)
