@@ -5,17 +5,16 @@ const jwt = require('jsonwebtoken')
 module.exports = {
 
   authentication: async (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+
+    // VALIDATION
+    if (!email || !password) {
+      return res.status(400).json({
+        msg: 'Please enter all fields'
+      });
+    }
     try {
-      let email = req.body.email;
-      let password = req.body.password;
-
-      // VALIDATION
-      if (!email || !password) {
-        return res.status(400).json({
-          msg: 'Please enter all fields'
-        });
-      }
-
       // CHECK IF USER EXIST
       const user = await User.findOne({
         email
@@ -51,5 +50,5 @@ module.exports = {
     } catch (err) {
       res.status(404).json(`error: ${err}`)
     }
-  },
+  }
 }
