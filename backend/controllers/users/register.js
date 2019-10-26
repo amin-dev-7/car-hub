@@ -10,12 +10,12 @@ module.exports = {
       const lastName = req.body.lastName;
       let email = req.body.email;
       const mobile = Number(req.body.mobile);
-      let password = bcrypt.hashSync(req.body.password, 10);
+      let password = req.body.password;
 
       // VALIDATION
       if (!firstName || !lastName || !email || !password) {
         return res.status(400).json({
-          msg: 'Please enter all fields'
+          msg: 'Enter all fields'
         });
       }
 
@@ -32,28 +32,35 @@ module.exports = {
         error: 'User already existss'
       });
 
-      // CREATE A NEW USER AND TOKEN
-      const user = await newUser.save();
-      jwt.sign({
-          id: user.id
-        },
-        process.env.JWTSECRET, {
-          expiresIn: 3600
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              id: user.id,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              email: user.email,
-              mobile: user.mobile
-            }
+      // CREATE A NEW USER && HASHED PASSWORD  && TOKEN
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if(err) throw err;
+          newUser.password = hash;
+          const user = newUser.save();
+
+            jwt.sign({
+                id: user.id
+              },
+              process.env.JWTSECRET, {
+                expiresIn: 3600
+              },
+              (err, token) => {
+                if (err) throw err;
+                res.json({
+                  token,
+                  user: {
+                    id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    mobile: user.mobile
+                  }
+                });
+              }
+            )
           });
-        }
-      )
+        })
       } catch (err){
         res.status(404).json(`error: ${err}`)
       }
