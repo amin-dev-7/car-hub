@@ -1,50 +1,66 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from 'mdbreact';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from 'axios';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardHeader,} from 'mdbreact';
+import { Link } from "react-router-dom";
 
-const LoginFrom = () => {
-  return (
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md="6">
-          <MDBCard>
-            <div className="header pt-3 grey lighten-2">
-              <MDBRow className="d-flex justify-content-start">
-                <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">
-                  Logga in
+class LoginFrom extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+     };
+
+  }
+
+  render() {
+    return (
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol md="6">
+            <form>
+              <MDBCardHeader className = "form-header indigo rounded" >
+                <h3 className="my-3">
+                  <MDBIcon icon="lock" className="text-white" />
+                  <strong className="font-weight-bold text-white"> Logga in</strong>
                 </h3>
-              </MDBRow>
-            </div>
-            <MDBCardBody className="mx-4 mt-4">
-              <MDBInput label="E-post" group type="text" validate />
-              <MDBInput
-                label="Lösenord"
-                group
-                type="password"
-                validate
-                containerClass="mb-0"
+              </MDBCardHeader>
+              <br />
+              <br />
+              <label htmlFor="defaultFormLoginEmailEx" className="dark-grey-text">
+                E-post
+              </label>
+              <input
+                type="email"
+                id="defaultFormLoginEmailEx"
+                className="form-control"
               />
-              <div className="text-center mb-4 mt-5">
-                <MDBBtn
-                  color="danger"
-                  type="button"
-                  className="btn-block z-depth-2"
-                >
-                  Logga in
-                </MDBBtn>
+              <br />
+              <label htmlFor="defaultFormLoginPasswordEx" className="dark-grey-text">
+                Lösenord
+              </label>
+              <input
+                type="password"
+                id="defaultFormLoginPasswordEx"
+                className="form-control"
+                autoComplete="password"
+              />
+              <div className="text-center mt-4">
+                <MDBBtn color="indigo" type="submit" className="font-weight-bold">logga in</MDBBtn>
               </div>
+              <br />
               <p className="font-small grey-text d-flex justify-content-center">
                 Ny kund?
                 <Link to="/signup" className="dark-grey-text font-weight-bold ml-1">
-                  Skapa ett konto
+                Skapa ett konto
                 </Link>
               </p>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-  );
-};
+            </form>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    );
+  }
+}
 
 export default LoginFrom;

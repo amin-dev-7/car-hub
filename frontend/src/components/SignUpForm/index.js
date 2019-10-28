@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardHeader,} from 'mdbreact';
 import { Link } from "react-router-dom";
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -84,71 +84,86 @@ class SignUpForm extends React.Component {
       <MDBContainer>
       <MDBRow>
         <MDBCol md="6">
+          <div className="sign-in">
+            <MDBCardHeader className = "form-header indigo rounded" >
+              <h3 className="my-3">
+                <MDBIcon icon="user-alt" className="text-white"/>
+                <strong className="font-weight-bold text-white"> Skapa konto</strong>
+              </h3>
+            </MDBCardHeader>
+            <br / >
+          </div>
           <form onSubmit={this.onSubmit}>
-            <p className="h4 text-center mb-4">Sign up</p>
-            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-              First name
+            <label htmlFor="defaultFormRegisterNameEx1" className="dark-grey-text">
+              Förnamn
             </label>
             <input
               type="text"
-              id="defaultFormRegisterNameEx"
+              id="defaultFormRegisterNameEx1"
               className="form-control"
               value={this.state.firstName}
               onChange={this.onChangeFirstName}
             />
             <br />
-            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-              Last name
+            <label htmlFor="defaultFormRegisterNameEx2" className="dark-grey-text">
+              Efternamn
             </label>
             <input
               type="text"
-              id="defaultFormRegisterNameEx"
+              id="defaultFormRegisterNameEx2"
               className="form-control"
               value={this.state.lastName}
               onChange={this.onChangeLastName}
             />
             <br />
-            <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
-              email
+            <label htmlFor="defaultFormRegisterEmailEx3" className="dark-grey-text">
+              E-post
             </label>
             <input
               type="email"
-              id="defaultFormRegisterEmailEx"
+              id="defaultFormRegisterEmailEx3"
               className="form-control"
               value={this.state.email}
               onChange={this.onChangeEmail}
             />
             <br />
-            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-              mobile
+            <label htmlFor="defaultFormRegisterNameEx4" className="dark-grey-text">
+              Mobile nummer
             </label>
             <input
               type="text"
-              id="defaultFormRegisterNameEx"
+              id="defaultFormRegisterNameEx4"
               className="form-control"
               value={this.state.mobile}
               onChange={this.onChangeMobile}
             />
             <br />
             <label
-              htmlFor="defaultFormRegisterPasswordEx"
-              className="grey-text"
+              htmlFor="defaultFormRegisterPasswordEx5"
+              className="dark-grey-text"
             >
-              Your password
+              Lösenord
             </label>
             <input
-              autoComplete=""
+              autoComplete="password"
               type="password"
-              id="defaultFormRegisterPasswordEx"
+              id="defaultFormRegisterPasswordEx5"
               className="form-control"
               value={this.state.password}
               onChange={this.onChangePassword}
             />
             <div className="text-center mt-4">
-              <MDBBtn color="unique" type="submit">
-                Register
+              <MDBBtn color="indigo" type="submit" className="font-weight-bold">
+                Skapa konto
               </MDBBtn>
             </div>
+            <br />
+            <p className="font-small grey-text d-flex justify-content-center">
+              Är du redan kund?
+              <Link to="/login" className="dark-grey-text font-weight-bold ml-1">
+                Logga in
+              </Link>
+            </p>
           </form>
         </MDBCol>
       </MDBRow>
