@@ -20,13 +20,13 @@ module.exports = {
         email
       });
       if (!user) return res.status(400).json({
-        error: 'User dose not exist'
+        error: 'Invalid email or password'
       });
 
       bcrypt.compare(password, user.password)
         .then(isMatch => {
             if (!isMatch) return res.status(400).json({
-              msg: 'Invalid password'
+              msg: 'Invalid email or password'
             });
 
           jwt.sign({
@@ -37,7 +37,8 @@ module.exports = {
             },
             (err, token) => {
               if (err) throw err;
-              res.json({
+              res.status(200).json({
+                msg: "login succeeded",
                 token,
                 user: {
                   id: user.id,
