@@ -4,12 +4,50 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardHeader,} from 'md
 import { Link } from "react-router-dom";
 
 class LoginFrom extends React.Component {
+
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
-     };
+    this.state = {
+    email: '',
+    password: ''
+    };
+
+  }
+
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value,
+    })
+  };
+
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value,
+    })
+  };
+
+  onSubmit(e) {
+    e.preventDefault();
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    axios.post('http://localhost:5000/users/auth', user)
+      .then(res => console.log(res.data))
+      .catch(error => {
+        console.log(error.response);
+      });
+
+    this.setState({
+      email: '',
+      password: '',
+    });
 
   }
 
@@ -18,7 +56,7 @@ class LoginFrom extends React.Component {
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
-            <form>
+            <form onSubmit={this.onSubmit}>
               <MDBCardHeader className = "form-header indigo rounded" >
                 <h3 className="my-3">
                   <MDBIcon icon="lock" className="text-white" />
@@ -34,6 +72,8 @@ class LoginFrom extends React.Component {
                 type="email"
                 id="defaultFormLoginEmailEx"
                 className="form-control"
+                value={this.state.email}
+                onChange={this.onChangeEmail}
               />
               <br />
               <label htmlFor="defaultFormLoginPasswordEx" className="dark-grey-text">
@@ -44,6 +84,8 @@ class LoginFrom extends React.Component {
                 id="defaultFormLoginPasswordEx"
                 className="form-control"
                 autoComplete="password"
+                value={this.state.password}
+                onChange={this.onChangePassword}
               />
               <div className="text-center mt-4">
                 <MDBBtn color="indigo" type="submit" className="font-weight-bold">logga in</MDBBtn>

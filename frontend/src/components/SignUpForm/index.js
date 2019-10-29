@@ -3,6 +3,7 @@ import axios from 'axios';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardHeader,} from 'mdbreact';
 import { Link } from "react-router-dom";
 class SignUpForm extends React.Component {
+
   constructor(props) {
     super(props);
 
