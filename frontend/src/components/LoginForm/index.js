@@ -17,9 +17,9 @@ class LoginFrom extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(e) {
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -36,10 +36,6 @@ class LoginFrom extends React.Component {
         console.log(response.data)
         if (response.status === 200) {
           console.log("take me to home page")
-          // this.props.updateUser({
-          //   loggedIn: true,
-          //   username: response.data.firstName
-          // })
           this.setState({
             redirectTo: '/'
           })
@@ -59,7 +55,7 @@ class LoginFrom extends React.Component {
           <MDBRow>
             <MDBCol md="6">
               <form onSubmit={this.onSubmit}>
-                <MDBCardHeader className = "form-header indigo rounded" >
+                <MDBCardHeader className="form-header indigo rounded" >
                   <h3 className="my-3">
                     <MDBIcon icon="lock" className="text-white" />
                     <strong className="font-weight-bold text-white"> Logga in</strong>
@@ -67,24 +63,24 @@ class LoginFrom extends React.Component {
                 </MDBCardHeader>
                 <br />
                 <br />
-                <label htmlFor="defaultFormLoginEmailEx" className="dark-grey-text">
+                <label htmlFor="email" className="dark-grey-text">
                   E-post
                 </label>
                 <input
                   type="email"
-                  id="defaultFormLoginEmailEx"
+                  id="email"
                   className="form-control"
                   value={this.state.email}
                   onChange={this.handleChange}
                   name="email"
                 />
                 <br />
-                <label htmlFor="defaultFormLoginPasswordEx" className="dark-grey-text">
+                <label htmlFor="password" className="dark-grey-text">
                   Lösenord
                 </label>
                 <input
                   type="password"
-                  id="defaultFormLoginPasswordEx"
+                  id="password"
                   className="form-control"
                   autoComplete="password"
                   value={this.state.password}
