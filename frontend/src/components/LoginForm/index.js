@@ -10,11 +10,12 @@ class LoginFrom extends React.Component {
     this.state = {
     email: '',
     password: '',
-    redirectTo: null
+    redirectTo: null,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   handleChange(e) {
@@ -51,6 +52,7 @@ class LoginFrom extends React.Component {
         return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
+
         <MDBContainer>
           <MDBRow>
             <MDBCol md="6">
@@ -100,6 +102,7 @@ class LoginFrom extends React.Component {
               </form>
             </MDBCol>
           </MDBRow>
+          <p>{this.state.token}aaa</p>
         </MDBContainer>
       );
     }
