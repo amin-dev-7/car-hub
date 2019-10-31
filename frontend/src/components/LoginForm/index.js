@@ -3,7 +3,6 @@ import axios from 'axios';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardHeader,} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 class LoginFrom extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -15,7 +14,6 @@ class LoginFrom extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange(e) {
@@ -36,6 +34,8 @@ class LoginFrom extends React.Component {
       .then(response => {
         console.log(response.data)
         if (response.status === 200) {
+          const token = response.data.token
+          localStorage.setItem('token', token)
           console.log("take me to home page")
           this.setState({
             redirectTo: '/'
@@ -43,16 +43,15 @@ class LoginFrom extends React.Component {
         }
       })
       .catch(error => {
-        console.log(error.response);
+        console.log(error);
       });
   }
 
   render() {
     if (this.state.redirectTo) {
-        return <Redirect to={{ pathname: this.state.redirectTo }} />
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
-
         <MDBContainer>
           <MDBRow>
             <MDBCol md="6">
@@ -102,7 +101,7 @@ class LoginFrom extends React.Component {
               </form>
             </MDBCol>
           </MDBRow>
-          <p>{this.state.token}aaa</p>
+          <p>{this.state.token}</p>
         </MDBContainer>
       );
     }
