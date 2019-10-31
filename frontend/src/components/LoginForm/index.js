@@ -56,12 +56,10 @@ class LoginFrom extends React.Component {
           <MDBRow>
             <MDBCol md="6">
               <form onSubmit={this.onSubmit}>
-                <MDBCardHeader className="form-header indigo rounded" >
-                  <h3 className="my-3">
-                    <MDBIcon icon="lock" className="text-white" />
-                    <strong className="font-weight-bold text-white"> Logga in</strong>
-                  </h3>
-                </MDBCardHeader>
+                <h3 className="my-3">
+                  <strong className = "font-weight-bold " >
+                    Logga in på ditt konto </strong>
+                </h3>
                 <br />
                 <br />
                 <label htmlFor="email" className="dark-grey-text">
@@ -89,13 +87,13 @@ class LoginFrom extends React.Component {
                   name="password"
                 />
                 <div className="text-center mt-4">
-                  <MDBBtn color="indigo" type="submit" className="font-weight-bold">logga in</MDBBtn>
+                  <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">logga in</MDBBtn>
                 </div>
                 <br />
-                <p className="font-small grey-text d-flex justify-content-center">
+                <p className="grey-text d-flex justify-content-center">
                   Ny kund?
                   <Link to="/signup" className="dark-grey-text font-weight-bold ml-1">
-                  Skapa ett konto
+                  Registrera dig och skapa ett konto
                   </Link>
                 </p>
               </form>

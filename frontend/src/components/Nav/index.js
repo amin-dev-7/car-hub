@@ -16,26 +16,27 @@ toggleCollapse = () => {
 render() {
   return (
     <Router>
-      <MDBNavbar color="indigo" dark expand="md">
+      <MDBNavbar color="blue" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">CAR HUB</strong>
+          <h4><strong className="white-text"
+          style={{ fontFamily: 'Trajan', fontWeight: 'bold' }}
+          >CARHUB</strong></h4>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <br />
           <br />
-
           <MDBNavbarNav left>
             <MDBNavItem>
-              <MDBNavLink to="/"><h4 className="font-weight-bold">Hem</h4></MDBNavLink>
+              <MDBNavLink to="/"><h5 className="font-weight-bold">Hem</h5></MDBNavLink>
             </MDBNavItem>
             <br />
             <MDBNavItem>
-              <MDBNavLink to="/"><h4 className="font-weight-bold">CAR HUB</h4></MDBNavLink>
+              <MDBNavLink to="/"><h5 className="font-weight-bold">CAR HUB</h5></MDBNavLink>
             </MDBNavItem>
             <br />
             <MDBNavItem>
-              <MDBNavLink to="/"><h4 className="font-weight-bold">CAR HUB</h4></MDBNavLink>
+              <MDBNavLink to="/"><h5 className="font-weight-bold">CAR HUB</h5></MDBNavLink>
             </MDBNavItem>
             <br />
           </MDBNavbarNav>

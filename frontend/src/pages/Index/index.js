@@ -1,6 +1,8 @@
 import React from 'react';
 import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
+import AdCard from '../../components/AdCard';
+import CarCard from '../../components/CarCard';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +54,8 @@ class index extends React.Component {
         {this.state.loggedIn &&
           <p>Welcome, {this.state.username}</p>
         }
+        <AdCard />
+        <CarCard />
       </DefaultLayout >
     );
   }

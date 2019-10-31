@@ -68,13 +68,10 @@ class SignUpForm extends React.Component {
           <MDBRow>
             <MDBCol md="6">
               <div className="sign-in">
-                <MDBCardHeader className="form-header indigo rounded" >
                   <h3 className="my-3">
-                    <MDBIcon icon="user-alt" className="text-white"/>
-                    <strong className="font-weight-bold text-white"> Skapa konto</strong>
+                    <strong className="font-weight-bold">Registera dig</strong>
                   </h3>
-                </MDBCardHeader>
-                <br / >
+                <br />
               </div>
               <form onSubmit={this.onSubmit}>
                 <label htmlFor="firstName" className="dark-grey-text">
@@ -141,12 +138,12 @@ class SignUpForm extends React.Component {
                   name="password"
                 />
                 <div className="text-center mt-4">
-                  <MDBBtn color="indigo" type="submit" className="font-weight-bold">
+                  <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
                     Skapa konto
                   </MDBBtn>
                 </div>
                 <br />
-                <p className="font-small grey-text d-flex justify-content-center">
+                <p className="grey-text d-flex justify-content-center">
                   Är du redan kund?
                   <Link to="/login" className="dark-grey-text font-weight-bold ml-1">
                     Logga in
