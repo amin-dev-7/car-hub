@@ -14,7 +14,7 @@ const AdCard = () => {
             Some quick example text to build on the card title and make
             up the bulk of the card&apos;s content.
           </MDBCardText>
-          <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Lägg till annons</MDBBtn>
+          <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Lägg in annons</MDBBtn>
         </MDBCardBody>
       </MDBCard>
       <br />

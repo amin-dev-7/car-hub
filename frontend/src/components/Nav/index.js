@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
-MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse
+MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,
+MDBCollapse, MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
 
@@ -23,18 +24,30 @@ render() {
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <br />
-          <MDBNavbarNav left>
+          <MDBNavbarNav>
+            <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">Hem</h5></Link>
+              <Link to="/"><h5 className="font-weight-bold white-text">
+                <MDBIcon icon="home" fixed /> Hem </h5>
+              </Link>
             </MDBNavItem>
             <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">Hem</h5></Link>
+              <Link to="/"><h5 className="font-weight-bold white-text">
+                <MDBIcon icon="car-side" fixed /> Bilar för salu</h5>
+              </Link>
             </MDBNavItem>
             <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">Hem</h5></Link>
+              <Link to="/"><h5 className="font-weight-bold white-text">
+                <MDBIcon icon="plus-square" fixed/> Lägg till anonns</h5>
+              </Link>
+            </MDBNavItem>
+             <br />
+            <MDBNavItem>
+              <Link to="/"><h5 className="font-weight-bold white-text">
+                 <MDBIcon icon="user-alt" fixed /> Logga in</h5>
+              </Link>
             </MDBNavItem>
             <br />
           </MDBNavbarNav>
