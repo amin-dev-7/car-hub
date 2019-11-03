@@ -5,6 +5,11 @@ const registerController = require('../controllers/users/register');
 const authenticationController = require('../controllers/users/authentication');
 const auth = require('../middleware/authentication');
 const User = require('../models/User');
+const Car = require('../models/Car');
+const multer = require('multer');
+const upload = multer({
+  dest: 'uploads/'
+});
 
 router.route('/')
   .get(registerController.getAllUsersAndCars);
@@ -20,8 +25,9 @@ router.route('/:userId')
   .put(userController.updateUserById);
 
 router.route('/:userId/cars')
-  .post(userController.addCarForSale)
+  // .post(userController.addCarForSale)
   .get(userController.getSellerCars);
+
   // ADD DeleteByUserId AND UpdateByUserId METHODS??
 
 // @route   GET users/auth/user
@@ -32,5 +38,23 @@ router.get('/auth/user', auth, (req, res) => {
     .select('-password')
     .then(user => res.json(user));
 });
+
+router.post("/:userId/cars", upload.single('carImage'), async (req, res) => {
+    const userId = req.params.userId;
+    let carImage = req.file.path;
+    console.log(req.file);
+    const newCar = new Car(req.body);
+    try {
+      const user = await User.findById(userId);
+      newCar.seller = user;
+      newCar.carImage = carImage;
+      await newCar.save();
+      user.cars.push(newCar);
+      const car = await user.save();
+      res.status(200).json(car);
+    } catch (err) {
+      res.status(404).json(`error: ${err}`)
+    }
+  });
 
 module.exports = router;
