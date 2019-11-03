@@ -4,7 +4,6 @@ MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,
 MDBCollapse, MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
-
 class Nav extends Component {
 state = {
   isOpen: false
@@ -20,7 +19,7 @@ render() {
         <MDBNavbarBrand>
           <Link to="/"><h4><strong className="white-text"
           style={{ fontFamily: 'Trajan', fontWeight: 'bold' }}
-          >CARHUB</strong></h4></Link>
+          >CarHub</strong></h4></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -45,7 +44,7 @@ render() {
             </MDBNavItem>
              <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">
+              <Link to="/login"><h5 className="font-weight-bold white-text">
                  <MDBIcon icon="user-alt" fixed /> Logga in</h5>
               </Link>
             </MDBNavItem>
