@@ -3,6 +3,7 @@ import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
 import AdCard from '../../components/AdCard';
 import CarCard from '../../components/CarCard';
+import Cookies from 'js-cookie';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ class index extends React.Component {
     this.state = {
       username: null,
       loggedIn: false,
-      token: localStorage.getItem('token')
+      token: Cookies.get('access_token')
      };
     this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)

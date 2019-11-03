@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 class LoginFrom extends React.Component {
@@ -35,7 +36,12 @@ class LoginFrom extends React.Component {
         console.log(response.data)
         if (response.status === 200) {
           const token = response.data.token
-          localStorage.setItem('token', token)
+          // Save token as Cookies //expires in one hour
+          const expires = (token.expires_in || 60 * 60) * 1000
+          const inOneHour = new Date(new Date().getTime() + expires)
+          Cookies.set('access_token', token, {
+            expires: inOneHour
+          });
           console.log("take me to home page")
           this.setState({
             redirectTo: '/'
@@ -45,6 +51,7 @@ class LoginFrom extends React.Component {
       .catch(error => {
         console.log(error);
       });
+
   }
 
   render() {
