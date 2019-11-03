@@ -4,6 +4,7 @@ import axios from 'axios';
 import AdCard from '../../components/AdCard';
 import CarCard from '../../components/CarCard';
 import Cookies from 'js-cookie';
+import {MDBAlert} from 'mdbreact';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -53,7 +54,9 @@ class index extends React.Component {
     return (
       <DefaultLayout>
         {this.state.loggedIn &&
-          <p>Welcome, {this.state.username}</p>
+          <MDBAlert color="success" >
+            Hej {this.state.username}
+          </MDBAlert>
         }
         <AdCard />
         <CarCard />
