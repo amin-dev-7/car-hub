@@ -99,7 +99,7 @@ class LoginFrom extends React.Component {
                 <br />
                 <p className="grey-text d-flex justify-content-center">
                   Ny kund?
-                  <Link to="/signup" className="dark-grey-text font-weight-bold ml-1">
+                  <Link to="/sign-up" className="dark-grey-text font-weight-bold ml-1">
                   Registrera dig och skapa ett konto
                   </Link>
                 </p>

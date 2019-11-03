@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Index from '../../pages/Index';
 import Login from '../../pages/Login';
 import SignUp from '../../pages/SignUp'
+import AddCar from '../../pages/AddCar';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
 
         <Route path="/" exact component={Index} />
         <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={SignUp} />
+        <Route path="/sign-up" exact component={SignUp} />
+        <Route path="/add-car" exact component={AddCar} />
 
       </div>
     </Router>
