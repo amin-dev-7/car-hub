@@ -4,16 +4,37 @@ MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,
 MDBCollapse, MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
-class Nav extends Component {
-state = {
-  isOpen: false
-};
+import Cookies from 'js-cookie';
+class Nav extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: false,
+      isLoggedIn: false
+    };
+
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+}
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
+handleLogoutClick() {
+  Cookies.remove('access_token');
+}
+
+componentDidMount() {
+  if (Cookies.get('access_token')) {
+    this.setState({
+      isLoggedIn: true
+    })
+  }
+}
+
 render() {
+  const isLoggedIn = this.state.isLoggedIn;
   return (
       <MDBNavbar color="blue" dark expand="md">
         <MDBNavbarBrand>
@@ -44,9 +65,17 @@ render() {
             </MDBNavItem>
              <br />
             <MDBNavItem>
+
+              {isLoggedIn ? (
+              <Link to="/login" onClick={this.handleLogoutClick} ><h5 className="font-weight-bold white-text">
+                 <MDBIcon icon="user-alt" fixed /> Logga ut</h5>
+              </Link>
+              ) : (
               <Link to="/login"><h5 className="font-weight-bold white-text">
                  <MDBIcon icon="user-alt" fixed /> Logga in</h5>
               </Link>
+              )}
+
             </MDBNavItem>
             <br />
           </MDBNavbarNav>
