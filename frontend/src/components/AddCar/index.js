@@ -12,9 +12,21 @@ class AddCar extends React.Component {
 
     this.state = {
 
-      userId: '',
+      userId: Cookies.get('userId'),
       loggedIn: false,
       token: Cookies.get('access_token'),
+
+      adTitle: '',
+      adDescription: '',
+      carCategory: '',
+      carBrand: '',
+      carModel: '',
+      carModelYear: '',
+      carFuel: '',
+      gearbox: '',
+      price: '',
+      location: '',
+      carImage: '',
 
       carOptions :[
         'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
@@ -32,38 +44,50 @@ class AddCar extends React.Component {
       gearboxOptions : [
         'Automat', 'Manuell'
       ],
-
     }
+    this.handleChange = this.handleChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
+    this.addCar = this.addCar.bind(this);
   }
 
-  // handleChange(e) {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
-  // componentDidMount() {
-  //   this.AddCar();
-  // }
+  componentDidMount() {
+    this.addCar();
+  }
 
-  // onSubmit(e) {
-  //   e.preventDefault();
-  //   this.componentDidMount()
-  // }
+  onSubmit(e) {
+    e.preventDefault();
+    this.componentDidMount()
+  }
 
-  // createUser() {
-
-  //  // Get user id
-  //   if (this.state.token) {
-  //     axios.get(`http://localhost:5000/users/${userId}`)
-  //   }
-
-  //   const car = {
-
-  //   }
-  //   axios.post(`http://localhost:5000/users/${this.state.userId}/cars`)
-  // }
-
+  addCar() {
+    const car = {
+      adTitle: this.state.adTitle,
+      adDescription: this.state.adDescription,
+      carCategory: this.state.carCategory,
+      carBrand: this.state.carBrand,
+      carModel: this.state.carModel,
+      carModelYear: this.state.carModelYear,
+      carFuel: this.state.carFuel,
+      gearbox: this.state.gearbox,
+      price: this.state.price,
+      location: this.state.location,
+      carImage: this.state.carImage,
+    }
+    axios.post(`http://localhost:5000/users/${this.state.userId}/cars`)
+      .then(res => {
+        if (res.status === 200) {
+          console.log("the ad has been added")
+        }
+      }).catch(error => {
+        console.log(error.response);
+      });
+  }
   render() {
     return (
       <MDBContainer>
@@ -91,44 +115,47 @@ class AddCar extends React.Component {
               <br />
               <br />
               <p className="text-left">Typ av bil</p>
-              <Dropdown options={this.state.carOptions} onChange={this._onSelect} value="Välj typ av bil"
+              <Dropdown options={this.state.carOptions} onChange={this._onSelect}
+              onChange={this.handleChange} value="Välj typ av bil"
                 placeholder="Select an option" name=""
               />
               <br />
               <p className="text-left">Märke</p>
               <Dropdown options={this.state.carOptions} onChange={this._onSelect} value="Välj bilmärke"
-                placeholder="Select an option" name=""
+                onChange={this.handleChange} placeholder="Select an option" name="brand"
               />
               <br />
               <p className="text-left">Modell</p>
               <Dropdown options={this.state.carOptions} onChange={this._onSelect}
-                value="Välj bilmodell"
-                placeholder="Select an option" name=""
+                 onChange={this.handleChange} value="Välj bilmodell"
+                placeholder="Select an option" name="model"
               />
               <br />
               <p className="text-left">Modellår</p>
               <Dropdown options={this.state.carYear} onChange={this._onSelect} value="Välj bil modellår"
-                placeholder="Select an option" name=""
+                onChange={this.handleChange} placeholder="Select an option" name="year"
               />
               <br />
               <p className="text-left">Drivmedel</p>
               <Dropdown options={this.state.fuelOptions} onChange={this._onSelect} value="Välj drivmedel"
-                placeholder="Select an option" name=""
+                onChange={this.handleChange} placeholder="Select an option" name="fuel"
               />
               <br />
               <p className="text-left">Växellåda </p>
               <Dropdown options={this.state.gearboxOptions} onChange={this._onSelect} value="Välj typ av växellåda"
-                placeholder="Select an option" name=""
+                onChange={this.handleChange} placeholder="Select an option" name="gearbox"
               />
               <br />
               <p className="text-left">Anonns titel</p>
-              <input type="text" id="titel" className="form-control" name="titel" value={this.state.titel}
+              <input type="text" id="titel" className="form-control" name="titel" value={this.state.adTitle}
                 onChange={this.handleChange} />
               <br />
               <p className="text-left">Pris </p>
-                <MDBInputGroup containerClassName="mb-3" append="SEK" />
+                <MDBInputGroup containerClassName="mb-3" append="SEK" name="price"
+                 value={this.state.price} onChange={this.handleChange}/>
               <br />
-              <MDBInput type="textarea" label="Beskrivning" rows="3" />
+              <MDBInput type="textarea" label="Beskrivning" rows="3" name="desc"
+                 value={this.state.adDescription} onChange={this.handleChange}/>
               <br />
               <div className="text-center mt-4">
                 <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
