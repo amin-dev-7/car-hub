@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBInputGroup} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 import Dropdown from 'react-dropdown'
@@ -10,6 +11,10 @@ class AddCar extends React.Component {
     super(props);
 
     this.state = {
+
+      userId: '',
+      loggedIn: false,
+      token: Cookies.get('access_token'),
 
       carOptions :[
         'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
@@ -47,12 +52,16 @@ class AddCar extends React.Component {
   // }
 
   // createUser() {
+
+  //  // Get user id
+  //   if (this.state.token) {
+  //     axios.get(`http://localhost:5000/users/${userId}`)
+  //   }
+
   //   const car = {
 
   //   }
-
-  //   axios.post('http://localhost:5000/cars/', car)
-
+  //   axios.post(`http://localhost:5000/users/${this.state.userId}/cars`)
   // }
 
   render() {
@@ -119,7 +128,7 @@ class AddCar extends React.Component {
               <p className="text-left">Pris </p>
                 <MDBInputGroup containerClassName="mb-3" append="SEK" />
               <br />
-              <MDBInput type="textarea" label="Beskrivning" rows="5" />
+              <MDBInput type="textarea" label="Beskrivning" rows="3" />
               <br />
               <div className="text-center mt-4">
                 <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">

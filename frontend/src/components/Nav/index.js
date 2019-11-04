@@ -23,6 +23,7 @@ toggleCollapse = () => {
 
 handleLogoutClick() {
   Cookies.remove('access_token');
+  Cookies.remove('userId')
 }
 
 componentDidMount() {

@@ -36,10 +36,15 @@ class LoginFrom extends React.Component {
         console.log(response.data)
         if (response.status === 200) {
           const token = response.data.token
+          const userId = response.data.user.id
           // Save token as Cookies //expires in one hour
           const expires = (token.expires_in || 60 * 60) * 1000
           const inOneHour = new Date(new Date().getTime() + expires)
           Cookies.set('access_token', token, {
+            expires: inOneHour
+          });
+          // Save user id
+          Cookies.set('userId', userId, {
             expires: inOneHour
           });
           console.log("take me to home page")
