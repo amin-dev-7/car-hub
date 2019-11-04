@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBInputGroup} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
@@ -11,8 +11,49 @@ class AddCar extends React.Component {
 
     this.state = {
 
+      carOptions :[
+        'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
+      ],
+      carYear :[
+          '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
+          '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015','2016',
+          '2017', '2018', '2019'],
+      carOptions : [
+        'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
+      ],
+      fuelOptions : [
+        'El', 'Bensin', 'Diesel', 'Hybrid'
+      ],
+      gearboxOptions : [
+        'Automat', 'Manuell'
+      ],
+
     }
-  }
+    // const carOptions = [
+    //   'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
+    // ]
+
+    // const carYear = [
+    //   '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006',
+    //   '2007',
+    //   '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015',
+    //   '2016',
+    //   '2017', '2018', '2019'
+    // ]
+
+    // const fuelOptions = [
+    //   'El', 'Bensin', 'Diesel', 'Hybrid'
+    // ]
+
+    // const gearboxOptions = [
+    //   'Automat', 'Manuell'
+    // ]
+
+    // const defaultCarOption = carOptions[0];
+    // const defaultYearOption = carYear[20];
+    // const defaultFuelOpstion = fuelOptions[0];
+    // const defaultGearboxOption = gearboxOptions[0];
+    }
 
   // handleChange(e) {
   //   this.setState({
@@ -39,17 +80,13 @@ class AddCar extends React.Component {
   // }
 
   render() {
-    const options = [
-      'one', 'two', 'three'
-    ]
-    const defaultOption = options[0];
     return (
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
             <div className="sign-in">
                 <h3 className="my-3">
-                  <strong className="font-weight-bold"> Lägg in din bil annons</strong>
+                  <strong className="font-weight-bold"> Lägg in din bilannons</strong>
                 </h3>
               <br />
             </div>
@@ -68,45 +105,43 @@ class AddCar extends React.Component {
               </div>
               <br />
               <br />
-              <p className="text-left">Typ av bil </p>
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption}
-                placeholder="Select an option"
+              <p className="text-left">Typ av bil</p>
+              <Dropdown options={this.state.carOptions} onChange={this._onSelect} value="Välj typ av bil"
+                placeholder="Select an option" name=""
               />
               <br />
-              <p className="text-left">Märke </p>
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption}
-                placeholder="Select an option"
+              <p className="text-left">Märke</p>
+              <Dropdown options={this.state.carOptions} onChange={this._onSelect} value="Välj bilmärke"
+                placeholder="Select an option" name=""
               />
               <br />
-              <p className="text-left">Modell </p>
-              <Dropdown options={options} onChange={this._onSelect}
-                value={defaultOption}
-                placeholder="Select an option"
+              <p className="text-left">Modell</p>
+              <Dropdown options={this.state.carOptions} onChange={this._onSelect}
+                value="Välj bilmodell"
+                placeholder="Select an option" name=""
               />
               <br />
-              <p className="text-left">Modellår </p>
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption}
-                placeholder="Select an option"
+              <p className="text-left">Modellår</p>
+              <Dropdown options={this.state.carYear} onChange={this._onSelect} value="Välj bil modellår"
+                placeholder="Select an option" name=""
               />
               <br />
-              <p className="text-left">Bränsle </p>
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption}
-                placeholder="Select an option"
+              <p className="text-left">Drivmedel</p>
+              <Dropdown options={this.state.fuelOptions} onChange={this._onSelect} value="Välj drivmedel"
+                placeholder="Select an option" name=""
               />
               <br />
               <p className="text-left">Växellåda </p>
-              <Dropdown options={options} onChange={this._onSelect} value={defaultOption}
-                placeholder="Select an option"
+              <Dropdown options={this.state.gearboxOptions} onChange={this._onSelect} value="Välj typ av växellåda"
+                placeholder="Select an option" name=""
               />
               <br />
-              <p className="text-left"> Anonns titel </p>
+              <p className="text-left">Anonns titel</p>
               <input type="text" id="titel" className="form-control" name="titel" value={this.state.titel}
                 onChange={this.handleChange} />
               <br />
               <p className="text-left">Pris </p>
-              <input type="text" id="adDescription" className="form-control" name="adDescription"
-                value={this.state.lastName}
-                onChange={this.handleChange} />
+                <MDBInputGroup containerClassName="mb-3" append="SEK" />
               <br />
               <MDBInput type="textarea" label="Beskrivning" rows="5" />
               <br />

@@ -4,3 +4,10 @@
 .custom-file-label::after {
   display: none;
 }
+.Dropdown-control{
+  background-color: #2196f3 !important;
+}
+
+.Dropdown-arrow {
+  border-top-color: #333030;
+}
