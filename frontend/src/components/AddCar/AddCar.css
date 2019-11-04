@@ -1,0 +1,6 @@
+.Dropdown-placeholder {
+  padding-left: 40px;
+}
+.custom-file-label::after {
+  display: none;
+}
