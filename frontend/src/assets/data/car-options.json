@@ -1,0 +1,6 @@
+[{ "value": "Sedan", "name": "Sedan" },
+{ "value": "SUV", "name": "SUV" },
+{ "value": "Småbil", "name": "Småbil" },
+{ "value": "Kombi", "name": "Kombi" },
+{ "value": "Halvkombi", "name": "Halvkombi" },
+{ "value": "Coupé", "name": "Coupé" }]

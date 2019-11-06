@@ -1,60 +1,45 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBInputGroup} from 'mdbreact';
+import carOptions from '../../assets/data/car-options.json'
+import carModelYears from '../../assets/data/car-model-year.json'
+import fuelOptions from '../../assets/data/fuel-options.json'
+import carList from '../../assets/data/car-list.json'
+import gearboxOptions from '../../assets/data/gearbox-options.json'
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInputGroup, MDBInput} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
-import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
-import './AddCar.css'
+import Form from 'react-bootstrap/Form'
 class AddCar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-
       userId: Cookies.get('userId'),
       loggedIn: false,
       token: Cookies.get('access_token'),
-
       adTitle: '',
       adDescription: '',
       carCategory: '',
       carBrand: '',
-      carModel: '',
       carModelYear: '',
       carFuel: '',
       gearbox: '',
       price: '',
       location: '',
       carImage: '',
-
-      carOptions :[
-        'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
-      ],
-      carYear :[
-          '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
-          '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015','2016',
-          '2017', '2018', '2019'],
-      carOptions : [
-        'Sedan', 'SUV', 'Småbil', 'Kombi', 'Halvkombi', 'Coupé'
-      ],
-      fuelOptions : [
-        'El', 'Bensin', 'Diesel', 'Hybrid'
-      ],
-      gearboxOptions : [
-        'Automat', 'Manuell'
-      ],
     }
+
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
     this.addCar = this.addCar.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
-  }
+  };
 
   componentDidMount() {
     this.addCar();
@@ -71,7 +56,6 @@ class AddCar extends React.Component {
       adDescription: this.state.adDescription,
       carCategory: this.state.carCategory,
       carBrand: this.state.carBrand,
-      carModel: this.state.carModel,
       carModelYear: this.state.carModelYear,
       carFuel: this.state.carFuel,
       gearbox: this.state.gearbox,
@@ -79,8 +63,10 @@ class AddCar extends React.Component {
       location: this.state.location,
       carImage: this.state.carImage,
     }
-    axios.post(`http://localhost:5000/users/${this.state.userId}/cars`)
+
+    axios.post(`http://localhost:5000/users/${this.state.userId}/cars`, car)
       .then(res => {
+        console.log(res.data)
         if (res.status === 200) {
           console.log("the ad has been added")
         }
@@ -88,7 +74,25 @@ class AddCar extends React.Component {
         console.log(error.response);
       });
   }
+
   render() {
+    // SELECT OPTIONS
+    let carOptionList = carOptions.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
+    let fuelOptionList = fuelOptions.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
+    let gearboxOptionList = gearboxOptions.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
+    let carModelYearList = carModelYears.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
+    let carBrandList = carList.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
+
     return (
       <MDBContainer>
         <MDBRow>
@@ -99,7 +103,7 @@ class AddCar extends React.Component {
                 </h3>
               <br />
             </div>
-            <form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.onSubmit}>
               <p className="text-left">Bilder </p>
               <div className="input-group">
                 <div className="input-group-prepend">
@@ -114,55 +118,71 @@ class AddCar extends React.Component {
               </div>
               <br />
               <br />
-              <p className="text-left">Typ av bil</p>
-              <Dropdown options={this.state.carOptions} onChange={this._onSelect}
-              onChange={this.handleChange} value="Välj typ av bil"
-                placeholder="Select an option" name=""
-              />
-              <br />
-              <p className="text-left">Märke</p>
-              <Dropdown options={this.state.carOptions} onChange={this._onSelect} value="Välj bilmärke"
-                onChange={this.handleChange} placeholder="Select an option" name="brand"
-              />
-              <br />
-              <p className="text-left">Modell</p>
-              <Dropdown options={this.state.carOptions} onChange={this._onSelect}
-                 onChange={this.handleChange} value="Välj bilmodell"
-                placeholder="Select an option" name="model"
-              />
-              <br />
-              <p className="text-left">Modellår</p>
-              <Dropdown options={this.state.carYear} onChange={this._onSelect} value="Välj bil modellår"
-                onChange={this.handleChange} placeholder="Select an option" name="year"
-              />
-              <br />
-              <p className="text-left">Drivmedel</p>
-              <Dropdown options={this.state.fuelOptions} onChange={this._onSelect} value="Välj drivmedel"
-                onChange={this.handleChange} placeholder="Select an option" name="fuel"
-              />
-              <br />
-              <p className="text-left">Växellåda </p>
-              <Dropdown options={this.state.gearboxOptions} onChange={this._onSelect} value="Välj typ av växellåda"
-                onChange={this.handleChange} placeholder="Select an option" name="gearbox"
-              />
-              <br />
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Typ av bil</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  onChange={this.handleChange}
+                >
+                  {carOptionList}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Märke</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  // value={carModelYearLsit.value}
+                  onChange={this.handleChange}
+                  options={carList}
+                  name="carBrand">
+                  {carBrandList}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Modellår</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  // value={carModelYearLsit.value}
+                  onChange={this.handleChange}
+                  options={carList}
+                  name="carBrand">
+                  {carModelYearList}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Drivmedel</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  // value={carModelYearLsit.value}
+                  onChange={this.handleChange}
+                  options={carList}
+                  name="carBrand">
+                  {fuelOptionList}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Växellåda</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  // value={carModelYearLsit.value}
+                  onChange={this.handleChange}
+                  options={carList}
+                  name="carBrand">
+                  {gearboxOptionList}
+                </Form.Control>
+              </Form.Group>
               <p className="text-left">Anonns titel</p>
-              <input type="text" id="titel" className="form-control" name="titel" value={this.state.adTitle}
-                onChange={this.handleChange} />
+              <input type="text" id="titel" className="form-control" name="adTitle"
+               value={this.state.adTitle} onChange={this.handleChange} />
               <br />
               <p className="text-left">Pris </p>
-                <MDBInputGroup containerClassName="mb-3" append="SEK" name="price"
-                 value={this.state.price} onChange={this.handleChange}/>
+                <MDBInputGroup type="number" containerClassName="mb-3" append="SEK" name="price"
+                  onChange={this.handleChange} />
               <br />
-              <MDBInput type="textarea" label="Beskrivning" rows="3" name="desc"
-                 value={this.state.adDescription} onChange={this.handleChange}/>
+              <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
+                 value={this.state.adDescription} onChange={this.handleChange} />
               <br />
               <div className="text-center mt-4">
                 <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
                   Lägg in annons
                 </MDBBtn>
               </div>
-            </form>
+            </Form>
             <br />
           </MDBCol>
         </MDBRow>

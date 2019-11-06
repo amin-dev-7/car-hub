@@ -56,7 +56,6 @@ class LoginFrom extends React.Component {
       .catch(error => {
         console.log(error);
       });
-
   }
 
   render() {
@@ -111,7 +110,6 @@ class LoginFrom extends React.Component {
               </form>
             </MDBCol>
           </MDBRow>
-          <p>{this.state.token}</p>
         </MDBContainer>
       );
     }
