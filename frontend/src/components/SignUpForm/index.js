@@ -26,13 +26,9 @@ class SignUpForm extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.createUser();
-  }
-
   onSubmit(e) {
     e.preventDefault();
-    this.componentDidMount()
+    this.createUser();
   }
 
   createUser() {

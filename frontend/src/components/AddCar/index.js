@@ -7,10 +7,10 @@ import fuelOptions from '../../assets/data/fuel-options.json'
 import carList from '../../assets/data/car-list.json'
 import cities from '../../assets/data/cities.json'
 import gearboxOptions from '../../assets/data/gearbox-options.json'
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInputGroup, MDBInput} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 import 'react-dropdown/style.css'
-import Form from 'react-bootstrap/Form'
+import {Form, InputGroup, FormControl} from 'react-bootstrap'
 class AddCar extends React.Component {
   constructor(props) {
     super(props);
@@ -41,16 +41,10 @@ class AddCar extends React.Component {
       [e.target.name]: e.target.value,
     })
   };
-  // handleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
-  componentDidMount() {
-    this.addCar();
-  }
 
   onSubmit(e) {
     e.preventDefault();
-    this.componentDidMount()
+    this.addCar();
   }
 
   addCar() {
@@ -79,7 +73,7 @@ class AddCar extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
@@ -190,8 +184,17 @@ class AddCar extends React.Component {
                value={this.state.adTitle} onChange={this.handleChange} />
               <br />
               <p className="text-left">Pris </p>
-                <MDBInput type="number"  append="SEK" name="price"
-                  onChange={this.handleChange} value={this.state.price}/>
+                <InputGroup className="mb-3">
+                  <FormControl
+                  value={this.state.price}
+                  onChange={this.handleChange}
+                  name="price"
+                  type="number"
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text>SEK</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
               <br />
               <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
                  value={this.state.adDescription} onChange={this.handleChange} />

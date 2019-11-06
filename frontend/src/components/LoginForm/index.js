@@ -25,7 +25,10 @@ class LoginFrom extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.loginAuthentication();
+  }
 
+  loginAuthentication() {
     const user = {
       email: this.state.email,
       password: this.state.password

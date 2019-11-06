@@ -40,14 +40,14 @@ router.get('/auth/user', auth, (req, res) => {
 
 router.post("/:userId/cars", upload.single('carImage'), async (req, res) => {
     const userId = req.params.userId;
-    console.log(req.file);
-    let carImage = req.file.path;
-    console.log(req.file);
+    // console.log(req.file);
+    // let carImage = req.file.path;
+    // console.log(req.file);
     const newCar = new Car(req.body);
     try {
       const user = await User.findById(userId);
       newCar.seller = user;
-      newCar.carImage = carImage;
+      // newCar.carImage = carImage;
       await newCar.save();
       user.cars.push(newCar);
       const car = await user.save();
