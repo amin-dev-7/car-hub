@@ -1,0 +1,12 @@
+[{ "value": "Göteborg", "name": "Göteborg" },
+  { "value": "Stockholm", "name": "Stockholm" },
+  { "value": "Umeå", "name": "Umeå" },
+  { "value": "Lund", "name": "Lund" },
+  { "value": "Norrköping", "name": "Norrköping" },
+  { "value": "Jönköping", "name": "Jönköping" },
+  { "value": "Helsingborg", "name": "Helsingborg" },
+  { "value": "Linköping", "name": "Linköping" },
+  { "value": "Örebro", "name": "Örebro" },
+  { "value": "Västerås", "name": "Västerås" },
+  { "value": "Uppsala", "name": "Uppsala" },
+  { "value": "Malmö", "name": "Malmö" }]

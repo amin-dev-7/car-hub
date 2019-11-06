@@ -5,6 +5,7 @@ import carOptions from '../../assets/data/car-options.json'
 import carModelYears from '../../assets/data/car-model-year.json'
 import fuelOptions from '../../assets/data/fuel-options.json'
 import carList from '../../assets/data/car-list.json'
+import cities from '../../assets/data/cities.json'
 import gearboxOptions from '../../assets/data/gearbox-options.json'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInputGroup, MDBInput} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
@@ -40,7 +41,9 @@ class AddCar extends React.Component {
       [e.target.name]: e.target.value,
     })
   };
-
+  // handleChange(event) {
+  //   this.setState({value: event.target.value});
+  // }
   componentDidMount() {
     this.addCar();
   }
@@ -76,6 +79,7 @@ class AddCar extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
@@ -92,6 +96,9 @@ class AddCar extends React.Component {
     let carBrandList = carList.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
+    let citiesList = cities.map((option) =>
+      <option key={option.name}>{option.name}</option>
+      );
 
     return (
       <MDBContainer>
@@ -103,14 +110,14 @@ class AddCar extends React.Component {
                 </h3>
               <br />
             </div>
-            <Form onSubmit={this.onSubmit}>
+            <Form encType="multipart/form-data" onSubmit={this.onSubmit}>
               <p className="text-left">Bilder </p>
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="inputGroupFileAddon01">Ladda upp </span>
                 </div>
                 <div className="custom-file">
-                  <input type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"/>
+                  <input name="carImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"/>
                   <label className="custom-file-label" htmlFor="inputGroupFile01">
                     Välj bild
                   </label>
@@ -122,8 +129,9 @@ class AddCar extends React.Component {
                 <p className="text-left">Typ av bil</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
                   onChange={this.handleChange}
-                >
-                  {carOptionList}
+                  value={this.state.carCategory}
+                  name="carCategory">
+                {carOptionList}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
@@ -131,7 +139,7 @@ class AddCar extends React.Component {
                 <Form.Control as="select" placeholder="Välj bilmärke"
                   // value={carModelYearLsit.value}
                   onChange={this.handleChange}
-                  options={carList}
+                  value={this.state.carBrand}
                   name="carBrand">
                   {carBrandList}
                 </Form.Control>
@@ -139,31 +147,37 @@ class AddCar extends React.Component {
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <p className="text-left">Modellår</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
-                  // value={carModelYearLsit.value}
                   onChange={this.handleChange}
-                  options={carList}
-                  name="carBrand">
+                  value={this.state.carModelYear}
+                  name="carModelYear">
                   {carModelYearList}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <p className="text-left">Drivmedel</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
-                  // value={carModelYearLsit.value}
                   onChange={this.handleChange}
-                  options={carList}
-                  name="carBrand">
+                  value={this.state.carFuel}
+                  name="carFuel">
                   {fuelOptionList}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <p className="text-left">Växellåda</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
-                  // value={carModelYearLsit.value}
                   onChange={this.handleChange}
-                  options={carList}
-                  name="carBrand">
+                  value={this.state.gearbox}
+                  name="gearbox">
                   {gearboxOptionList}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect2">
+                <p className="text-left">Plats</p>
+                <Form.Control as="select" placeholder="Välj bilmärke"
+                  onChange={this.handleChange}
+                  value={this.state.location}
+                  name="location">
+                  {citiesList}
                 </Form.Control>
               </Form.Group>
               <p className="text-left">Anonns titel</p>
@@ -171,8 +185,8 @@ class AddCar extends React.Component {
                value={this.state.adTitle} onChange={this.handleChange} />
               <br />
               <p className="text-left">Pris </p>
-                <MDBInputGroup type="number" containerClassName="mb-3" append="SEK" name="price"
-                  onChange={this.handleChange} />
+                <MDBInput type="number"  append="SEK" name="price"
+                  onChange={this.handleChange} value={this.state.price}/>
               <br />
               <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
                  value={this.state.adDescription} onChange={this.handleChange} />

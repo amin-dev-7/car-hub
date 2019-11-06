@@ -10,7 +10,6 @@ const multer = require('multer');
 const upload = multer({
   dest: 'uploads/'
 });
-
 router.route('/')
   .get(registerController.getAllUsersAndCars);
 
@@ -41,6 +40,7 @@ router.get('/auth/user', auth, (req, res) => {
 
 router.post("/:userId/cars", upload.single('carImage'), async (req, res) => {
     const userId = req.params.userId;
+    console.log(req.file);
     let carImage = req.file.path;
     console.log(req.file);
     const newCar = new Car(req.body);
