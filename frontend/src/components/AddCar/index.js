@@ -131,16 +131,17 @@ class AddCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carCategory}
                   name="carCategory">
-                {carOptionList}
+                  <option value="" disabled>Välj ett alternativ...</option>
+                  {carOptionList}
                 </Form.Control>
               </Form.Group>
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <p className="text-left">Märke</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
-                  // value={carModelYearLsit.value}
                   onChange={this.handleChange}
                   value={this.state.carBrand}
                   name="carBrand">
+                  <option value="" disabled>Välj ett alternativ...</option>
                   {carBrandList}
                 </Form.Control>
               </Form.Group>
@@ -150,6 +151,7 @@ class AddCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carModelYear}
                   name="carModelYear">
+                  <option value="" disabled>Välj ett alternativ...</option>
                   {carModelYearList}
                 </Form.Control>
               </Form.Group>
@@ -159,6 +161,7 @@ class AddCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carFuel}
                   name="carFuel">
+                  <option value="" disabled>Välj ett alternativ...</option>
                   {fuelOptionList}
                 </Form.Control>
               </Form.Group>
@@ -168,6 +171,7 @@ class AddCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.gearbox}
                   name="gearbox">
+                  <option value="" disabled>Välj ett alternativ...</option>
                   {gearboxOptionList}
                 </Form.Control>
               </Form.Group>
@@ -177,6 +181,7 @@ class AddCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.location}
                   name="location">
+                  <option value="" disabled>Välj ett alternativ...</option>
                   {citiesList}
                 </Form.Control>
               </Form.Group>
