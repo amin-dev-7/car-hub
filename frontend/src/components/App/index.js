@@ -5,6 +5,7 @@ import Index from '../../pages/Index';
 import Login from '../../pages/Login';
 import SignUp from '../../pages/SignUp'
 import AddCar from '../../pages/AddCar';
+import CarCard from '../../pages/CarCardPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/add-car" exact component={AddCar} />
+        <Route path="/car-card" exact component={CarCard} />
 
       </div>
     </Router>

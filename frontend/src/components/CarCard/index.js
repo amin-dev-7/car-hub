@@ -1,23 +1,33 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol
-} from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol }
+from 'mdbreact';
 
-const CarCard = () => {
-  return (
-    <MDBCol>
+class CarCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+     };
+  }
+
+  render() {
+    return (
+      <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
-        <MDBCardImage className="img-fluid" src="" waves />
+        <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
         <MDBCardBody>
           <MDBCardTitle>Card title</MDBCardTitle>
           <MDBCardText>
             Some quick example text to build on the card title and make
             up the bulk of the card&apos;s content.
           </MDBCardText>
-          <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Hitta din bil</MDBBtn>
+          <MDBBtn href="#">MDBBtn</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
-  )
+    );
+  }
 }
 
 export default CarCard;
