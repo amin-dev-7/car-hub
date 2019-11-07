@@ -2,7 +2,6 @@ import React from 'react';
 import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
 import AdCard from '../../components/AdCard';
-import CarCard from '../../components/CarCard';
 import Cookies from 'js-cookie';
 import {MDBAlert} from 'mdbreact';
 import Card from '../../components/Card';
