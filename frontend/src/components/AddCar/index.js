@@ -1,16 +1,16 @@
 import React from "react";
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import carOptions from '../../assets/data/car-options.json'
-import carModelYears from '../../assets/data/car-model-year.json'
-import fuelOptions from '../../assets/data/fuel-options.json'
-import carList from '../../assets/data/car-list.json'
-import cities from '../../assets/data/cities.json'
-import gearboxOptions from '../../assets/data/gearbox-options.json'
+import carOptions from '../../assets/data/car-options.json';
+import carModelYears from '../../assets/data/car-model-year.json';
+import fuelOptions from '../../assets/data/fuel-options.json';
+import carList from '../../assets/data/car-list.json';
+import cities from '../../assets/data/cities.json';
+import gearboxOptions from '../../assets/data/gearbox-options.json';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
-import 'react-dropdown/style.css'
-import {Form, InputGroup, FormControl} from 'react-bootstrap'
+import 'react-dropdown/style.css';
+import {Form, InputGroup, FormControl} from 'react-bootstrap';
 class AddCar extends React.Component {
   constructor(props) {
     super(props);
@@ -28,40 +28,42 @@ class AddCar extends React.Component {
       gearbox: '',
       price: '',
       location: '',
-      carImage: '',
+      file: null
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
-    this.addCar = this.addCar.bind(this);
+    this.onChangeImg = this.onChangeImg.bind(this);
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
+      this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit(e) {
-    e.preventDefault();
-    this.addCar();
+  onChangeImg(e) {
+    this.setState({file:e.target.files[0]});
   }
 
-  addCar() {
-    const car = {
-      adTitle: this.state.adTitle,
-      adDescription: this.state.adDescription,
-      carCategory: this.state.carCategory,
-      carBrand: this.state.carBrand,
-      carModelYear: this.state.carModelYear,
-      carFuel: this.state.carFuel,
-      gearbox: this.state.gearbox,
-      price: this.state.price,
-      location: this.state.location,
-      carImage: this.state.carImage,
-    }
+  onSubmit = e => {
+    e.preventDefault();
 
-    axios.post(`http://localhost:5000/users/${this.state.userId}/cars`, car)
+    const formData = new FormData();
+    formData.append('myImage',this.state.file);
+    formData.append("adTitle", this.state.adTitle);
+    formData.append("adDescription", this.state.adDescription);
+    formData.append("carCategory", this.state.carCategory);
+    formData.append("carBrand", this.state.carBrand);
+    formData.append("carModelYear", this.state.carModelYear);
+    formData.append("carFuel", this.state.carFuel);
+    formData.append("gearbox", this.state.gearbox);
+    formData.append("price", this.state.price);
+    formData.append("location", this.state.location);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    };
+    axios.post( `http://localhost:5000/users/${this.state.userId}/cars`,formData,config)
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
@@ -73,7 +75,6 @@ class AddCar extends React.Component {
   }
 
   render() {
-
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
@@ -93,7 +94,6 @@ class AddCar extends React.Component {
     let citiesList = cities.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-
     return (
       <MDBContainer>
         <MDBRow>
@@ -107,12 +107,11 @@ class AddCar extends React.Component {
             <Form encType="multipart/form-data" onSubmit={this.onSubmit}>
               <p className="text-left">Bilder </p>
               <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="inputGroupFileAddon01">Ladda upp </span>
-                </div>
                 <div className="custom-file">
-                  <input name="carImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"/>
-                  <label className="custom-file-label" htmlFor="inputGroupFile01">
+                  <input name="myImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
+                    onChange={this.onChangeImg}
+                  />
+                  <label className="custom-file-label text-left" htmlFor="inputGroupFile01">
                     Välj bild
                   </label>
                 </div>

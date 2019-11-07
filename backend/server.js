@@ -12,7 +12,6 @@ app.use(express.urlencoded({
 app.use(cors());
 app.use(express.json());
 
-app.use('/uploads', express.static('uploads'));
 app.use('/cars', require('./routes/cars'));
 app.use('/users', require('./routes/users'));
 

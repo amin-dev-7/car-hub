@@ -1,6 +1,7 @@
 node_modules
 logs
 uploads
+public
 
 .vscode
 .DS_Store
