@@ -31,7 +31,6 @@ class CarCard extends React.Component {
   }
 
   render() {
-    console.log(this.getCarByUserId);
     return (
       <MDBCol>
       <MDBCard style={{ width: "22rem" }}>

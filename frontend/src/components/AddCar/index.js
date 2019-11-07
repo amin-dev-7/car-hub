@@ -27,6 +27,7 @@ class AddCar extends React.Component {
       carFuel: '',
       gearbox: '',
       price: '',
+      mileage: '',
       location: '',
       file: null
     }
@@ -58,6 +59,7 @@ class AddCar extends React.Component {
     formData.append("gearbox", this.state.gearbox);
     formData.append("price", this.state.price);
     formData.append("location", this.state.location);
+    formData.append("mileage", this.state.mileage);
     const config = {
         headers: {
             'content-type': 'multipart/form-data'
@@ -182,6 +184,18 @@ class AddCar extends React.Component {
               <input type="text" id="titel" className="form-control" name="adTitle"
                value={this.state.adTitle} onChange={this.handleChange} />
               <br />
+              <p className="text-left">Miltal </p>
+                <InputGroup className="mb-3">
+                  <FormControl
+                  value={this.state.mileage}
+                  onChange={this.handleChange}
+                  name="mileage"
+                  type="number"
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text>Mil</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
               <p className="text-left">Pris </p>
                 <InputGroup className="mb-3">
                   <FormControl

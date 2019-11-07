@@ -38,6 +38,10 @@ const carSchema = new Schema({
     type: String,
     required: true
   },
+  mileage: {
+    type: Number,
+    required: true
+  },
   carImage: {
     type: String
   },
