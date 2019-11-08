@@ -24,7 +24,7 @@ router.route('/:userId')
 
 router.route('/:userId/cars')
   // .post(userController.addCarForSale)
-  .get(userController.getSellerCars);
+  // .get(userController.getSellerCars);
 
   // ADD DeleteByUserId AND UpdateByUserId METHODS??
 
@@ -40,7 +40,7 @@ router.get('/auth/user', auth, (req, res) => {
 const storage = multer.diskStorage({
   destination: "./public/uploads/",
   filename: function(req, file, cb){
-     cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+     cb(null,"img-" + Date.now() + path.extname(file.originalname));
   }
 });
 
@@ -80,5 +80,15 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
       console.log(err);
     }
   });
+
+  router.get("/:userId/cars", async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await User.findById(userId).populate('cars');
+      res.status(200).json(user);
+    } catch (err){
+      res.status(404).json(`error: ${err}`)
+    }
+  })
 
 module.exports = router;

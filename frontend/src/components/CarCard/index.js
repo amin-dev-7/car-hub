@@ -12,6 +12,7 @@ class CarCard extends React.Component {
       userId: Cookies.get('userId'),
       loggedIn: false,
       token: Cookies.get('access_token'),
+      cars: []
      };
      this.getCarByUserId = this.getCarByUserId.bind(this);
   }
@@ -24,6 +25,9 @@ class CarCard extends React.Component {
     axios.get(`http://localhost:5000/users/${this.state.userId}/cars`)
       .then(res => {
         console.log(res.data)
+        this.setState({
+          cars: res.data.cars
+        })
       })
       .catch(error => {
         console.log(error);
@@ -31,10 +35,16 @@ class CarCard extends React.Component {
   }
 
   render() {
+
+    let cars = this.state.cars;
+    console.log(cars.map(index => index.carImage));
+    let imgs = cars.map(index => index.carImage)
+    console.log(imgs[3]);
+
     return (
       <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
-        <MDBCardImage className="img-fluid" src="" waves />
+        <MDBCardImage className="img-fluid" src={imgs[3]} waves />
         <MDBCardBody>
           <MDBCardTitle>Card title</MDBCardTitle>
           <MDBCardText>
