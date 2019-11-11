@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol
 } from 'mdbreact';
 
-const Card = () => {
+const IndexCard = () => {
   return (
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
@@ -20,4 +20,4 @@ const Card = () => {
   )
 }
 
-export default Card;
+export default IndexCard;

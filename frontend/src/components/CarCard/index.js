@@ -1,9 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Car from '../Car'
 import Cookies from 'js-cookie';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol }
-from 'mdbreact';
-
 class CarCard extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +10,7 @@ class CarCard extends React.Component {
       userId: Cookies.get('userId'),
       loggedIn: false,
       token: Cookies.get('access_token'),
-      cars: []
+      cars: [],
      };
      this.getCarByUserId = this.getCarByUserId.bind(this);
   }
@@ -37,24 +35,13 @@ class CarCard extends React.Component {
   render() {
 
     let cars = this.state.cars;
-    console.log(cars.map(index => index.carImage));
-    let imgs = cars.map(index => index.carImage)
-    console.log(imgs[3]);
+    console.log(cars)
+    const carComponent = cars.map(item => <Car key={item._id} car={item}/>)
 
     return (
-      <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardImage className="img-fluid" src={imgs[3]} waves />
-        <MDBCardBody>
-          <MDBCardTitle>Card title</MDBCardTitle>
-          <MDBCardText>
-            Some quick example text to build on the card title and make
-            up the bulk of the card&apos;s content.
-          </MDBCardText>
-          <MDBBtn href="#">MDBBtn</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
+      <div>
+      {carComponent}
+      </div>
     );
   }
 }

@@ -74,6 +74,7 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
     await newCar.save();
     user.cars.push(newCar);
     const car = await user.save();
+    // res.send(req.files);
     res.status(200).json(car);
     } catch (err) {
       res.status(404).json(`error: ${err}`)

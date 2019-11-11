@@ -4,7 +4,7 @@ import axios from 'axios';
 import AdCard from '../../components/AdCard';
 import Cookies from 'js-cookie';
 import {MDBAlert} from 'mdbreact';
-import Card from '../../components/Card';
+import IndexCard from '../../components/IndexCard';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -14,9 +14,10 @@ class index extends React.Component {
       loggedIn: false,
       token: Cookies.get('access_token')
      };
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+
+    this.getUser = this.getUser.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
@@ -59,7 +60,7 @@ class index extends React.Component {
           </MDBAlert>
         }
         <AdCard />
-        <Card />
+        <IndexCard />
       </DefaultLayout >
     );
   }
