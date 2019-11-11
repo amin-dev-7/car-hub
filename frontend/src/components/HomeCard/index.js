@@ -2,8 +2,9 @@ import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol
 } from 'mdbreact';
 import heroImg from '../../assets/images/hero-img.png'
+import { Link } from 'react-router-dom';
 
-const IndexCard = () => {
+const HomeCard = () => {
   return (
     <div>
       <MDBCardImage className="img-fluid" src={heroImg} waves />
@@ -14,7 +15,9 @@ const IndexCard = () => {
             <p className="text-body">
               På CarHub hittar du din framtida bil snabbt och enkelt
             </p>
-            <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Hitta din bil</MDBBtn>
+            <Link to="/car-for-sale">
+            <MDBBtn color="btn btn-success" className="font-weight-bold">Hitta din bil</MDBBtn>
+            </Link>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
@@ -22,4 +25,4 @@ const IndexCard = () => {
   )
 }
 
-export default IndexCard;
+export default HomeCard;

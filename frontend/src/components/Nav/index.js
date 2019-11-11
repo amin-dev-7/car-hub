@@ -54,7 +54,7 @@ render() {
             </MDBNavItem>
             <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">
+              <Link to="/car-for-sale"><h5 className="font-weight-bold white-text">
                 <MDBIcon icon="car-side" fixed /> Bilar för salu</h5>
               </Link>
             </MDBNavItem>

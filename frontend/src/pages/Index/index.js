@@ -1,11 +1,11 @@
 import React from 'react';
-import style from './index.css'
+import './index.css'
 import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
-import AdCard from '../../components/AdCard';
+import HomeAdCard from '../../components/HomeAdCard';
 import Cookies from 'js-cookie';
 import {MDBAlert} from 'mdbreact';
-import IndexCard from '../../components/IndexCard';
+import HomeCard from '../../components/HomeCard';
 import { Link } from "react-router-dom";
 class index extends React.Component {
   constructor(props) {
@@ -64,8 +64,8 @@ class index extends React.Component {
             </Link>
           </MDBAlert>
         }
-        <IndexCard />
-        <AdCard />
+        <HomeCard />
+        <HomeAdCard />
       </DefaultLayout >
     );
   }

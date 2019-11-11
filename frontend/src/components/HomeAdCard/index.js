@@ -3,7 +3,7 @@ import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, 
 } from 'mdbreact';
 import { Link } from 'react-router-dom';
 
-const AdCard = () => {
+const HomeAdCard = () => {
   return (
     <MDBCol>
       <br />
@@ -24,4 +24,4 @@ const AdCard = () => {
   )
 }
 
-export default AdCard;
+export default HomeAdCard;

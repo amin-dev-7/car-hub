@@ -1,15 +1,15 @@
 import React from 'react';
 import DefaultLayout from '../../layouts/index';
-import CarCard from '../../components/CarCard';
+import Car from '../../components/Car';
 
-const CarCardPage = () => {
+const CarPage = () => {
 
   return(
   <DefaultLayout>
 
-    <CarCard />
+    <Car />
   </DefaultLayout>
   );
 }
 
-export default CarCardPage;
+export default CarPage;

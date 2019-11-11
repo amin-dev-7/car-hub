@@ -1,30 +1,62 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
-from 'mdbreact';
+import axios from 'axios';
+import CarCard from './CarCard'
+import Cookies from 'js-cookie';
+import {MDBAlert} from 'mdbreact'
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
 
-function Car(props) {
-  return (
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
-        <MDBCardBody>
-          <MDBCardTitle>{props.car.adTitle}</MDBCardTitle>
-          <MDBCardText>
-            {props.car.adDescription}
-          </MDBCardText>
-            <MDBListGroupItem>Pris: {props.car.price} SEK</MDBListGroupItem>
-            <MDBListGroupItem>Typ av bil: {props.car.carCategory}</MDBListGroupItem>
-            <MDBListGroupItem>Märke: {props.car.carBrand}</MDBListGroupItem>
-            <MDBListGroupItem>Modellår: {props.car.carModelYear}</MDBListGroupItem>
-            <MDBListGroupItem>Drivmedel: {props.car.carFuel}</MDBListGroupItem>
-            <MDBListGroupItem>Växellåda: {props.car.gearbox}</MDBListGroupItem>
-            <MDBListGroupItem>Miltal: {props.car.mileage}</MDBListGroupItem>
-            <MDBListGroupItem>Plats: {props.car.location}</MDBListGroupItem>
-          <MDBBtn href="#">MDBBtn</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-  )
+    this.state = {
+      userId: Cookies.get('userId'),
+      loggedIn: false,
+      token: Cookies.get('access_token'),
+      cars: [],
+     };
+     this.getCarByUserId = this.getCarByUserId.bind(this);
+  }
+
+  componentDidMount() {
+    this.getCarByUserId();
+    this.noAds ();
+  }
+
+  noAds () {
+    return (
+      <MDBAlert color="danger">
+        Det finns inga annonser att hantera
+      </MDBAlert>
+    )
+  }
+
+  getCarByUserId() {
+    axios.get(`http://localhost:5000/users/${this.state.userId}/cars`)
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          cars: res.data.cars
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    let cars = this.state.cars;
+    console.log(cars)
+    const carCards = cars.map(item => <CarCard key={item._id} carCard={item}/>)
+    return (
+      <div>
+      {cars &&
+        <div>
+        {carCards}
+        </div>
+      }
+      {this.state.noAds}
+      </div>
+    );
+  }
 }
 
 export default Car;
