@@ -10,11 +10,10 @@ const AdCard = () => {
       <MDBCard style={{ width: "22rem" }}>
         <MDBCardImage className="img-fluid" src="" waves />
         <MDBCardBody>
-          <MDBCardTitle>Card title</MDBCardTitle>
-          <MDBCardText>
-            Some quick example text to build on the card title and make
-            up the bulk of the card&apos;s content.
-          </MDBCardText>
+          <MDBCardTitle>LÄGG IN DIN ANNONS</MDBCardTitle>
+          <p>
+            Lägg in din bilanons hos oss och få din bil sålt smidigt
+          </p>
           <Link to="/add-car">
           <MDBBtn color="btn btn-success" className="font-weight-bold">Lägg in annons</MDBBtn>
           </Link>

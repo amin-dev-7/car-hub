@@ -64,8 +64,8 @@ class index extends React.Component {
             </Link>
           </MDBAlert>
         }
-        <AdCard />
         <IndexCard />
+        <AdCard />
       </DefaultLayout >
     );
   }

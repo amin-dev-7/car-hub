@@ -1,22 +1,24 @@
 import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol
 } from 'mdbreact';
+import heroImg from '../../assets/images/hero-img.png'
 
 const IndexCard = () => {
   return (
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        <MDBCardImage className="img-fluid" src="" waves />
-        <MDBCardBody>
-          <MDBCardTitle>Card title</MDBCardTitle>
-          <MDBCardText>
-            Some quick example text to build on the card title and make
-            up the bulk of the card&apos;s content.
-          </MDBCardText>
-          <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Hitta din bil</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
+    <div>
+      <MDBCardImage className="img-fluid" src={heroImg} waves />
+      <MDBCol>
+        <MDBCard style={{ width: "22rem" }}>
+          <MDBCardBody>
+            <MDBCardTitle>HITTA DIN BIL</MDBCardTitle>
+            <p className="text-body">
+              På CarHub hittar du din framtida bil snabbt och enkelt
+            </p>
+            <MDBBtn color="btn btn-success" className="font-weight-bold" href="#">Hitta din bil</MDBBtn>
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    </div>
   )
 }
 
