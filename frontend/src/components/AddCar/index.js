@@ -17,7 +17,6 @@ class AddCar extends React.Component {
 
     this.state = {
       userId: Cookies.get('userId'),
-      loggedIn: false,
       token: Cookies.get('access_token'),
       adTitle: '',
       adDescription: '',
@@ -29,7 +28,7 @@ class AddCar extends React.Component {
       price: '',
       mileage: '',
       location: '',
-      file: null
+      file: null,
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -77,6 +76,7 @@ class AddCar extends React.Component {
   }
 
   render() {
+
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
@@ -96,6 +96,10 @@ class AddCar extends React.Component {
     let citiesList = cities.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
+
+    if (!this.state.token) {
+      return <Redirect to="/login"/>
+    } else {
     return (
       <MDBContainer>
         <MDBRow>
@@ -224,6 +228,7 @@ class AddCar extends React.Component {
       </MDBContainer>
     );
   }
+}
 }
 
 export default AddCar;
