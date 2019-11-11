@@ -1,10 +1,12 @@
 import React from 'react';
+import style from './index.css'
 import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
 import AdCard from '../../components/AdCard';
 import Cookies from 'js-cookie';
 import {MDBAlert} from 'mdbreact';
 import IndexCard from '../../components/IndexCard';
+import { Link } from "react-router-dom";
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -55,8 +57,11 @@ class index extends React.Component {
     return (
       <DefaultLayout>
         {this.state.loggedIn &&
-          <MDBAlert color="success" >
-            Hej {this.state.username}
+          <MDBAlert color="success">
+            Hej {this.state.username}!
+            <Link to='/car-card' className="spacing">
+            Hantera annons
+            </Link>
           </MDBAlert>
         }
         <AdCard />

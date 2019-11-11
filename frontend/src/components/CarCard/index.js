@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Car from '../Car'
 import Cookies from 'js-cookie';
+import {MDBAlert} from 'mdbreact'
 class CarCard extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,15 @@ class CarCard extends React.Component {
 
   componentDidMount() {
     this.getCarByUserId();
+    this.noAds ();
+  }
+
+  noAds () {
+    return (
+      <MDBAlert color="danger">
+        Det finns inga annonser att hantera
+      </MDBAlert>
+    )
   }
 
   getCarByUserId() {
@@ -33,14 +43,17 @@ class CarCard extends React.Component {
   }
 
   render() {
-
     let cars = this.state.cars;
     console.log(cars)
     const carComponent = cars.map(item => <Car key={item._id} car={item}/>)
-
     return (
       <div>
-      {carComponent}
+      {cars &&
+        <div>
+        {carComponent}
+        </div>
+      }
+      {this.state.noAds}
       </div>
     );
   }
