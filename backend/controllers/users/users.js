@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const Car = require('../../models/Car');
 const User = require('../../models/User');
 
 module.exports = {

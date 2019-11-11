@@ -22,12 +22,6 @@ router.route('/:userId')
   .get(userController.getUserById)
   .put(userController.updateUserById);
 
-router.route('/:userId/cars')
-  // .post(userController.addCarForSale)
-  // .get(userController.getSellerCars);
-
-  // ADD DeleteByUserId AND UpdateByUserId METHODS??
-
 // @route   GET users/auth/user
 // @desc    Get user data
 // @access  Private
@@ -37,6 +31,7 @@ router.get('/auth/user', auth, (req, res) => {
     .then(user => res.json(user));
 });
 
+// UPLOADS CONFIGURATIONS
 const storage = multer.diskStorage({
   destination: "./public/uploads/",
   filename: function(req, file, cb){
@@ -60,12 +55,11 @@ const upload = multer({
   limits:{fileSize: 1000000},
   fileFilter: fileFilter
 });
+// ----- UPLOADS CONFIGURATIONS ----- //
 
 router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
   try {
     const userId = req.params.userId;
-    console.log(req.body);
-    console.log(req.file);
     let carImage = req.file.path;
     const newCar = new Car(req.body);
     const user = await User.findById(userId);
@@ -82,14 +76,15 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
     }
   });
 
-  router.get("/:userId/cars", async (req, res) => {
-    try {
-      const userId = req.params.userId;
-      const user = await User.findById(userId).populate('cars');
-      res.status(200).json(user);
-    } catch (err){
-      res.status(404).json(`error: ${err}`)
-    }
-  })
+router.get("/:userId/cars", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await User.findById(userId).populate('cars');
+    res.status(200).json(user);
+  } catch (err){
+    res.status(404).json(`error: ${err}`)
+  }
+});
 
+  // ADD DeleteByUserId AND UpdateByUserId METHODS??
 module.exports = router;
