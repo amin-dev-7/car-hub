@@ -1,32 +1,61 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
+import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
 } from 'mdbreact';
-import { Link } from 'react-router-dom';
+import ContactButton from '../ContactButton';
+import axios from 'axios';
+class CarForSaleCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      carsSellers: []
+     };
+  }
 
-const CarForSaleCard = (props) => {
-  return (
-    <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
-        <MDBCardBody>
-          <MDBCardTitle>{props.CarForSaleCard.adTitle}</MDBCardTitle>
-          <MDBCardText>
-            {props.CarForSaleCard.adDescription}
-          </MDBCardText>
-            <MDBListGroupItem>Pris: {props.CarForSaleCard.price} SEK</MDBListGroupItem>
-            <MDBListGroupItem>Typ av bil: {props.CarForSaleCard.carCategory}</MDBListGroupItem>
-            <MDBListGroupItem>Märke: {props.CarForSaleCard.carBrand}</MDBListGroupItem>
-            <MDBListGroupItem>Modellår: {props.CarForSaleCard.carModelYear}</MDBListGroupItem>
-            <MDBListGroupItem>Drivmedel: {props.CarForSaleCard.carFuel}</MDBListGroupItem>
-            <MDBListGroupItem>Växellåda: {props.CarForSaleCard.gearbox}</MDBListGroupItem>
-            <MDBListGroupItem>Miltal: {props.CarForSaleCard.mileage}</MDBListGroupItem>
-            <MDBListGroupItem>Plats: {props.CarForSaleCard.location}</MDBListGroupItem>
-          <MDBBtn href="#">kontakta säljaren</MDBBtn>
-        </MDBCardBody>
-      </MDBCard>
-      <br />
-    </MDBCol>
-  )
+  componentDidMount() {
+    this.getAllCars();
+  }
+
+  getAllCars() {
+    axios.get('http://localhost:5000/cars/')
+      .then(res => {
+        let sellers = res.data.map(car => car.seller);
+        this.setState({
+          carsSellers: sellers
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    let carsSellers = this.state.carsSellers;
+    const ContactButtons = <ContactButton ContactButton={carsSellers} />
+
+    return (
+      <MDBCol>
+        <MDBCard style={{ width: "22rem" }}>
+          {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
+          <MDBCardBody>
+            <MDBCardTitle>{this.props.CarForSaleCard.adTitle}</MDBCardTitle>
+            <MDBCardText>
+              {this.props.CarForSaleCard.adDescription}
+            </MDBCardText>
+              <MDBListGroupItem>Pris: {this.props.CarForSaleCard.price} SEK</MDBListGroupItem>
+              <MDBListGroupItem>Typ av bil: {this.props.CarForSaleCard.carCategory}</MDBListGroupItem>
+              <MDBListGroupItem>Märke: {this.props.CarForSaleCard.carBrand}</MDBListGroupItem>
+              <MDBListGroupItem>Modellår: {this.props.CarForSaleCard.carModelYear}</MDBListGroupItem>
+              <MDBListGroupItem>Drivmedel: {this.props.CarForSaleCard.carFuel}</MDBListGroupItem>
+              <MDBListGroupItem>Växellåda: {this.props.CarForSaleCard.gearbox}</MDBListGroupItem>
+              <MDBListGroupItem>Miltal: {this.props.CarForSaleCard.mileage}</MDBListGroupItem>
+              <MDBListGroupItem>Plats: {this.props.CarForSaleCard.location}</MDBListGroupItem>
+              {ContactButtons}
+          </MDBCardBody>
+        </MDBCard>
+        <br />
+      </MDBCol>
+    );
+  }
 }
 
 export default CarForSaleCard;
