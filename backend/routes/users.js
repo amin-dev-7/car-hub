@@ -57,6 +57,7 @@ const upload = multer({
 });
 // ----- UPLOADS CONFIGURATIONS ----- //
 
+///// "userId/cars" api
 router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
   try {
     const userId = req.params.userId;
