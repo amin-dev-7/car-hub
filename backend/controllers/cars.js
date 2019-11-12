@@ -4,7 +4,7 @@ module.exports = {
 
   getAllCars: async (req, res) => {
     try {
-      const cars = await Car.find({}).populate('seller');
+      const cars = await Car.find({}).populate('seller').sort({updatedAt :  -1});
       res.status(200).json(cars)
     } catch (err){
       res.status(404).json(`error: ${err}`)

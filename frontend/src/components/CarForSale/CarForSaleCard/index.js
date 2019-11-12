@@ -10,12 +10,21 @@ const CarForSaleCard = (props) => {
         {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
         <MDBCardBody>
           <MDBCardTitle>{props.CarForSaleCard.adTitle}</MDBCardTitle>
-          <MDBListGroupItem>Pris: {props.CarForSaleCard.price} SEK</MDBListGroupItem>
-          <Link to="/add-car">
-          <MDBBtn color="btn btn-success" className="font-weight-bold">Se hela annonsen</MDBBtn>
-          </Link>
+          <MDBCardText>
+            {props.CarForSaleCard.adDescription}
+          </MDBCardText>
+            <MDBListGroupItem>Pris: {props.CarForSaleCard.price} SEK</MDBListGroupItem>
+            <MDBListGroupItem>Typ av bil: {props.CarForSaleCard.carCategory}</MDBListGroupItem>
+            <MDBListGroupItem>Märke: {props.CarForSaleCard.carBrand}</MDBListGroupItem>
+            <MDBListGroupItem>Modellår: {props.CarForSaleCard.carModelYear}</MDBListGroupItem>
+            <MDBListGroupItem>Drivmedel: {props.CarForSaleCard.carFuel}</MDBListGroupItem>
+            <MDBListGroupItem>Växellåda: {props.CarForSaleCard.gearbox}</MDBListGroupItem>
+            <MDBListGroupItem>Miltal: {props.CarForSaleCard.mileage}</MDBListGroupItem>
+            <MDBListGroupItem>Plats: {props.CarForSaleCard.location}</MDBListGroupItem>
+          <MDBBtn href="#">kontakta säljaren</MDBBtn>
         </MDBCardBody>
       </MDBCard>
+      <br />
     </MDBCol>
   )
 }
