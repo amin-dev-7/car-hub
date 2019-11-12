@@ -7,15 +7,35 @@ class CarForSale extends React.Component {
     super(props);
 
     this.state = {
-
+      cars: []
      };
 
   }
 
+  componentDidMount() {
+    this.getAllCars();
+  }
+
+  getAllCars() {
+    axios.get('http://localhost:5000/cars/')
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          cars: res.data
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
+    let cars = this.state.cars;
+    console.log(cars)
+    const CarForSaleCards = cars.map(item => <CarForSaleCard key={item._id} CarForSaleCard={item}/>)
     return (
       <div>
-        <CarForSaleCard />
+        {CarForSaleCards}
       </div>
     );
   }

@@ -55,7 +55,7 @@ const upload = multer({
   limits:{fileSize: 1000000},
   fileFilter: fileFilter
 });
-// ----- UPLOADS CONFIGURATIONS ----- //
+//!----- UPLOADS CONFIGURATIONS ----- //
 
 ///// "userId/cars" api
 router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {

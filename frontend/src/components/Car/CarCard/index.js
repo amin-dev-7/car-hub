@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
 from 'mdbreact';
 
-function CarCard(props) {
+const CarCard = (props) => {
   return (
     <MDBCol>
       <MDBCard style={{ width: "22rem" }}>
