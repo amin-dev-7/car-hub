@@ -23,7 +23,6 @@ class Car extends React.Component {
   getCarByUserId() {
     axios.get(`http://localhost:5000/users/${this.state.userId}/cars`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           cars: res.data.cars
         })

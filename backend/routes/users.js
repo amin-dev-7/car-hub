@@ -60,10 +60,9 @@ const upload = multer({
 });
 
 /*
-  UPLOADS CONFIGURATIONS!->
+  <-! UPLOADS CONFIGURATIONS !->
 */
 
-// "userId/cars" api
 router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -73,7 +72,7 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
     newCar.seller = user;
     newCar.carImage = carImage;
     await newCar.save();
-    user.cars.push(newCar);
+    user.cars.sort((a, b) => a - b).push(newCar);
     const car = await user.save();
     res.status(200).json(car);
     } catch (err) {
@@ -85,7 +84,7 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
 router.get("/:userId/cars", async (req, res) => {
   try {
     const userId = req.params.userId;
-    const user = await User.findById(userId).populate('cars').sort({updatedAt :  -1});
+    const user = await User.findById(userId).populate('cars');
     res.status(200).json(user);
   } catch (err){
     res.status(404).json(`error: ${err}`)
@@ -101,3 +100,4 @@ router.route('/:userId/cars/:carId').delete((req, res) => {
 });
 
 module.exports = router;
+

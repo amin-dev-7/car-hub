@@ -10,7 +10,7 @@ class LoginFrom extends React.Component {
     this.state = {
     email: '',
     password: '',
-    redirectTo: null,
+    redirect: false
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -46,11 +46,9 @@ class LoginFrom extends React.Component {
           Cookies.set('access_token', token, {
             expires: inOneHour
           });
-          // Save user id
           Cookies.set('userId', userId, {
             expires: inOneHour
           });
-          console.log("take me to home page")
           this.setState({
             redirectTo: '/'
           })
