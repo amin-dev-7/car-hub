@@ -33,8 +33,10 @@ This application is built using MERN Stack.<br><br>
       $ npm install
       $ npm start
       
-      # Visit http://localhost:3000/
+      # Front-end http://localhost:3000/
+      # Back-end http://localhost:5000/
       ```
+      
 3. MongoDB
 
       Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas
