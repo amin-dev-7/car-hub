@@ -2,6 +2,7 @@ import React from 'react';
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
+import './CarForSaleCard.css'
 import axios from 'axios';
 class CarForSaleCard extends React.Component {
   constructor(props) {
@@ -32,6 +33,9 @@ class CarForSaleCard extends React.Component {
     let carsSellers = this.state.carsSellers;
     const ContactButtons = <ContactButton ContactButton={carsSellers} />
 
+    let fullDate = this.props.CarForSaleCard.updatedAt;
+    let date = fullDate.substr(0, 10)
+
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
@@ -41,14 +45,24 @@ class CarForSaleCard extends React.Component {
             <MDBCardText>
               {this.props.CarForSaleCard.adDescription}
             </MDBCardText>
-              <MDBListGroupItem>Pris: {this.props.CarForSaleCard.price} SEK</MDBListGroupItem>
-              <MDBListGroupItem>Typ av bil: {this.props.CarForSaleCard.carCategory}</MDBListGroupItem>
-              <MDBListGroupItem>Märke: {this.props.CarForSaleCard.carBrand}</MDBListGroupItem>
-              <MDBListGroupItem>Modellår: {this.props.CarForSaleCard.carModelYear}</MDBListGroupItem>
-              <MDBListGroupItem>Drivmedel: {this.props.CarForSaleCard.carFuel}</MDBListGroupItem>
-              <MDBListGroupItem>Växellåda: {this.props.CarForSaleCard.gearbox}</MDBListGroupItem>
-              <MDBListGroupItem>Miltal: {this.props.CarForSaleCard.mileage}</MDBListGroupItem>
-              <MDBListGroupItem>Plats: {this.props.CarForSaleCard.location}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Inlagd : {date}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Pris : {this.props.CarForSaleCard.price} SEK</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Typ av bil : {this.props.CarForSaleCard.carCategory}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Märke : {this.props.CarForSaleCard.carBrand}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Modellår : {this.props.CarForSaleCard.carModelYear}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Drivmedel : {this.props.CarForSaleCard.carFuel}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Växellåda : {this.props.CarForSaleCard.gearbox}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Miltal : {this.props.CarForSaleCard.mileage}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex justify-content-between align-items-center">
+                Plats: {this.props.CarForSaleCard.location}</MDBListGroupItem>
               {ContactButtons}
           </MDBCardBody>
         </MDBCard>
