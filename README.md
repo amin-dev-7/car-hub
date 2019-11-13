@@ -12,29 +12,31 @@ This application is built using MERN Stack.<br><br>
  $ git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
-2. Follow this steps to install npm
+2. Follow this steps to install npm on:
 
-      Server
+      ### Server 
+      On backend directory
       ```
-      $ cd backend
       $ npm install
       ```
 
-      Client
+      ### Client
+      On frontend directory
       ```
-      $ cd ..
-      $ cd client
       $ npm install
       ```
       
-      Root
+      ### Root directory
       ```
-      $ cd ..
       $ npm install
       $ npm start
-      
-      # Visit http://localhost:3000/
       ```
+      
+      ```
+      # Front-end http://localhost:3000/
+      # Back-end http://localhost:5000/
+      ```
+
 3. MongoDB
 
       Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas
