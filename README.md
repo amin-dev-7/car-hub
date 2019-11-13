@@ -14,22 +14,20 @@ This application is built using MERN Stack.<br><br>
 
 2. Follow this steps to install npm
 
-      Server
+      # Server 
+      On backend directory
       ```
-      $ cd backend
       $ npm install
       ```
 
-      Client
+      # Client
+      On frontend directory
       ```
-      $ cd ..
-      $ cd client
       $ npm install
       ```
       
       Root
       ```
-      $ cd ..
       $ npm install
       $ npm start
       
