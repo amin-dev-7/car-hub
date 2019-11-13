@@ -24,5 +24,6 @@ module.exports = {
       res.status(404).json(`error: ${err}`)
     }
   }
+
 };
 

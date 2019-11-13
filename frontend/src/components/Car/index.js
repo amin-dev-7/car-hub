@@ -11,22 +11,13 @@ class Car extends React.Component {
       userId: Cookies.get('userId'),
       loggedIn: false,
       token: Cookies.get('access_token'),
-      cars: [],
+      cars: []
      };
      this.getCarByUserId = this.getCarByUserId.bind(this);
   }
 
   componentDidMount() {
     this.getCarByUserId();
-    this.noAds ();
-  }
-
-  noAds () {
-    return (
-      <MDBAlert color="danger">
-        Det finns inga annonser att hantera
-      </MDBAlert>
-    )
   }
 
   getCarByUserId() {
@@ -34,7 +25,7 @@ class Car extends React.Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          cars: res.data.cars
+          cars: res.data.cars,
         })
       })
       .catch(error => {
@@ -43,20 +34,19 @@ class Car extends React.Component {
   }
 
   render() {
+
     let cars = this.state.cars;
-    console.log(cars)
-    const carCards = cars.map(item => <CarCard key={item._id} carCard={item}/>)
-    return (
-      <div>
-      {cars &&
+    const carCards = cars.map(item => <CarCard  key={item._id} carCard={item}/>);
+
+    if(cars.length <= 0) {
+      return <MDBAlert color="danger">Det finns inga annonser att hantera</MDBAlert>
+    } else
+      return (
         <div>
-        {carCards}
+          {carCards}
         </div>
-      }
-      {this.state.noAds}
-      </div>
-    );
-  }
+      );
+    }
 }
 
 export default Car;

@@ -87,5 +87,12 @@ router.get("/:userId/cars", async (req, res) => {
   }
 });
 
-  // ADD DeleteByUserId AND UpdateByUserId METHODS??
+router.route('/:userId/cars/:carId').delete((req, res) => {
+  const userId = req.params.userId;
+  const carId = req.params.carId;
+  Car.findByIdAndDelete(req.params.carId)
+    .then(() => res.json('Car deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
