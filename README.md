@@ -12,7 +12,7 @@ This application is built using MERN Stack.<br><br>
  $ git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
-2. Follow this steps to install npm
+2. Follow this steps to install npm on:
 
       ### Server 
       On backend directory
@@ -26,7 +26,7 @@ This application is built using MERN Stack.<br><br>
       $ npm install
       ```
       
-      ### On root directory
+      ### Root directory
       ```
       $ npm install
       $ npm start
