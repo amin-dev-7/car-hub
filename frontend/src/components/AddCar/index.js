@@ -9,7 +9,6 @@ import cities from '../../assets/data/cities.json';
 import gearboxOptions from '../../assets/data/gearbox-options.json';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
-import 'react-dropdown/style.css';
 import {Form, InputGroup, FormControl} from 'react-bootstrap';
 class AddCar extends React.Component {
   constructor(props) {
