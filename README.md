@@ -14,13 +14,13 @@ This application is built using MERN Stack.<br><br>
 
 2. Follow this steps to install npm
 
-      # Server 
+      ### Server 
       On backend directory
       ```
       $ npm install
       ```
 
-      # Client
+      ### Client
       On frontend directory
       ```
       $ npm install
@@ -30,11 +30,13 @@ This application is built using MERN Stack.<br><br>
       ```
       $ npm install
       $ npm start
+      ```
       
+      ```
       # Front-end http://localhost:3000/
       # Back-end http://localhost:5000/
       ```
-      
+
 3. MongoDB
 
       Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas
