@@ -26,7 +26,7 @@ This application is built using MERN Stack.<br><br>
       $ npm install
       ```
       
-      Root
+      ### On root directory
       ```
       $ npm install
       $ npm start
