@@ -24,7 +24,8 @@ class CarCard extends React.Component {
       })
   }
   render() {
-
+    let fullDate = this.props.carCard.updatedAt;
+    let date = fullDate.substr(0, 10);
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
@@ -34,15 +35,26 @@ class CarCard extends React.Component {
             <MDBCardText>
               {this.props.carCard.adDescription}
             </MDBCardText>
-              <MDBListGroupItem>Pris: {this.props.carCard.price} SEK</MDBListGroupItem>
-              <MDBListGroupItem>Typ av bil: {this.props.carCard.carCategory}</MDBListGroupItem>
-              <MDBListGroupItem>Märke: {this.props.carCard.carBrand}</MDBListGroupItem>
-              <MDBListGroupItem>Modellår: {this.props.carCard.carModelYear}</MDBListGroupItem>
-              <MDBListGroupItem>Drivmedel: {this.props.carCard.carFuel}</MDBListGroupItem>
-              <MDBListGroupItem>Växellåda: {this.props.carCard.gearbox}</MDBListGroupItem>
-              <MDBListGroupItem>Miltal: {this.props.carCard.mileage}</MDBListGroupItem>
-              <MDBListGroupItem>Plats: {this.props.carCard.location}</MDBListGroupItem>
-              <MDBListGroupItem className="hidden">Id: {this.props.carCard._id}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Inlagd : {date}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Pris: {this.props.carCard.price} SEK</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Typ av bil: {this.props.carCard.carCategory}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Märke: {this.props.carCard.carBrand}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Modellår: {this.props.carCard.carModelYear}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Drivmedel: {this.props.carCard.carFuel}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Växellåda: {this.props.carCard.gearbox}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Miltal: {this.props.carCard.mileage}</MDBListGroupItem>
+              <MDBListGroupItem className="d-flex">
+                Plats: {this.props.carCard.location}</MDBListGroupItem>
+              <MDBListGroupItem className="hidden">
+                Id: {this.props.carCard._id}</MDBListGroupItem>
               <form onSubmit={this.handleSubmit}>
                 <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
                   Delete annons
