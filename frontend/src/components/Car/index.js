@@ -25,7 +25,7 @@ class Car extends React.Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          cars: res.data.cars,
+          cars: res.data.cars
         })
       })
       .catch(error => {

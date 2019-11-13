@@ -12,24 +12,62 @@ class CarCard extends React.Component {
       carId: this.props.carCard._id,
       userId: Cookies.get('userId'),
       cars: [],
+      // carImage: this.props.carCard.carImage
+      carImage: [],
+      carImageName: this.props.carCard.carImage
      };
+     this.getCarByUserId = this.getCarByUserId.bind(this);
+     this.getCarImg = this.getCarImg.bind(this);
+     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = event => {
     event.preventDefault();
     axios.delete(`http://localhost:5000/users/${this.state.userId}/cars/${this.state.carId}`)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        // console.log(res.data);
       })
   }
+
+  componentDidMount() {
+    this.getCarByUserId();
+    this.getCarImg();
+  }
+
+  getCarByUserId = () => {
+    axios.get(`http://localhost:5000/users/${this.state.userId}/cars`)
+      .then(res => {
+        // console.log(res.data)
+        this.setState({
+          carImageName: res.data.cars.map(item => item.carImage)
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }
+
+  getCarImg = () => {
+    setTimeout(() => {
+      axios.get(`http://localhost:5000/uploads/${this.state.carImageName}`)
+          .then(res => {
+            console.log(res);
+            this.setState({
+              carImage: res.config.url
+            })
+          });
+    }, 300);
+  }
+
   render() {
     let fullDate = this.props.carCard.updatedAt;
     let date = fullDate.substr(0, 10);
+    console.log(this.state.carImageName)
+
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
-          {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
+          <MDBCardImage className="img-fluid" src={this.state.carImage} waves />
           <MDBCardBody>
             <MDBCardTitle>{this.props.carCard.adTitle}</MDBCardTitle>
             <MDBCardText>

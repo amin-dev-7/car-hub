@@ -31,7 +31,10 @@ router.get('/auth/user', auth, (req, res) => {
     .then(user => res.json(user));
 });
 
-// UPLOADS CONFIGURATIONS
+/*
+  UPLOADS CONFIGURATIONS
+*/
+
 const storage = multer.diskStorage({
   destination: "./public/uploads/",
   filename: function(req, file, cb){
@@ -55,13 +58,16 @@ const upload = multer({
   limits:{fileSize: 1000000},
   fileFilter: fileFilter
 });
-//!----- UPLOADS CONFIGURATIONS ----- //
 
-///// "userId/cars" api
+/*
+  UPLOADS CONFIGURATIONS!->
+*/
+
+// "userId/cars" api
 router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
   try {
     const userId = req.params.userId;
-    let carImage = req.file.path;
+    let carImage = req.file.filename;
     const newCar = new Car(req.body);
     const user = await User.findById(userId);
     newCar.seller = user;
@@ -69,7 +75,6 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
     await newCar.save();
     user.cars.push(newCar);
     const car = await user.save();
-    // res.send(req.files);
     res.status(200).json(car);
     } catch (err) {
       res.status(404).json(`error: ${err}`)
@@ -86,7 +91,6 @@ router.get("/:userId/cars", async (req, res) => {
     res.status(404).json(`error: ${err}`)
   }
 });
-
 
 router.route('/:userId/cars/:carId').delete((req, res) => {
   const userId = req.params.userId;

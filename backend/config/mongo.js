@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 mongoose.Promise = global.Promise;
 
 /*
-    import models
+  models
 */
 
 require(path.join(__dirname, '../models/User'));

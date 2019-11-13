@@ -38,7 +38,7 @@ class CarForSaleCard extends React.Component {
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
-          {/* <MDBCardImage className="img-fluid" src={this.car.carImage} waves /> */}
+          <MDBCardImage className="img-fluid" src={this.props.CarForSaleCard.carImage} waves />
           <MDBCardBody>
             <MDBCardTitle>{this.props.CarForSaleCard.adTitle}</MDBCardTitle>
             <MDBCardText>
