@@ -14,7 +14,7 @@ module.exports = {
   getCarById: async (req, res) => {
     const carId = req.params.carId;
     try {
-      const car = await Car.findById(carId);
+      const car = await Car.findById(carId).sort({updatedAt :  -1});
       res.status(200).json(car);
     } catch (err){
       res.status(404).json(`error: ${err}`)

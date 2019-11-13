@@ -29,11 +29,11 @@ class CarForSaleCard extends React.Component {
   }
 
   render() {
-    let carsSellers = this.state.carsSellers;
-    const ContactButtons = <ContactButton ContactButton={carsSellers} />
-
     let fullDate = this.props.CarForSaleCard.updatedAt;
     let date = fullDate.substr(0, 10)
+
+    let carsSellers = this.state.carsSellers;
+    const ContactButtons = <ContactButton ContactButton={carsSellers} />
 
     return (
       <MDBCol>
