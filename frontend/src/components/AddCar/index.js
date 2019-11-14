@@ -28,7 +28,8 @@ class AddCar extends React.Component {
       mileage: '',
       location: '',
       file: null,
-      redirectTo: false
+      redirectTo: false,
+      imgAlt: null
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
@@ -43,7 +44,8 @@ class AddCar extends React.Component {
 
   onChangeImg = e => {
     this.setState({
-      file:e.target.files[0]
+      file: e.target.files[0],
+      imgAlt: URL.createObjectURL(e.target.files[0])
     });
   }
 
@@ -133,6 +135,12 @@ class AddCar extends React.Component {
                     </label>
                   </div>
                 </div>
+                <MDBRow>
+                  <MDBCol>
+                    <input type="file" onChange={this.onChangeImg}/>
+                    <img src={this.state.imgAlt} alt="" className="img-thumbnail" />
+                  </MDBCol>
+                </MDBRow>
                 <br />
                 <br />
                 <Form.Group controlId="exampleForm.ControlSelect2">

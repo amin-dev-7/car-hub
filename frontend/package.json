@@ -8,6 +8,7 @@
     "js-cookie": "^2.2.1",
     "mdbootstrap": "^4.8.11",
     "mdbreact": "^4.22.0",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
