@@ -1,7 +1,5 @@
 import React from "react";
-import {
-MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler,
-MDBCollapse, MDBIcon
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse, MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import Cookies from 'js-cookie';
@@ -13,7 +11,6 @@ class Nav extends React.Component {
       isOpen: false,
       isLoggedIn: false
     };
-
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
 }
 
@@ -21,12 +18,12 @@ toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
-handleLogoutClick() {
+handleLogoutClick = () => {
   Cookies.remove('access_token');
   Cookies.remove('userId')
 }
 
-componentDidMount() {
+componentDidMount = () => {
   if (Cookies.get('access_token')) {
     this.setState({
       isLoggedIn: true

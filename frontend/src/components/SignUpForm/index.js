@@ -6,10 +6,6 @@ class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
 
-		this.handleChange = this.handleChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this);
-    this.createUser = this.createUser.bind(this);
-
     this.state = {
       firstName: '',
       lastName: '',
@@ -17,21 +13,24 @@ class SignUpForm extends React.Component {
       mobile: '',
       password: '',
       redirectTo: null
-    }
+    };
+    this.handleChange = this.handleChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     this.createUser();
   }
 
-  createUser() {
+  createUser = () => {
     const user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -44,13 +43,11 @@ class SignUpForm extends React.Component {
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
-          console.log("take me to login page")
           this.setState({
             redirectTo: '/login'
-          })
+          });
         }
-      })
-      .catch(error => {
+      }).catch(error => {
         console.log(error.response);
       });
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+import API from '../../users-api';
 import Cookies from 'js-cookie';
 import carOptions from '../../assets/data/car-options.json';
 import carModelYears from '../../assets/data/car-model-year.json';
@@ -8,7 +8,7 @@ import carList from '../../assets/data/car-list.json';
 import cities from '../../assets/data/cities.json';
 import gearboxOptions from '../../assets/data/gearbox-options.json';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {Form, InputGroup, FormControl} from 'react-bootstrap';
 class AddCar extends React.Component {
   constructor(props) {
@@ -29,20 +29,19 @@ class AddCar extends React.Component {
       location: '',
       file: null,
       redirectTo: false
-    }
-
+    };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeImg = this.onChangeImg.bind(this);
   }
 
-  handleChange = (e) => {
-      this.setState({
-        [e.target.name]: e.target.value
-       });
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+      });
   };
 
-  onChangeImg(e) {
+  onChangeImg = e => {
     this.setState({
       file:e.target.files[0]
     });
@@ -70,18 +69,18 @@ class AddCar extends React.Component {
         }
     };
 
-    axios.post( `http://localhost:5000/users/${this.state.userId}/cars`,formData,config)
+    API.post(`${this.state.userId}/cars`,formData,config)
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
           console.log("the ad has been added")
-          this.setState({
-            redirectTo: '/car-card'
-          })
         }
       }).catch(error => {
         console.log(error.response);
       });
+      this.setState({
+        redirectTo: '/car-card'
+      })
   }
 
   render() {

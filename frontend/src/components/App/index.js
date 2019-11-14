@@ -8,11 +8,11 @@ import AddCar from '../../pages/AddCar';
 import CarPage from '../../pages/CarPage';
 import CarForSalePage from '../../pages/CarForSalePage'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div>
-        {/* Routes */}
+        {/* routes */}
 
         <Route path="/" exact component={Index} />
         <Route path="/login" exact component={Login} />

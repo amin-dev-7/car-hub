@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from '../components/Nav'
+
 const DefaultLayout = (props) => {
 
   return (
@@ -8,6 +9,7 @@ const DefaultLayout = (props) => {
       {props.children}
     </div>
   )
+
 }
 
 export default DefaultLayout;

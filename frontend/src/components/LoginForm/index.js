@@ -12,23 +12,22 @@ class LoginFrom extends React.Component {
     password: '',
     redirect: false
     };
-
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     this.loginAuthentication();
   }
 
-  loginAuthentication() {
+  loginAuthentication = () => {
     const user = {
       email: this.state.email,
       password: this.state.password
@@ -62,7 +61,7 @@ class LoginFrom extends React.Component {
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
-    } else {
+    }else {
       return (
         <MDBContainer>
           <MDBRow>

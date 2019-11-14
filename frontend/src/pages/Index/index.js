@@ -16,21 +16,20 @@ class index extends React.Component {
       loggedIn: false,
       token: Cookies.get('access_token')
      };
-
     this.getUser = this.getUser.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getUser();
   }
 
-  updateUser(userObject) {
+  updateUser = (userObject) => {
     this.setState(userObject)
   }
 
-  getUser() {
+  getUser = () => {
     const headers = {
       'Content-Type': 'application/json',
       'x-auth-token': this.state.token

@@ -72,7 +72,7 @@ router.post("/:userId/cars", upload.single('myImage'), async (req, res) => {
     newCar.seller = user;
     newCar.carImage = carImage;
     await newCar.save();
-    user.cars.sort((a, b) => a - b).push(newCar);
+    user.cars.push(newCar);
     const car = await user.save();
     res.status(200).json(car);
     } catch (err) {

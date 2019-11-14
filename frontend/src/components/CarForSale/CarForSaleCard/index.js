@@ -2,7 +2,7 @@ import React from 'react';
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
-import axios from 'axios';
+import API from '../../../cars-api';
 class CarForSaleCard extends React.Component {
   constructor(props) {
     super(props);
@@ -11,12 +11,12 @@ class CarForSaleCard extends React.Component {
      };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getAllCars();
   }
 
-  getAllCars() {
-    axios.get('http://localhost:5000/cars/')
+  getAllCars = () => {
+    API.get()
       .then(res => {
         let sellers = res.data.map(car => car.seller);
         this.setState({

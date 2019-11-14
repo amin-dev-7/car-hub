@@ -1,7 +1,7 @@
 import React from 'react';
+import API from '../../../users-api';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
 from 'mdbreact';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import './CarCard.css'
 class CarCard extends React.Component {
@@ -14,14 +14,21 @@ class CarCard extends React.Component {
       cars: []
      };
      this.handleSubmit = this.handleSubmit.bind(this);
+     this.onClick = this.onClick.bind(this);
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    axios.delete(`http://localhost:5000/users/${this.state.userId}/cars/${this.state.carId}`)
+  handleSubmit = e => {
+    e.preventDefault();
+    API.delete(`${this.state.userId}/cars/${this.state.carId}`)
       .then(res => {
         console.log(res.data);
       })
+  }
+
+  onClick = () => {
+    setTimeout(() => {
+      window.location.reload(false)
+    }, 500);
   }
 
   render() {
@@ -59,7 +66,8 @@ class CarCard extends React.Component {
               <MDBListGroupItem className="hidden">
                 Id: {this.props.carCard._id}</MDBListGroupItem>
               <form onSubmit={this.handleSubmit}>
-                <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
+                <MDBBtn onClick={this.onClick}
+                  color="btn btn-success" type="submit" className="font-weight-bold">
                   Delete annons
                 </MDBBtn>
               </form>

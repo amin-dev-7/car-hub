@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import CarForSaleCard from './CarForSaleCard';
+import API from '../../cars-api';
 class CarForSale extends React.Component {
   constructor(props) {
     super(props);
@@ -10,15 +10,15 @@ class CarForSale extends React.Component {
      };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getAllCars();
   }
 
-  getAllCars() {
-    axios.get('http://localhost:5000/cars/')
+  getAllCars = () => {
+    API.get()
       .then(res => {
         this.setState({
-          cars: res.data,
+          cars: res.data
         })
       })
       .catch(error => {
