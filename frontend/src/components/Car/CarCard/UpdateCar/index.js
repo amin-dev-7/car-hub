@@ -8,16 +8,12 @@ import fuelOptions from '../../../../assets/data/fuel-options.json';
 import carList from '../../../../assets/data/car-list.json';
 import cities from '../../../../assets/data/cities.json';
 import gearboxOptions from '../../../../assets/data/gearbox-options.json';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBAlert} from 'mdbreact';
 import {Form, InputGroup, FormControl} from 'react-bootstrap';
-
 class UpdateCar extends React.Component {
 
   constructor(props) {
     super(props);
-
-    console.log(this.props);
 
     this.state = {
       carId: this.props.carId,
@@ -32,14 +28,11 @@ class UpdateCar extends React.Component {
       price: '',
       mileage: '',
       location: '',
-      file: null,
-      redirectTo: false,
-      imgAlt: null
     };
     this.handelUpdate = this.handelUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.onChangeImg = this.onChangeImg.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount = () => {
@@ -52,16 +45,28 @@ class UpdateCar extends React.Component {
       });
   };
 
-  onChangeImg = e => {
-    this.setState({
-      file: e.target.files[0],
-      imgAlt: URL.createObjectURL(e.target.files[0])
-    });
+  onClick = () => {
+    setTimeout(() => {
+    }, 500);
   }
 
   handelUpdate = e => {
+
+    const updatedCar = {
+      adTitle: this.state.adTitle,
+      adDescription: this.state.adDescription,
+      carCategory: this.state.carCategory,
+      carBrand: this.state.carBrand,
+      carModelYear: this.state.carModelYear,
+      carFuel: this.state.carFuel,
+      gearbox: this.state.gearbox,
+      price: this.state.price,
+      mileage: this.state.mileage,
+      location: this.state.location
+    }
+
     e.preventDefault();
-    axios.put(`http://localhost:5000/cars/${this.state.carId}`)
+    axios.put(`http://localhost:5000/cars/${this.state.carId}`, updatedCar)
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
@@ -87,6 +92,19 @@ class UpdateCar extends React.Component {
     axios.get(`http://localhost:5000/cars/${this.state.carId}`)
       .then(res => {
         console.log(res.data)
+        let carData = res.data;
+        this.setState({
+          adTitle: carData.adTitle,
+          adDescription: carData.adDescription,
+          carCategory: carData.carCategory,
+          carBrand: carData.carBrand,
+          carModelYear: carData.carModelYear,
+          carFuel: carData.carFuel,
+          gearbox: carData.gearbox,
+          price: carData.price,
+          mileage: carData.mileage,
+          location: carData.location,
+        })
       }).catch(error => {
         console.log(error.response);
       });
@@ -113,38 +131,24 @@ class UpdateCar extends React.Component {
     let citiesList = cities.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-
     return (
       <MDBContainer>
         <MDBRow>
           <MDBCol md="6">
             <div className="sign-in">
                 <h3 className="my-3">
-                  <strong className="font-weight-bold"> Lägg in din bilannons</strong>
+                  <strong className="font-weight-bold"> Ändra bilannonsen</strong>
                 </h3>
               <br />
             </div>
             <Form onSubmit={this.handelUpdate}>
-              <p className="text-left">Bilder </p>
-              <div className="input-group">
-                <div className="custom-file">
-                  <input name="myImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
-                    onChange={this.onChangeImg}
-                  />
-                  <label className="custom-file-label text-left" htmlFor="inputGroupFile01">
-                    Välj bild
-                  </label>
-                </div>
-              </div>
-              <br />
-              <br />
               <Form.Group controlId="exampleForm.ControlSelect2">
                 <p className="text-left">Typ av bil</p>
                 <Form.Control as="select" placeholder="Välj bilmärke"
                   onChange={this.handleChange}
                   value={this.state.carCategory}
                   name="carCategory">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option>Välj ett alternativ...</option>
                   {carOptionList}
                 </Form.Control>
               </Form.Group>
@@ -154,7 +158,7 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carBrand}
                   name="carBrand">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option disabled>Välj ett alternativ...</option>
                   {carBrandList}
                 </Form.Control>
               </Form.Group>
@@ -164,7 +168,7 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carModelYear}
                   name="carModelYear">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option disabled>Välj ett alternativ...</option>
                   {carModelYearList}
                 </Form.Control>
               </Form.Group>
@@ -174,7 +178,7 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.carFuel}
                   name="carFuel">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option disabled>Välj ett alternativ...</option>
                   {fuelOptionList}
                 </Form.Control>
               </Form.Group>
@@ -184,7 +188,7 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.gearbox}
                   name="gearbox">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option disabled>Välj ett alternativ...</option>
                   {gearboxOptionList}
                 </Form.Control>
               </Form.Group>
@@ -194,13 +198,14 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.location}
                   name="location">
-                  <option value="" disabled>Välj ett alternativ...</option>
+                  <option disabled>Välj ett alternativ...</option>
                   {citiesList}
                 </Form.Control>
               </Form.Group>
               <p className="text-left">Anonns titel</p>
               <input type="text" id="titel" className="form-control" name="adTitle"
-              value={this.state.adTitle} onChange={this.handleChange} />
+              value={this.state.adTitle} onChange={this.handleChange}>
+              </input>
               <br />
               <p className="text-left">Miltal </p>
                 <InputGroup className="mb-3">
@@ -209,7 +214,9 @@ class UpdateCar extends React.Component {
                   onChange={this.handleChange}
                   name="mileage"
                   type="number"
-                  />
+                  >
+                    {/* {car.mileage} */}
+                  </FormControl>
                   <InputGroup.Append>
                     <InputGroup.Text>Mil</InputGroup.Text>
                   </InputGroup.Append>

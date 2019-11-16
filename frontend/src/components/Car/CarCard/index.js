@@ -16,7 +16,6 @@ class CarCard extends React.Component {
       cars: []
      };
      this.handleSubmit = this.handleSubmit.bind(this);
-     this.onClick = this.onClick.bind(this);
   }
 
   handleSubmit = e => {
@@ -25,12 +24,6 @@ class CarCard extends React.Component {
       .then(res => {
         console.log(res.data);
       })
-  }
-
-  onClick = () => {
-    setTimeout(() => {
-      window.location.reload(false)
-    }, 500);
   }
 
   render() {
@@ -67,7 +60,7 @@ class CarCard extends React.Component {
                 Plats: {this.props.carCard.location}</MDBListGroupItem>
               <MDBListGroupItem className="hidden">
                 Id: {this.props.carCard._id}</MDBListGroupItem>
-                <Link to={'/car-card/update-car/' + this.props.carCard._id}>
+                <Link to={'/car-card/' + this.props.carCard._id}>
                   <MDBBtn
                     color="btn btn-success" type="submit" className="font-weight-bold">
                     hantera annons
