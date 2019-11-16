@@ -4,6 +4,11 @@ module.exports = {
 
   getAllCars: async (req, res) => {
     try {
+      if(req.query) {
+        const query = req.query;
+        const sort = await Car.find(query).sort({updatedAt :  -1});
+        res.status(200).json(sort);
+      };
       const cars = await Car.find({}).populate('seller').sort({updatedAt :  -1});
       res.status(200).json(cars)
     } catch (err){

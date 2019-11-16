@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const carController = require('../controllers/cars');
 
 router.route('/')
