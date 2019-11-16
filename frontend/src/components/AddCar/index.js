@@ -148,7 +148,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.carCategory}
-                    name="carCategory">
+                    name="carCategory"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {carOptionList}
                   </Form.Control>
@@ -158,7 +159,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.carBrand}
-                    name="carBrand">
+                    name="carBrand"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {carBrandList}
                   </Form.Control>
@@ -168,7 +170,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.carModelYear}
-                    name="carModelYear">
+                    name="carModelYear"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {carModelYearList}
                   </Form.Control>
@@ -178,7 +181,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.carFuel}
-                    name="carFuel">
+                    name="carFuel"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {fuelOptionList}
                   </Form.Control>
@@ -188,7 +192,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.gearbox}
-                    name="gearbox">
+                    name="gearbox"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {gearboxOptionList}
                   </Form.Control>
@@ -198,7 +203,8 @@ class AddCar extends React.Component {
                   <Form.Control as="select" placeholder="Välj bilmärke"
                     onChange={this.handleChange}
                     value={this.state.location}
-                    name="location">
+                    name="location"
+                    required="true">
                     <option value="" disabled>Välj ett alternativ...</option>
                     {citiesList}
                   </Form.Control>
@@ -214,6 +220,7 @@ class AddCar extends React.Component {
                     onChange={this.handleChange}
                     name="mileage"
                     type="number"
+                    required="true"
                     />
                     <InputGroup.Append>
                       <InputGroup.Text>Mil</InputGroup.Text>
@@ -226,6 +233,7 @@ class AddCar extends React.Component {
                     onChange={this.handleChange}
                     name="price"
                     type="number"
+                    required="true"
                     />
                     <InputGroup.Append>
                       <InputGroup.Text>SEK</InputGroup.Text>
@@ -233,7 +241,8 @@ class AddCar extends React.Component {
                   </InputGroup>
                 <br />
                 <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
-                  value={this.state.adDescription} onChange={this.handleChange} />
+                  value={this.state.adDescription} onChange={this.handleChange}
+                  required="true"/>
                 <br />
                 <div className="text-center mt-4">
                   <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">

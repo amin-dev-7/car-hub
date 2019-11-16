@@ -77,6 +77,7 @@ class SignUpForm extends React.Component {
                   value={this.state.firstName}
                   onChange={this.handleChange}
                   name="firstName"
+                  required="true"
                 />
                 <br />
                 <label htmlFor="lastName" className="dark-grey-text">
@@ -89,6 +90,7 @@ class SignUpForm extends React.Component {
                   value={this.state.lastName}
                   onChange={this.handleChange}
                   name="lastName"
+                  required="true"
                 />
                 <br />
                 <label htmlFor="email" className="dark-grey-text">
@@ -101,6 +103,7 @@ class SignUpForm extends React.Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                   name="email"
+                  required="true"
                 />
                 <br />
                 <label htmlFor="mobile" className="dark-grey-text">
@@ -129,6 +132,7 @@ class SignUpForm extends React.Component {
                   value={this.state.password}
                   onChange={this.handleChange}
                   name="password"
+                  required="true"
                 />
                 <div className="text-center mt-4">
                   <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
