@@ -7,6 +7,7 @@ import SignUp from '../../pages/SignUp'
 import AddCar from '../../pages/AddCar';
 import CarPage from '../../pages/CarPage';
 import CarForSalePage from '../../pages/CarForSalePage'
+import UpdateCarPage from '../../pages/UpdateCarPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/add-car" exact component={AddCar} />
         <Route path="/car-card" exact component={CarPage} />
+        <Route path={"/car-card/update-car/:carId"} exact component={UpdateCarPage} />
         <Route path="/car-for-sale" exact component={CarForSalePage} />
 
       </div>

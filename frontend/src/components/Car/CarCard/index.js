@@ -1,9 +1,11 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 import API from '../../../users-api';
+import { Link } from 'react-router-dom';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
 from 'mdbreact';
-import Cookies from 'js-cookie';
 import './CarCard.css'
+
 class CarCard extends React.Component {
   constructor(props) {
     super(props);
@@ -65,12 +67,12 @@ class CarCard extends React.Component {
                 Plats: {this.props.carCard.location}</MDBListGroupItem>
               <MDBListGroupItem className="hidden">
                 Id: {this.props.carCard._id}</MDBListGroupItem>
-              <form onSubmit={this.handleSubmit}>
-                <MDBBtn onClick={this.onClick}
-                  color="btn btn-success" type="submit" className="font-weight-bold">
-                  Delete annons
-                </MDBBtn>
-              </form>
+                <Link to={'/car-card/update-car/' + this.props.carCard._id}>
+                  <MDBBtn
+                    color="btn btn-success" type="submit" className="font-weight-bold">
+                    hantera annons
+                  </MDBBtn>
+                </Link>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
@@ -79,3 +81,4 @@ class CarCard extends React.Component {
 }
 
 export default CarCard;
+

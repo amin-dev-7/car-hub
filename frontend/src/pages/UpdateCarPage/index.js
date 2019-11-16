@@ -1,13 +1,13 @@
 import React from 'react';
 import DefaultLayout from '../../layouts/index';
-import UpdateCar from '../../components/UpdateCar';
+import UpdateCar from '../../components/Car/CarCard/UpdateCar';
 
-const UpdateCarPage = () => {
+const UpdateCarPage = ({match}) => {
 
   return(
   <DefaultLayout>
 
-    <UpdateCar />
+    <UpdateCar carId={match.params.carId}/>
   </DefaultLayout >
   );
 }
