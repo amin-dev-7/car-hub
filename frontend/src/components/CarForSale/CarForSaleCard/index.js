@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
+import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem, MDBIcon, MDBBtn
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
 import API from '../../../cars-api';
@@ -7,7 +7,7 @@ class CarForSaleCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carsSellers: []
+      carForSale: [],
      };
   }
 
@@ -20,7 +20,7 @@ class CarForSaleCard extends React.Component {
       .then(res => {
         let sellers = res.data.map(car => car.seller);
         this.setState({
-          carsSellers: sellers
+          carForSale: sellers
         })
       })
       .catch(error => {
@@ -32,11 +32,12 @@ class CarForSaleCard extends React.Component {
     let fullDate = this.props.CarForSaleCard.updatedAt;
     let date = fullDate.substr(0, 10)
 
-    let carsSellers = this.state.carsSellers;
-    const ContactButtons = <ContactButton ContactButton={carsSellers} />
+    let carForSale = this.state.carForSale;
+    const ContactButtons = <ContactButton ContactButton={carForSale} />
 
     return (
       <MDBCol>
+        <br />
         <MDBCard style={{ width: "22rem" }}>
         <MDBCardImage className="img-fluid"
            src={`http://localhost:5000/uploads/${this.props.CarForSaleCard.carImage}`} waves />
