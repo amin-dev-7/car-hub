@@ -42,7 +42,7 @@ class CarForSale extends React.Component {
     return (
       <div>
       <MDBBtn color="primary" onClick={this.toggelFilter}>
-      <MDBIcon icon="filter" /></MDBBtn>
+      <MDBIcon icon="filter" /> filtrera bilar </MDBBtn>
       {this.state.shwoFilter && <Fiter/>}
       {cars.map(item =>
       <CarForSaleCard key={item._id}
