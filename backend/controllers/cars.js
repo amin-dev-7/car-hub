@@ -7,9 +7,11 @@ module.exports = {
       if(req.query) {
         const query = req.query;
         const sort = await Car.find(query).sort({updatedAt :  -1});
-      };
-      const cars = await Car.find({}).populate('seller').sort({updatedAt :  -1});
-      res.status(200).json(cars)
+        res.status(200).json(sort);
+      }else{
+        const cars = await Car.find({}).populate('seller').sort({updatedAt :  -1});
+        res.status(200).json(cars)
+      }
     }catch (err){
       res.status(404).send(`error: ${err}`)
     }
