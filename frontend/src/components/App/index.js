@@ -8,12 +8,7 @@ import AddCar from '../../pages/AddCar';
 import CarPage from '../../pages/CarPage';
 import CarForSalePage from '../../pages/CarForSalePage'
 import UpdateCarPage from '../../pages/UpdateCarPage';
-
-const NoPage = () => {
-  return (
-    <h2>404 - Not found</h2>
-  );
-};
+import NotFound from '../../pages/NotFound'
 
 const App = () => {
   return (
@@ -29,7 +24,7 @@ const App = () => {
           <Route path="/car-card" exact component={CarPage} />
           <Route path={"/car-card/:carId"} exact component={UpdateCarPage} />
           <Route path="/car-for-sale" exact component={CarForSalePage} />
-          <Route component={NoPage} />
+          <Route exact component={NotFound} />
         </Switch>
 
       </div>
