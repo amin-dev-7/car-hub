@@ -83,7 +83,7 @@ class LoginFrom extends React.Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                   name="email"
-                  required="true"
+                  required={true}
                 />
                 <br />
                 <label htmlFor="password" className="dark-grey-text">
@@ -97,7 +97,7 @@ class LoginFrom extends React.Component {
                   value={this.state.password}
                   onChange={this.handleChange}
                   name="password"
-                  required="true"
+                  required={true}
                 />
                 <div className="text-center mt-4">
                   <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">logga in</MDBBtn>
