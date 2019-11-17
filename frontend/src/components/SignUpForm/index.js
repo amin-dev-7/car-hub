@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBAlert} from 'mdbreact';
 import { Link, Redirect } from "react-router-dom";
 
 class SignUpForm extends React.Component {
@@ -13,7 +13,8 @@ class SignUpForm extends React.Component {
       email: '',
       mobile: '',
       password: '',
-      redirectTo: null
+      redirectTo: null,
+      userExists: false
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
@@ -29,6 +30,9 @@ class SignUpForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.createUser();
+    this.setState({
+      userExists: true
+    })
   }
 
   createUser = () => {
@@ -54,11 +58,17 @@ class SignUpForm extends React.Component {
   }
 
   render() {
+    console.log(this.state.userExists)
     if (this.state.redirectTo) {
     return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {
       return (
         <MDBContainer>
+          {this.state.userExists &&
+            <MDBAlert color="danger">
+              Användaren har redan ett konto
+            </MDBAlert>
+          }
           <MDBRow>
             <MDBCol md="6">
               <div className="sign-in">
