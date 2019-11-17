@@ -2,6 +2,7 @@ import React from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavbarToggler, MDBCollapse, MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
+import './Nav.css'
 import Cookies from 'js-cookie';
 class Nav extends React.Component {
   constructor(props) {
@@ -42,40 +43,39 @@ render() {
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+        <hr></hr>
           <MDBNavbarNav>
-            <br />
             <MDBNavItem>
-              <Link to="/"><h5 className="font-weight-bold white-text">
+              <Link to="/"><h5 className="font-weight-bold white-text text-left">
                 <MDBIcon icon="home" fixed /> Hem </h5>
               </Link>
             </MDBNavItem>
-            <br />
+            <hr></hr>
             <MDBNavItem>
-              <Link to="/car-for-sale"><h5 className="font-weight-bold white-text">
+              <Link to="/car-for-sale"><h5 className="font-weight-bold white-text text-left">
                 <MDBIcon icon="car-side" fixed /> Bilar för salu</h5>
               </Link>
             </MDBNavItem>
-            <br />
+            <hr></hr>
             <MDBNavItem>
-              <Link to="/add-car"><h5 className="font-weight-bold white-text">
+              <Link to="/add-car"><h5 className="font-weight-bold white-text text-left">
                 <MDBIcon icon="plus-square" fixed/> Lägg till anonns</h5>
               </Link>
             </MDBNavItem>
-             <br />
+             <hr></hr>
             <MDBNavItem>
 
               {isLoggedIn ? (
-              <Link to="/login" onClick={this.handleLogoutClick} ><h5 className="font-weight-bold white-text">
-                 <MDBIcon icon="user-alt" fixed /> Logga ut</h5>
+              <Link to="/login" onClick={this.handleLogoutClick} ><h5 className="font-weight-bold white-text text-left">
+                 <MDBIcon icon="user-alt" fixed /> Logga ut</h5>>
               </Link>
               ) : (
-              <Link to="/login"><h5 className="font-weight-bold white-text">
+              <Link to="/login"><h5 className="font-weight-bold white-text text-left">
                  <MDBIcon icon="user-alt" fixed /> Logga in</h5>
               </Link>
               )}
 
             </MDBNavItem>
-            <br />
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>

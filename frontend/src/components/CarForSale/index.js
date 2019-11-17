@@ -11,7 +11,7 @@ class CarForSale extends React.Component {
 
     this.state = {
       cars: [],
-      querCars: [],
+      queryCars: [],
       isQuery: false,
       shwoFilter: false,
       carFilter: '',
@@ -48,7 +48,7 @@ class CarForSale extends React.Component {
     .then(res => {
       console.log(res.data)
         this.setState({
-          querCars: res.data,
+          queryCars: res.data,
           isQuery: true
         });
     })
@@ -71,7 +71,7 @@ class CarForSale extends React.Component {
 
   render() {
     let cars = this.state.cars;
-    let queryCars = this.state.querCars;
+    let queryCars = this.state.queryCars;
     let card;
 
     if(queryCars.length > 0) {

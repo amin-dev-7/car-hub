@@ -36,7 +36,6 @@ class index extends React.Component {
     };
       axios.get('http://localhost:5000/users/auth/user', {headers})
       .then(response => {
-        console.log(response.data)
         if (response.status === 200) {
           this.setState({
             loggedIn: true,
