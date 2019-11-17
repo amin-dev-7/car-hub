@@ -16,34 +16,12 @@ app.use('/users', require('./routes/users'));
 //images
 app.use('/', express.static('public'));
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('../frontend/bulid'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../', 'frontend', 'bulid', 'index.html'))
+  });
+}
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Express server listening on: ${PORT}`));
-
-
-
-
-
-// app.get("/uploads/:filename", (req, res) => {
-//   carImage.findOne({ filename: req.params.filename }, (err, file) => {
-//     // Check if file
-//     if (!file || file.length === 0) {
-//       return res.status(404).json({
-//         err: "No file exists"
-//       });
-//     }
-//   });
-// });
-
-// app.get('/*',(req,res)=>{
-//   res.sendfile(path.join(__dirname='public/index.html'));
-// })
-
-// app.get('/uploads', (req, res) => {
-//   files.findOne({ filename: req.params.filename }, (err, file) => {
-//         // Check if file
-//     if (!file || file.length === 0) {
-//       return res.status(404).json({
-//         err: "No file exists"
-//       });
-//     }
-// })
