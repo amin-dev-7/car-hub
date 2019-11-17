@@ -43,7 +43,7 @@ render() {
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-        <hr></hr>
+          <br />
           <MDBNavbarNav>
             <MDBNavItem>
               <Link to="/"><h5 className="font-weight-bold white-text text-left">

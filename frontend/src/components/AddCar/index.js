@@ -88,22 +88,22 @@ class AddCar extends React.Component {
   render() {
 
     // SELECT OPTIONS
-    let carOptionList = carOptions.map((option) =>
+    const carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-    let fuelOptionList = fuelOptions.map((option) =>
+    const fuelOptionList = fuelOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-    let gearboxOptionList = gearboxOptions.map((option) =>
+    const gearboxOptionList = gearboxOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-    let carModelYearList = carModelYears.map((option) =>
+    const carModelYearList = carModelYears.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-    let carBrandList = carList.map((option) =>
+    const carBrandList = carList.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
-    let citiesList = cities.map((option) =>
+    const citiesList = cities.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
 
@@ -145,7 +145,7 @@ class AddCar extends React.Component {
                 <br />
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Typ av bil</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.carCategory}
                     name="carCategory"
@@ -156,7 +156,7 @@ class AddCar extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Märke</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.carBrand}
                     name="carBrand"
@@ -167,7 +167,7 @@ class AddCar extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Modellår</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.carModelYear}
                     name="carModelYear"
@@ -178,7 +178,7 @@ class AddCar extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Drivmedel</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.carFuel}
                     name="carFuel"
@@ -189,7 +189,7 @@ class AddCar extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Växellåda</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.gearbox}
                     name="gearbox"
@@ -200,7 +200,7 @@ class AddCar extends React.Component {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
                   <p className="text-left">Plats</p>
-                  <Form.Control as="select" placeholder="Välj bilmärke"
+                  <Form.Control as="select"
                     onChange={this.handleChange}
                     value={this.state.location}
                     name="location"

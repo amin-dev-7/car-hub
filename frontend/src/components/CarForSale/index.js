@@ -1,5 +1,7 @@
 import React from 'react';
 import carOptions from '../../assets/data/car-options';
+import fuelOptions from '../../assets/data/fuel-options.json';
+import carList from '../../assets/data/car-list.json';
 import CarForSaleCard from './CarForSaleCard';
 import API from '../../cars-api';
 import {MDBBtn, MDBIcon} from 'mdbreact';
@@ -14,7 +16,9 @@ class CarForSale extends React.Component {
       queryCars: [],
       isQuery: false,
       shwoFilter: false,
-      carFilter: '',
+      carCatFilter: '',
+      carFuelFilter: '',
+      carBrandFilter: '',
       query: '',
      };
      this.toggelFilter = this.toggelFilter.bind(this);
@@ -40,21 +44,39 @@ class CarForSale extends React.Component {
   }
 
   handleClick = () => {
-    this.getQueryCars();
+    this.getCarsByCategory();
+    this.getCarsByFuel();
+    this.getCarsByBrand();
   }
 
-  getQueryCars =  () => {
-    API.get(`?carCategory=${this.state.carFilter}`)
+  getCarsByCategory =  () => {
+    API.get(`?carCategory=${this.state.carCatFilter}`)
     .then(res => {
-      console.log(res.data)
         this.setState({
           queryCars: res.data,
           isQuery: true
         });
     })
-    .catch(error => {
-      console.log(error);
-    });
+  }
+
+  getCarsByFuel =  () => {
+    API.get(`?carFuel=${this.state.carFuelFilter}`)
+    .then(res => {
+        this.setState({
+          queryCars: res.data,
+          isQuery: true
+        });
+    })
+  }
+
+  getCarsByBrand =  () => {
+    API.get(`?carBrand=${this.state.carBrandFilter}`)
+    .then(res => {
+        this.setState({
+          queryCars: res.data,
+          isQuery: true
+        });
+    })
   }
 
   getAllCars = () => {
@@ -74,6 +96,9 @@ class CarForSale extends React.Component {
     let queryCars = this.state.queryCars;
     let card;
 
+    console.log(queryCars)
+    console.log(this.state.carCatFilter)
+
     if(queryCars.length > 0) {
       card = queryCars.map(item =>
         <CarForSaleCard key={item._id}
@@ -86,8 +111,15 @@ class CarForSale extends React.Component {
         </CarForSaleCard>)
     }
 
+    // SELECT OPTIONS
     const carOptionList = carOptions.map((option) =>
     <option key={option.name}>{option.name}</option>);
+    const fuelOptionList = fuelOptions.map((option) =>
+    <option key={option.name}>{option.name}</option>
+    );
+    const carBrandList = carList.map((option) =>
+    <option key={option.name}>{option.name}</option>
+    );
 
     return (
       <div>
@@ -97,17 +129,36 @@ class CarForSale extends React.Component {
           <MDBContainer>
             <Form.Group controlId="exampleForm.ControlSelect2">
               <br />
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.carFilter}
-                  name="carFilter">
-                  <option value="" disabled>Välj ett alternativ...</option>
-                  {carOptionList}
-                </Form.Control>
-              </Form.Group>
+              <p className="text-left">Typ av bil</p>
+              <Form.Control as="select"
+                onChange={this.handleChange}
+                value={this.state.carCatFilter}
+                name="carCatFilter">
+                <option value="" disabled>Välj ett alternativ...</option>
+                {carOptionList}
+              </Form.Control>
+              <br />
+              <p className="text-left">Drivmedel</p>
+              <Form.Control as="select"
+                onChange={this.handleChange}
+                value={this.state.carFuelFilter}
+                name="carFuelFilter">
+                <option value="" disabled>Välj ett alternativ...</option>
+                {fuelOptionList}
+              </Form.Control>
+              <p className="text-left">Märke</p>
+              <Form.Control as="select"
+                onChange={this.handleChange}
+                value={this.state.carBrandFilter}
+                name="carBrandFilter">
+                <option value="" disabled>Välj ett alternativ...</option>
+                {carBrandList}
+              </Form.Control>
               <MDBBtn onClick={this.handleClick} color="btn btn-success" type="submit" className="font-weight-bold">
                 spara
               </MDBBtn>
+            </Form.Group>
+            <br />
           </MDBContainer>
         }
         {card}
