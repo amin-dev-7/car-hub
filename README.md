@@ -40,7 +40,7 @@ This application is built using MERN Stack.<br><br>
 
 3. MongoDB
 
-      Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas.
+      Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas.<br>
       Add also authentication secret to the .env file
 
 4. You're ready to go!
