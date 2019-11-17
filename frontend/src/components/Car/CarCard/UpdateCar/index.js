@@ -8,8 +8,9 @@ import fuelOptions from '../../../../assets/data/fuel-options.json';
 import carList from '../../../../assets/data/car-list.json';
 import cities from '../../../../assets/data/cities.json';
 import gearboxOptions from '../../../../assets/data/gearbox-options.json';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBAlert} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact';
 import {Form, InputGroup, FormControl} from 'react-bootstrap';
+import {Redirect} from'react-router-dom';
 class UpdateCar extends React.Component {
 
   constructor(props) {
@@ -28,6 +29,7 @@ class UpdateCar extends React.Component {
       price: '',
       mileage: '',
       location: '',
+      redirectTo: false
     };
     this.handelUpdate = this.handelUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -70,13 +72,12 @@ class UpdateCar extends React.Component {
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
-          console.log("the ad has been updated")
+          this.setState({
+            redirectTo: '/car-card'
+          });
         }
       }).catch(error => {
         console.log(error.response);
-      });
-      this.setState({
-        redirectTo: `/car-card/car-update/${this.state.carId}`
       });
   }
 
@@ -85,6 +86,11 @@ class UpdateCar extends React.Component {
     API.delete(`http://localhost:5000/cars/${this.state.carId}}`)
       .then(res => {
         console.log(res.data);
+        if(res.status === 200) {
+          this.setState({
+            redirectTo: '/car-card'
+          })
+        }
       });
   }
 
@@ -131,6 +137,10 @@ class UpdateCar extends React.Component {
     let citiesList = cities.map((option) =>
       <option key={option.name}>{option.name}</option>
       );
+
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+    }else {
     return (
       <MDBContainer>
         <MDBRow>
@@ -256,6 +266,7 @@ class UpdateCar extends React.Component {
       </MDBContainer>
     );
   }
+}
 }
 
 export default UpdateCar;

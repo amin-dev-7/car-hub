@@ -115,11 +115,9 @@ class CarForSale extends React.Component {
     const carOptionList = carOptions.map((option) =>
     <option key={option.name}>{option.name}</option>);
     const fuelOptionList = fuelOptions.map((option) =>
-    <option key={option.name}>{option.name}</option>
-    );
+    <option key={option.name}>{option.name}</option>);
     const carBrandList = carList.map((option) =>
-    <option key={option.name}>{option.name}</option>
-    );
+    <option key={option.name}>{option.name}</option>);
 
     return (
       <div>
