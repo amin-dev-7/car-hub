@@ -3,7 +3,7 @@ import carOptions from '../../assets/data/car-options';
 import fuelOptions from '../../assets/data/fuel-options.json';
 import carList from '../../assets/data/car-list.json';
 import CarForSaleCard from './CarForSaleCard';
-import API from '../../cars-api';
+import CAR_API from '../../assets/api/cars-api';
 import {MDBBtn, MDBIcon} from 'mdbreact';
 import {Form } from 'react-bootstrap';
 import {MDBContainer} from 'mdbreact';
@@ -34,7 +34,7 @@ class CarForSale extends React.Component {
   }
 
   getAllCars = () => {
-    API.get()
+    CAR_API.get()
     .then(res => {
       this.setState({
         allCars: res.data
@@ -64,7 +64,7 @@ class CarForSale extends React.Component {
   }
 
   getCarsByCategory =  () => {
-    API.get(`?carCategory=${this.state.carCatFilter}`)
+    CAR_API.get(`?carCategory=${this.state.carCatFilter}`)
     .then(res => {
         this.setState({
           carsByCategory: res.data,
@@ -74,7 +74,7 @@ class CarForSale extends React.Component {
   }
 
   getCarsByFuel =  () => {
-    API.get(`?carFuel=${this.state.carFuelFilter}`)
+    CAR_API.get(`?carFuel=${this.state.carFuelFilter}`)
     .then(res => {
         this.setState({
           carsByFeul: res.data,
@@ -84,7 +84,7 @@ class CarForSale extends React.Component {
   }
 
   getCarsByBrand =  () => {
-    API.get(`?carBrand=${this.state.carBrandFilter}`)
+    CAR_API.get(`?carBrand=${this.state.carBrandFilter}`)
     .then(res => {
         this.setState({
           carsByBrand: res.data,

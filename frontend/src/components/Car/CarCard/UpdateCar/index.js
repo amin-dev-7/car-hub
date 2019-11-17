@@ -1,6 +1,5 @@
 import React from "react";
-import CAR_API from '../../../../cars-api';
-import axios from 'axios';
+import CAR_API from '../../../../assets/api/cars-api';
 import Cookies from 'js-cookie';
 import carOptions from '../../../../assets/data/car-options';
 import carModelYears from '../../../../assets/data/car-model-year.json';
@@ -95,7 +94,7 @@ class UpdateCar extends React.Component {
   }
 
   getCarByCarId() {
-    axios.get(`http://localhost:5000/cars/${this.state.carId}`)
+    CAR_API.get(`${this.state.carId}`)
       .then(res => {
         console.log(res.data)
         let carData = res.data;

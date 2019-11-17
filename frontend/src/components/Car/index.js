@@ -2,7 +2,7 @@ import React from 'react';
 import CarCard from './CarCard'
 import Cookies from 'js-cookie';
 import {MDBAlert} from 'mdbreact'
-import API from './../../users-api'
+import USER_API from '../../assets/api/users-api';
 class Car extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class Car extends React.Component {
   }
 
   componentDidMount = () => {
-    API.get(`${this.state.userId}/cars`)
+    USER_API.get(`${this.state.userId}/cars`)
       .then(res => {
         this.setState({
           cars: res.data.cars

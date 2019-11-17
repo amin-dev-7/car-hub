@@ -1,29 +1,15 @@
 import React from 'react';
-import Cookies from 'js-cookie';
-import API from '../../../users-api';
 import { Link } from 'react-router-dom';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
 from 'mdbreact';
 import './CarCard.css'
-
 class CarCard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      carId: this.props.carCard._id,
-      userId: Cookies.get('userId'),
-      cars: []
-     };
-     this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    API.delete(`${this.state.userId}/cars/${this.state.carId}`)
-      .then(res => {
-        console.log(res.data);
-      })
+     };
   }
 
   render() {

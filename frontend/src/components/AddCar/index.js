@@ -1,5 +1,5 @@
 import React from "react";
-import API from '../../users-api';
+import USER_API from '../../assets/api/users-api';
 import Cookies from 'js-cookie';
 import carOptions from '../../assets/data/car-options.json';
 import carModelYears from '../../assets/data/car-model-year.json';
@@ -71,7 +71,7 @@ class AddCar extends React.Component {
         }
     };
 
-    API.post(`${this.state.userId}/cars`,formData,config)
+    USER_API.post(`${this.state.userId}/cars`,formData,config)
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
@@ -127,7 +127,7 @@ class AddCar extends React.Component {
                 <p className="text-left">Bilder </p>
                 <div className="input-group">
                   <div className="custom-file">
-                    <input name="carImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
+                    <input className="hidden" name="carImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
                       onChange={this.onChangeImg}
                     />
                     <label className="custom-file-label text-left" htmlFor="inputGroupFile01">
@@ -137,7 +137,6 @@ class AddCar extends React.Component {
                 </div>
                 <MDBRow>
                   <MDBCol>
-                    <input type="file" onChange={this.onChangeImg}/>
                     <img src={this.state.imgAlt} alt="" className="img-thumbnail" />
                   </MDBCol>
                 </MDBRow>

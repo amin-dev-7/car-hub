@@ -2,7 +2,7 @@ import React from 'react';
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem, MDBIcon, MDBBtn
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
-import API from '../../../cars-api';
+import CAR_API from '../../../assets/api/cars-api';
 class CarForSaleCard extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class CarForSaleCard extends React.Component {
   }
 
   getAllCars = () => {
-    API.get()
+    CAR_API.get()
       .then(res => {
         let sellers = res.data.map(car => car.seller);
         this.setState({
