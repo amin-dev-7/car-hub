@@ -12,7 +12,7 @@ This application is built using MERN Stack.<br><br>
  $ git clone https://github.com/Amin-Mohamed/car-hub.git
 ```
 
-2. Follow this steps to install npm on:
+2. Follow this steps to install the dependencies and run the app:
 
       ### server 
       on backend directory
@@ -34,8 +34,9 @@ This application is built using MERN Stack.<br><br>
       
    
       ```
-      # Front-end http://localhost:3000/
-      # Back-end http://localhost:5000/
+      client runs on http://localhost:3000/
+      server runs on http://localhost:5000/
+      
       ```
 
 3. MongoDB
