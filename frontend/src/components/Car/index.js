@@ -15,6 +15,14 @@ class Car extends React.Component {
      };
   }
 
+  noAds = () => {
+    return(
+      <MDBAlert color="danger">
+      Det finns inga annonser att hantera
+      </MDBAlert>
+    )
+  }
+
   componentDidMount = () => {
     API.get(`${this.state.userId}/cars`)
       .then(res => {
@@ -25,20 +33,13 @@ class Car extends React.Component {
       .catch(error => {
         console.log(error);
       });
+    this.noAds();
   };
 
   render() {
 
     let cars = this.state.cars;
     const carCards = cars.map(item => <CarCard  key={item._id} carCard={item}/>);
-
-    if(cars.length <= 0) {
-      return (
-        <MDBAlert color="danger">
-          Det finns inga annonser att hantera
-        </MDBAlert>
-        );
-    }else
     return (
       <div>
         {carCards}
