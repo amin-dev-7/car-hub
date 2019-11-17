@@ -28,7 +28,7 @@ componentDidMount = () => {
   if (Cookies.get('access_token')) {
     this.setState({
       isLoggedIn: true
-    })
+    });
   }
 }
 

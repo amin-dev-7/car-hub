@@ -9,7 +9,6 @@ const DefaultLayout = (props) => {
       {props.children}
     </div>
   )
-
 }
 
 export default DefaultLayout;

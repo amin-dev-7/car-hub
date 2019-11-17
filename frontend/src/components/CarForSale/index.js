@@ -12,9 +12,11 @@ class CarForSale extends React.Component {
     super(props);
 
     this.state = {
-      cars: [],
-      queryCars: [],
-      isQuery: false,
+      allCars: [],
+      carsByBrand: [],
+      carsByCategory: [],
+      carsByFeul: [],
+      hasQuery: false,
       shwoFilter: false,
       carCatFilter: '',
       carFuelFilter: '',
@@ -29,6 +31,18 @@ class CarForSale extends React.Component {
   componentDidMount = () => {
     this.getAllCars();
     this.handleClick()
+  }
+
+  getAllCars = () => {
+    API.get()
+    .then(res => {
+      this.setState({
+        allCars: res.data
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   handleChange = e => {
@@ -53,8 +67,8 @@ class CarForSale extends React.Component {
     API.get(`?carCategory=${this.state.carCatFilter}`)
     .then(res => {
         this.setState({
-          queryCars: res.data,
-          isQuery: true
+          carsByCategory: res.data,
+          hasQuery: true
         });
     })
   }
@@ -63,8 +77,8 @@ class CarForSale extends React.Component {
     API.get(`?carFuel=${this.state.carFuelFilter}`)
     .then(res => {
         this.setState({
-          queryCars: res.data,
-          isQuery: true
+          carsByFeul: res.data,
+          hasQuery: true
         });
     })
   }
@@ -73,43 +87,47 @@ class CarForSale extends React.Component {
     API.get(`?carBrand=${this.state.carBrandFilter}`)
     .then(res => {
         this.setState({
-          queryCars: res.data,
-          isQuery: true
+          carsByBrand: res.data,
+          hasQuery: true
         });
     })
   }
 
-  getAllCars = () => {
-    API.get()
-    .then(res => {
-      this.setState({
-        cars: res.data
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
-
   render() {
-    let cars = this.state.cars;
-    let queryCars = this.state.queryCars;
+    let allCars = this.state.allCars;
+    let carsByBrand = this.state.carsByBrand;
+    let carsByCategory = this.state.carsByCategory;
+    let carsByFeul = this.state.carsByFeul;
     let card;
 
-    console.log(queryCars)
-    console.log(this.state.carCatFilter)
-
-    if(queryCars.length > 0) {
-      card = queryCars.map(item =>
+    if (carsByFeul.length === 0 && carsByCategory.length === 0 && carsByBrand.length === 0){
+       card = allCars.map(item =>
         <CarForSaleCard key={item._id}
           CarForSaleCard={item} >)
-        </CarForSaleCard>)
-    } else {
-      card = cars.map(item =>
-        <CarForSaleCard key={item._id}
-          CarForSaleCard={item} >)
-        </CarForSaleCard>)
+        </CarForSaleCard>);
     }
+    if (carsByBrand.length > 0) {
+       card = carsByBrand.map(item =>
+        <CarForSaleCard key={item._id}
+          CarForSaleCard={item} >)
+        </CarForSaleCard>);
+      }
+    if (carsByCategory.length > 0) {
+       card = carsByCategory.map(item =>
+        <CarForSaleCard key={item._id}
+          CarForSaleCard={item} >)
+        </CarForSaleCard>);
+    }
+    if (carsByFeul.length > 0) {
+       card = carsByFeul.map(item =>
+        <CarForSaleCard key={item._id}
+          CarForSaleCard={item} >)
+        </CarForSaleCard>);
+    }
+
+    console.log(carsByFeul.length)
+    console.log(carsByCategory.length)
+    console.log(carsByBrand.length)
 
     // SELECT OPTIONS
     const carOptionList = carOptions.map((option) =>
@@ -144,6 +162,7 @@ class CarForSale extends React.Component {
                 <option value="" disabled>Välj ett alternativ...</option>
                 {fuelOptionList}
               </Form.Control>
+              <br />
               <p className="text-left">Märke</p>
               <Form.Control as="select"
                 onChange={this.handleChange}
