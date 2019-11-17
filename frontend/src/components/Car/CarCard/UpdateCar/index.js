@@ -1,5 +1,5 @@
 import React from "react";
-import API from '../../../../users-api';
+import CAR_API from '../../../../cars-api';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import carOptions from '../../../../assets/data/car-options';
@@ -68,7 +68,7 @@ class UpdateCar extends React.Component {
     }
 
     e.preventDefault();
-    axios.put(`http://localhost:5000/cars/${this.state.carId}`, updatedCar)
+    CAR_API.put(`${this.state.carId}`, updatedCar)
       .then(res => {
         console.log(res.data)
         if (res.status === 200) {
@@ -83,7 +83,7 @@ class UpdateCar extends React.Component {
 
   handleDelete = (e) => {
     e.preventDefault();
-    API.delete(`http://localhost:5000/cars/${this.state.carId}}`)
+    CAR_API.delete(`${this.state.carId}}`)
       .then(res => {
         console.log(res.data);
         if(res.status === 200) {
@@ -141,132 +141,132 @@ class UpdateCar extends React.Component {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />
     }else {
-    return (
-      <MDBContainer>
-        <MDBRow>
-          <MDBCol md="6">
-            <div className="sign-in">
-                <h3 className="my-3">
-                  <strong className="font-weight-bold"> Ändra bilannonsen</strong>
-                </h3>
-              <br />
-            </div>
-            <Form onSubmit={this.handelUpdate}>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Typ av bil</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.carCategory}
-                  name="carCategory">
-                  <option>Välj ett alternativ...</option>
-                  {carOptionList}
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Märke</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.carBrand}
-                  name="carBrand">
-                  <option disabled>Välj ett alternativ...</option>
-                  {carBrandList}
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Modellår</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.carModelYear}
-                  name="carModelYear">
-                  <option disabled>Välj ett alternativ...</option>
-                  {carModelYearList}
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Drivmedel</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.carFuel}
-                  name="carFuel">
-                  <option disabled>Välj ett alternativ...</option>
-                  {fuelOptionList}
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Växellåda</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.gearbox}
-                  name="gearbox">
-                  <option disabled>Välj ett alternativ...</option>
-                  {gearboxOptionList}
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="exampleForm.ControlSelect2">
-                <p className="text-left">Plats</p>
-                <Form.Control as="select" placeholder="Välj bilmärke"
-                  onChange={this.handleChange}
-                  value={this.state.location}
-                  name="location">
-                  <option disabled>Välj ett alternativ...</option>
-                  {citiesList}
-                </Form.Control>
-              </Form.Group>
-              <p className="text-left">Anonns titel</p>
-              <input type="text" id="titel" className="form-control" name="adTitle"
-              value={this.state.adTitle} onChange={this.handleChange}>
-              </input>
-              <br />
-              <p className="text-left">Miltal </p>
-                <InputGroup className="mb-3">
-                  <FormControl
-                  value={this.state.mileage}
-                  onChange={this.handleChange}
-                  name="mileage"
-                  type="number"
-                  >
-                    {/* {car.mileage} */}
-                  </FormControl>
-                  <InputGroup.Append>
-                    <InputGroup.Text>Mil</InputGroup.Text>
-                  </InputGroup.Append>
-                </InputGroup>
-              <p className="text-left">Pris </p>
-                <InputGroup className="mb-3">
-                  <FormControl
-                  value={this.state.price}
-                  onChange={this.handleChange}
-                  name="price"
-                  type="number"
-                  />
-                  <InputGroup.Append>
-                    <InputGroup.Text>SEK</InputGroup.Text>
-                  </InputGroup.Append>
-                </InputGroup>
-              <br />
-              <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
-                value={this.state.adDescription} onChange={this.handleChange} />
-              <br />
-              <div className="text-center mt-4">
-                <MDBBtn
-                  color="btn btn-success" type="submit" className="font-weight-bold">
-                    Ändra annonsen
-                </MDBBtn>
+      return (
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol md="6">
+              <div className="sign-in">
+                  <h3 className="my-3">
+                    <strong className="font-weight-bold"> Ändra bilannonsen</strong>
+                  </h3>
+                <br />
               </div>
-              </Form>
-              <Form onSubmit={this.handleDelete}>
-                <MDBBtn
-                  color="btn btn-success" type="submit" className="font-weight-bold">
-                    Delete annons
-                </MDBBtn>
-              </Form>
-            <br />
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    );
+              <Form onSubmit={this.handelUpdate}>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Typ av bil</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.carCategory}
+                    name="carCategory">
+                    <option>Välj ett alternativ...</option>
+                    {carOptionList}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Märke</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.carBrand}
+                    name="carBrand">
+                    <option disabled>Välj ett alternativ...</option>
+                    {carBrandList}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Modellår</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.carModelYear}
+                    name="carModelYear">
+                    <option disabled>Välj ett alternativ...</option>
+                    {carModelYearList}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Drivmedel</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.carFuel}
+                    name="carFuel">
+                    <option disabled>Välj ett alternativ...</option>
+                    {fuelOptionList}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Växellåda</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.gearbox}
+                    name="gearbox">
+                    <option disabled>Välj ett alternativ...</option>
+                    {gearboxOptionList}
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect2">
+                  <p className="text-left">Plats</p>
+                  <Form.Control as="select" placeholder="Välj bilmärke"
+                    onChange={this.handleChange}
+                    value={this.state.location}
+                    name="location">
+                    <option disabled>Välj ett alternativ...</option>
+                    {citiesList}
+                  </Form.Control>
+                </Form.Group>
+                <p className="text-left">Anonns titel</p>
+                <input type="text" id="titel" className="form-control" name="adTitle"
+                value={this.state.adTitle} onChange={this.handleChange}>
+                </input>
+                <br />
+                <p className="text-left">Miltal </p>
+                  <InputGroup className="mb-3">
+                    <FormControl
+                    value={this.state.mileage}
+                    onChange={this.handleChange}
+                    name="mileage"
+                    type="number"
+                    >
+                      {/* {car.mileage} */}
+                    </FormControl>
+                    <InputGroup.Append>
+                      <InputGroup.Text>Mil</InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                <p className="text-left">Pris </p>
+                  <InputGroup className="mb-3">
+                    <FormControl
+                    value={this.state.price}
+                    onChange={this.handleChange}
+                    name="price"
+                    type="number"
+                    />
+                    <InputGroup.Append>
+                      <InputGroup.Text>SEK</InputGroup.Text>
+                    </InputGroup.Append>
+                  </InputGroup>
+                <br />
+                <MDBInput type="textarea" label="Beskrivning" rows="3" name="adDescription"
+                  value={this.state.adDescription} onChange={this.handleChange} />
+                <br />
+                <div className="text-center mt-4">
+                  <MDBBtn
+                    color="btn btn-success" type="submit" className="font-weight-bold">
+                      Ändra annonsen
+                  </MDBBtn>
+                </div>
+                </Form>
+                <Form onSubmit={this.handleDelete}>
+                  <MDBBtn
+                    color="btn btn-success" type="submit" className="font-weight-bold">
+                      Delete annons
+                  </MDBBtn>
+                </Form>
+              <br />
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      );
+    }
   }
-}
 }
 
 export default UpdateCar;

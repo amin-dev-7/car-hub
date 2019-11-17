@@ -3,7 +3,7 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken')
 
 module.exports = {
-  // SIGN UP
+
   register: async (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -64,14 +64,5 @@ module.exports = {
     } catch (err){
         res.status(404).json(`error: ${err}`)
       }
-    },
-
-  getAllUsersAndCars: async (req, res) => {
-    try {
-      const users = await User.find({}).populate('cars');
-      res.status(200).json(users);
-    } catch (err){
-      res.status(404).json(`error: ${err}`)
     }
-  }
 };

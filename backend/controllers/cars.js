@@ -8,7 +8,7 @@ module.exports = {
         const query = req.query;
         const sort = await Car.find(query).sort({updatedAt :  -1});
         res.status(200).json(sort);
-      }else{
+      } else {
         const cars = await Car.find({}).populate('seller').sort({updatedAt :  -1});
         res.status(200).json(cars)
       }

@@ -53,7 +53,7 @@ class AddCar extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('myImage',this.state.file);
+    formData.append('carImage',this.state.file);
     formData.append("adTitle", this.state.adTitle);
     formData.append("adDescription", this.state.adDescription);
     formData.append("carCategory", this.state.carCategory);
@@ -127,7 +127,7 @@ class AddCar extends React.Component {
                 <p className="text-left">Bilder </p>
                 <div className="input-group">
                   <div className="custom-file">
-                    <input name="myImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
+                    <input name="carImage" type="file" id="inputGroupFile01" ria-describedby="inputGroupFileAddon01"
                       onChange={this.onChangeImg}
                     />
                     <label className="custom-file-label text-left" htmlFor="inputGroupFile01">
