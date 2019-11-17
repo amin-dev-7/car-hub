@@ -14,24 +14,25 @@ This application is built using MERN Stack.<br><br>
 
 2. Follow this steps to install npm on:
 
-      ### Server 
-      On backend directory
+      ### server 
+      on backend directory
       ```
       $ npm install
       ```
 
-      ### Client
-      On frontend directory
+      ### client
+      on frontend directory
       ```
       $ npm install
       ```
       
-      ### Root directory
+      on root directory
       ```
       $ npm install
       $ npm start
       ```
       
+   
       ```
       # Front-end http://localhost:3000/
       # Back-end http://localhost:5000/
