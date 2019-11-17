@@ -36,7 +36,6 @@ This app is built with the MERN stack.<br><br>
       ```
       Client runs on http://localhost:3000/
       Server runs on http://localhost:5000/
-      
       ```
 
 3. MongoDB
