@@ -3,7 +3,7 @@
 <img src="https://media.giphy.com/media/8UHSFMTCnK80EQQiSd/giphy.gif" width="900" height="500" />
 
 > My final project for school, a mobile-first web application for selling and buying cars.<br><br>
-This application is built using MERN Stack.<br><br>
+This app is built with the MERN stack.<br><br>
 
 
 ## Installation Guide
@@ -34,15 +34,15 @@ This application is built using MERN Stack.<br><br>
       
    
       ```
-      client runs on http://localhost:3000/
-      server runs on http://localhost:5000/
+      Client runs on http://localhost:3000/
+      Server runs on http://localhost:5000/
       
       ```
 
 3. MongoDB
 
       Create new .env file as .env.example, and add your MongoDB URI, local or using MongoDB Atlas.<br>
-      Add also authentication secret to the .env file
+      Add also your jwtSecret to the .env file
 
 4. You're ready to go!
 
