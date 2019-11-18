@@ -248,14 +248,14 @@ class UpdateCar extends React.Component {
                 <br />
                 <div className="text-center mt-4">
                   <MDBBtn
-                    color="btn btn-success" type="submit" className="font-weight-bold">
+                   type="submit" className="font-weight-bold button-color">
                       Ändra annonsen
                   </MDBBtn>
                 </div>
                 </Form>
                 <Form onSubmit={this.handleDelete}>
                   <MDBBtn
-                    color="btn btn-success" type="submit" className="font-weight-bold">
+                   type="submit" className="font-weight-bold button-color">
                       Delete annons
                   </MDBBtn>
                 </Form>

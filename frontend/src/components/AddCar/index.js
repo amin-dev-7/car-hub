@@ -117,12 +117,7 @@ class AddCar extends React.Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol md="6">
-              <div className="sign-in">
-                  <h3 className="my-3">
-                    <strong className="font-weight-bold"> Lägg in din bilannons</strong>
-                  </h3>
-                <br />
-              </div>
+              <br />
               <Form encType="multipart/form-data" onSubmit={this.onSubmit}>
                 <p className="text-left">Bilder </p>
                 <div className="input-group">
@@ -244,7 +239,7 @@ class AddCar extends React.Component {
                   required={true}/>
                 <br />
                 <div className="text-center mt-4">
-                  <MDBBtn color="btn btn-success" type="submit" className="font-weight-bold">
+                  <MDBBtn type="submit" className="font-weight-bold button-color">
                     Lägg in annons
                   </MDBBtn>
                 </div>

@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.button-color {
+  background-color: #2ecc71 !important;
+}

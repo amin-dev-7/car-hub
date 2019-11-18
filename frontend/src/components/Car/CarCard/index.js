@@ -48,7 +48,7 @@ class CarCard extends React.Component {
                 Id: {this.props.carCard._id}</MDBListGroupItem>
                 <Link to={'/car-card/' + this.props.carCard._id}>
                   <MDBBtn
-                    color="btn btn-success" type="submit" className="font-weight-bold">
+                   type="submit" className="font-weight-bold button-color">
                     hantera annons
                   </MDBBtn>
                 </Link>

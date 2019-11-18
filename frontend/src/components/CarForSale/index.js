@@ -139,7 +139,7 @@ class CarForSale extends React.Component {
 
     return (
       <div>
-        <MDBBtn color="primary" onClick={this.toggelFilter}>
+        <MDBBtn color="" onClick={this.toggelFilter} className="font-weight-bold white-text button-color">
         <MDBIcon icon="filter" /> filtrera bilar </MDBBtn>
         {this.state.shwoFilter &&
           <MDBContainer>
@@ -171,7 +171,8 @@ class CarForSale extends React.Component {
                 <option value="" disabled>Välj ett alternativ...</option>
                 {carBrandList}
               </Form.Control>
-              <MDBBtn onClick={this.handleClick} color="btn btn-success" type="submit" className="font-weight-bold">
+              <br />
+              <MDBBtn onClick={this.handleClick} color="" type="submit" className="font-weight-bold white-text button-color">
                 spara
               </MDBBtn>
             </Form.Group>
