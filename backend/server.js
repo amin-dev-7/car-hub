@@ -18,7 +18,7 @@ app.use('/users', require('./routes/users'));
 //file upload
 app.use('/', express.static('public'));
 
-if (process.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../frontend/build'));
 
   app.get('*', (req, res) => {
