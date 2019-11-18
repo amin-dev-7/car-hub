@@ -13,7 +13,7 @@ const HomeCard = () => {
           <MDBCardBody>
             <MDBCardTitle>HITTA DIN BIL</MDBCardTitle>
             <p className="text-body">
-              På CarHub hittar du din framtida bil snabbt och enkelt
+              På Car hub hittar du din framtida bil snabbt och enkelt
             </p>
             <Link to="/car-for-sale">
             <MDBBtn className="font-weight-bold button-color">Hitta din bil</MDBBtn>
