@@ -59,7 +59,7 @@ render() {
             <hr></hr>
             <MDBNavItem>
               <Link to="/add-car"><h5 className="font-weight-bold white-text text-left">
-                <MDBIcon icon="plus-square" fixed/> Lägg till anonns</h5>
+                <MDBIcon icon="plus-square" fixed/> Lägg in anonns</h5>
               </Link>
             </MDBNavItem>
              <hr></hr>
