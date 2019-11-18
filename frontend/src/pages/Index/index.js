@@ -2,11 +2,10 @@ import React from 'react';
 import './index.css'
 import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
-import HomeAdCard from '../../components/HomeAdCard';
 import Cookies from 'js-cookie';
 import {MDBAlert, MDBIcon} from 'mdbreact';
-import HomeCard from '../../components/HomeCard';
 import { Link } from "react-router-dom";
+import HeroCard from '../../components/HeroCard';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -62,8 +61,9 @@ class index extends React.Component {
             </Link>
           </MDBAlert>
         }
-        <HomeCard />
-        <HomeAdCard />
+
+        <HeroCard />
+
       </DefaultLayout >
     );
   }
