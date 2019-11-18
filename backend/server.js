@@ -19,7 +19,7 @@ app.use('/users', require('./routes/users'));
 app.use('/', express.static('public'));
 
 if (process.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
+  app.use(express.static('../frontend/build'));
   app.get('*', (req, res) => {
     res.sendFile(app.join(__dirname, 'frontend', 'build', 'index.html'));
   });
