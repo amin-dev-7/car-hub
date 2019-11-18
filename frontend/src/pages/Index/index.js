@@ -4,7 +4,7 @@ import DefaultLayout from '../../layouts/index';
 import axios from 'axios';
 import HomeAdCard from '../../components/HomeAdCard';
 import Cookies from 'js-cookie';
-import {MDBAlert} from 'mdbreact';
+import {MDBAlert, MDBIcon} from 'mdbreact';
 import HomeCard from '../../components/HomeCard';
 import { Link } from "react-router-dom";
 class index extends React.Component {
@@ -55,10 +55,10 @@ class index extends React.Component {
     return (
       <DefaultLayout>
         {this.state.loggedIn &&
-          <MDBAlert color="success">
-            Hej {this.state.username}!
+          <MDBAlert color="success" className="margin">
+            <MDBIcon icon="user"/> {this.state.username}
             <Link to='/car-card' className="spacing">
-            Hantera annons
+              <MDBIcon icon="cog" />
             </Link>
           </MDBAlert>
         }
