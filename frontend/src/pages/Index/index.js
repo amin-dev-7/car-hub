@@ -5,7 +5,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import {MDBAlert, MDBIcon} from 'mdbreact';
 import { Link } from "react-router-dom";
-import HeroCard from '../../components/HeroCard';
+import HeroCards from '../../components/HeroCards';
 class index extends React.Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ class index extends React.Component {
           </MDBAlert>
         }
 
-        <HeroCard />
+        <HeroCards />
 
       </DefaultLayout >
     );
