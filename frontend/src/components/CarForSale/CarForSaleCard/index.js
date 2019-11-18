@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem, MDBIcon, MDBBtn
+import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
 import CAR_API from '../../../assets/api/cars-api';

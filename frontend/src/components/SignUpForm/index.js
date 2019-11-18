@@ -58,7 +58,6 @@ class SignUpForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.userExists)
     if (this.state.redirectTo) {
     return <Redirect to={{ pathname: this.state.redirectTo }} />
     } else {

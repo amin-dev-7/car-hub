@@ -125,10 +125,6 @@ class CarForSale extends React.Component {
         </CarForSaleCard>);
     }
 
-    console.log(carsByFeul.length)
-    console.log(carsByCategory.length)
-    console.log(carsByBrand.length)
-
     // SELECT OPTIONS
     const carOptionList = carOptions.map((option) =>
     <option key={option.name}>{option.name}</option>);
