@@ -32,6 +32,8 @@ This app is built with the MERN stack.<br><br>
       $ npm start
       ```
       
+      <img src="./frontend/public/screenshot.png">
+
    
       ```
       Client runs on http://localhost:3000/
