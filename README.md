@@ -32,7 +32,7 @@ This app is built with the MERN stack.<br><br>
       $ npm start
       ```
       
-      <img src="./frontend/public/screenshot.png">
+      <img src="./frontend/public/screenshot.png" width="375" height="800" />
 
    
       ```
