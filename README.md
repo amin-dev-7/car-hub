@@ -32,9 +32,8 @@ This app is built with the MERN stack.<br><br>
       $ npm start
       ```
       <kbd>
-       <p align="center">
-         <img align="center" width="375" height="800" src="./frontend/public/screenshot.png">
-       </p>
+      <div style="text-align:center"> <img align="center" width="375" height="800" src="./frontend/public/screenshot.png">
+      </div>
       </kbd>
    
       ```
