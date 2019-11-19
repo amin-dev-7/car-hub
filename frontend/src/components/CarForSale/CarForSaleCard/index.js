@@ -2,38 +2,37 @@ import React from 'react';
 import {MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem
 } from 'mdbreact';
 import ContactButton from '../ContactButton';
-import CAR_API from '../../../assets/api/cars-api';
+import USER_API from '../../../assets/api/users-api';
 class CarForSaleCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carForSale: [],
+      sellerEmails:[]
      };
   }
 
   componentDidMount = () => {
-    this.getAllCars();
+    this.getSellerEmail();
   }
 
-  getAllCars = () => {
-    CAR_API.get()
-      .then(res => {
-        let sellers = res.data.map(car => car.seller);
-        this.setState({
-          carForSale: sellers
-        })
+  getSellerEmail = () => {
+    USER_API.get(`${this.props.CarForSaleCard.seller}/cars`)
+    .then(res => {
+      this.setState({
+        sellerEmails: res.data.email
       })
-      .catch(error => {
-        console.log(error);
-      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   render() {
     let fullDate = this.props.CarForSaleCard.updatedAt;
     let date = fullDate.substr(0, 10)
 
-    let carForSale = this.state.carForSale;
-    const ContactButtons = <ContactButton ContactButton={carForSale} />
+    const email = this.state.sellerEmails;
+    const ContactButtons = <ContactButton email={email} />
 
     return (
       <MDBCol>

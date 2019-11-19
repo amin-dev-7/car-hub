@@ -5,7 +5,7 @@ const ContactButton = (props) => {
   return (
     <div>
       <MDBBtn className="font-weight-bold button-color"
-      href={"mailto:" + props.ContactButton.email}>kontakta säljaren</MDBBtn>
+      href={"mailto:" + props.email}>kontakta säljaren</MDBBtn>
     </div>
   )
 }
