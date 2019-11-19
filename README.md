@@ -1,6 +1,6 @@
 # Car-Hub
 
-<img src="https://media.giphy.com/media/8UHSFMTCnK80EQQiSd/giphy.gif" width="900" height="500" />
+<img src="https://media.giphy.com/media/8UHSFMTCnK80EQQiSd/giphy.gif" width="900" height="500">
 
 > My final project for school, a mobile-first web application for selling and buying cars.<br><br>
 This app is built with the MERN stack.<br><br>
@@ -31,9 +31,11 @@ This app is built with the MERN stack.<br><br>
       $ npm install
       $ npm start
       ```
-      
-      <img src="./frontend/public/screenshot.png" width="375" height="800" />
-
+      <kbd>
+       <p align="center">
+       <img width="375" height="800" src="./frontend/public/screenshot.png">
+       </p>
+      </kbd>
    
       ```
       Client runs on http://localhost:3000/
