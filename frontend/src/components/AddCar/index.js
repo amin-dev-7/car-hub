@@ -29,7 +29,7 @@ class AddCar extends React.Component {
       location: '',
       file: null,
       redirectTo: false,
-      imgAlt: null
+      imgPreview: null
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
@@ -45,7 +45,7 @@ class AddCar extends React.Component {
   onChangeImg = e => {
     this.setState({
       file: e.target.files[0],
-      imgAlt: URL.createObjectURL(e.target.files[0])
+      imgPreview: URL.createObjectURL(e.target.files[0])
     });
   }
 
@@ -130,9 +130,9 @@ class AddCar extends React.Component {
                     </label>
                   </div>
                 </div>
-                <MDBRow>
-                  <MDBCol>
-                    <img src={this.state.imgAlt} alt="" className="img-thumbnail" />
+                <MDBRow className="mb-4">
+                  <MDBCol md="4">
+                    <img src={this.state.imgPreview} className="img-fluid" alt="" />
                   </MDBCol>
                 </MDBRow>
                 <br />

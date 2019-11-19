@@ -6,8 +6,8 @@ import './HeroCards.css'
 const HomeCard = (props) => {
   return (
     <div>
-      <MDBCol>
-        <MDBCard>
+      <MDBCol className="col-hero">
+        <MDBCard className="card-hero">
           <MDBCardBody>
             <MDBCardTitle>{props.title}</MDBCardTitle>
             <p className="text-body"> {props.text} </p>

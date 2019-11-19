@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem }
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle,MDBCardText, MDBCol, MDBListGroupItem, MDBRow}
 from 'mdbreact';
 import './CarCard.css'
 class CarCard extends React.Component {
@@ -19,8 +19,11 @@ class CarCard extends React.Component {
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
-          <MDBCardImage className="img-fluid"
-           src={`http://localhost:5000/uploads/${this.props.carCard.carImage}`} waves />
+          <MDBRow className="mb-4">
+            <MDBCol md="4">
+              <img src={`http://localhost:5000/uploads/${this.props.carCard.carImage}`} className="img-fluid" alt="" />
+            </MDBCol>
+          </MDBRow>
           <MDBCardBody>
             <MDBCardTitle>{this.props.carCard.adTitle}</MDBCardTitle>
             <MDBCardText>
