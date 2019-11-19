@@ -33,7 +33,7 @@ This app is built with the MERN stack.<br><br>
       ```
      
       <kbd>
-      <div style="text-align:center"> <img align="center" width="375" height="800" src="./frontend/public/screenshot.png">
+      <div style="text-align:center"> <img align="center" width="325" height="750" src="./frontend/public/screenshot.png">
       </div>
       </kbd>
       
