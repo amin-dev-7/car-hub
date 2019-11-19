@@ -33,7 +33,6 @@ class UpdateCar extends React.Component {
     this.handelUpdate = this.handelUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.onClick = this.onClick.bind(this);
   }
 
   componentDidMount = () => {
@@ -45,11 +44,6 @@ class UpdateCar extends React.Component {
       [e.target.name]: e.target.value
       });
   };
-
-  onClick = () => {
-    setTimeout(() => {
-    }, 500);
-  }
 
   handelUpdate = e => {
 
