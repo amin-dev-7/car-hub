@@ -86,9 +86,11 @@ class AddCar extends React.Component {
       }).catch(error => {
         console.log(error.response);
       });
-      this.setState({
-        redirectTo: '/car-card'
-      })
+      setTimeout(() => {
+        this.setState({
+          redirectTo: '/car-card'
+        })
+      }, 300);
   }
 
   listGenerator = (optionsArray) => {
