@@ -16,12 +16,13 @@ class CarForSale extends React.Component {
       carsByBrand: [],
       carsByCategory: [],
       carsByFeul: [],
-      hasQuery: false,
       shwoFilter: false,
       carCatFilter: '',
       carFuelFilter: '',
       carBrandFilter: '',
-      query: '',
+      carOptions: carOptions,
+      fuelOptions: fuelOptions,
+      carList: carList
      };
      this.toggelFilter = this.toggelFilter.bind(this);
      this.handleChange = this.handleChange.bind(this);
@@ -30,19 +31,6 @@ class CarForSale extends React.Component {
 
   componentDidMount = () => {
     this.getAllCars();
-    this.handleClick()
-  }
-
-  getAllCars = () => {
-    CAR_API.get()
-    .then(res => {
-      this.setState({
-        allCars: res.data
-      })
-    })
-    .catch(error => {
-      console.log(error);
-    });
   }
 
   handleChange = e => {
@@ -58,17 +46,29 @@ class CarForSale extends React.Component {
   }
 
   handleClick = () => {
+    this.toggelFilter();
     this.getCarsByCategory();
     this.getCarsByFuel();
     this.getCarsByBrand();
+  }
+
+  getAllCars = () => {
+    CAR_API.get()
+    .then(res => {
+      this.setState({
+        allCars: res.data
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   getCarsByCategory =  () => {
     CAR_API.get(`?carCategory=${this.state.carCatFilter}`)
     .then(res => {
         this.setState({
-          carsByCategory: res.data,
-          hasQuery: true
+          carsByCategory: res.data
         });
     })
   }
@@ -77,8 +77,7 @@ class CarForSale extends React.Component {
     CAR_API.get(`?carFuel=${this.state.carFuelFilter}`)
     .then(res => {
         this.setState({
-          carsByFeul: res.data,
-          hasQuery: true
+          carsByFeul: res.data
         });
     })
   }
@@ -87,10 +86,16 @@ class CarForSale extends React.Component {
     CAR_API.get(`?carBrand=${this.state.carBrandFilter}`)
     .then(res => {
         this.setState({
-          carsByBrand: res.data,
-          hasQuery: true
+          carsByBrand: res.data
         });
     })
+  }
+
+  listGenerator = (optionsArray) => {
+    return (
+      optionsArray.map((option) =>
+      <option key={option.name}>{option.name}</option>)
+    )
   }
 
   render() {
@@ -100,38 +105,28 @@ class CarForSale extends React.Component {
     let carsByFeul = this.state.carsByFeul;
     let card;
 
-    if (carsByFeul.length === 0 && carsByCategory.length === 0 && carsByBrand.length === 0){
-       card = allCars.map(item =>
-        <CarForSaleCard key={item._id}
-          CarForSaleCard={item} >)
-        </CarForSaleCard>);
-    }
-    if (carsByBrand.length > 0) {
-       card = carsByBrand.map(item =>
-        <CarForSaleCard key={item._id}
-          CarForSaleCard={item} >)
-        </CarForSaleCard>);
+    const carFilter = (filterArray) => {
+      if(filterArray.length > 0) {
+        card = filterArray.map(item =>
+          <CarForSaleCard key={item._id}
+            CarForSaleCard={item} >)
+          </CarForSaleCard>
+        );
       }
-    if (carsByCategory.length > 0) {
-       card = carsByCategory.map(item =>
-        <CarForSaleCard key={item._id}
-          CarForSaleCard={item} >)
-        </CarForSaleCard>);
-    }
-    if (carsByFeul.length > 0) {
-       card = carsByFeul.map(item =>
-        <CarForSaleCard key={item._id}
-          CarForSaleCard={item} >)
-        </CarForSaleCard>);
-    }
+    };
 
-    // SELECT OPTIONS
-    const carOptionList = carOptions.map((option) =>
-    <option key={option.name}>{option.name}</option>);
-    const fuelOptionList = fuelOptions.map((option) =>
-    <option key={option.name}>{option.name}</option>);
-    const carBrandList = carList.map((option) =>
-    <option key={option.name}>{option.name}</option>);
+    if (carsByFeul.length === 0 && carsByCategory.length === 0 && carsByBrand.length === 0){
+      carFilter(allCars);
+    };
+    if (carsByBrand.length > 0) {
+      carFilter(carsByBrand);
+    };
+    if (carsByCategory.length > 0) {
+      carFilter(carsByCategory);
+    };
+    if (carsByFeul.length > 0) {
+      carFilter(carsByFeul);
+    };
 
     return (
       <div>
@@ -147,7 +142,7 @@ class CarForSale extends React.Component {
                 value={this.state.carCatFilter}
                 name="carCatFilter">
                 <option value="" disabled>Välj ett alternativ...</option>
-                {carOptionList}
+                {this.listGenerator(this.state.carOptions)}
               </Form.Control>
               <br />
               <p className="text-left">Drivmedel</p>
@@ -156,7 +151,7 @@ class CarForSale extends React.Component {
                 value={this.state.carFuelFilter}
                 name="carFuelFilter">
                 <option value="" disabled>Välj ett alternativ...</option>
-                {fuelOptionList}
+                {this.listGenerator(this.state.fuelOptions)}
               </Form.Control>
               <br />
               <p className="text-left">Märke</p>
@@ -165,7 +160,7 @@ class CarForSale extends React.Component {
                 value={this.state.carBrandFilter}
                 name="carBrandFilter">
                 <option value="" disabled>Välj ett alternativ...</option>
-                {carBrandList}
+                {this.listGenerator(this.state.carList)}
               </Form.Control>
               <br />
               <MDBBtn onClick={this.handleClick} color="" type="submit" className="font-weight-bold white-text button-color">
