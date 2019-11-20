@@ -50,6 +50,13 @@ class CarForSale extends React.Component {
     this.getCarsByCategory();
     this.getCarsByFuel();
     this.getCarsByBrand();
+    setTimeout(() => {
+      this.setState({
+        carCatFilter: '',
+        carFuelFilter: '',
+        carBrandFilter: '',
+      })
+    }, 30);
   }
 
   getAllCars = () => {
@@ -99,6 +106,7 @@ class CarForSale extends React.Component {
   }
 
   render() {
+    console.log(this.state.carCatFilter)
     let allCars = this.state.allCars;
     let carsByBrand = this.state.carsByBrand;
     let carsByCategory = this.state.carsByCategory;
