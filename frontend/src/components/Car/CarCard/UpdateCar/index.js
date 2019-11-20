@@ -110,7 +110,6 @@ class UpdateCar extends React.Component {
   }
 
   render() {
-
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>
@@ -243,14 +242,14 @@ class UpdateCar extends React.Component {
                 <div className="text-center mt-4">
                   <MDBBtn
                    type="submit" className="font-weight-bold button-color">
-                      Ändra annonsen
+                      Ändra och spara
                   </MDBBtn>
                 </div>
                 </Form>
                 <Form onSubmit={this.handleDelete}>
                   <MDBBtn
                    type="submit" className="font-weight-bold button-color">
-                      Delete annons
+                      Ta bort anonns
                   </MDBBtn>
                 </Form>
               <br />
