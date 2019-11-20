@@ -1,6 +1,5 @@
 import React from "react";
 import CAR_API from '../../../../assets/api/cars-api';
-import Cookies from 'js-cookie';
 import carOptions from '../../../../assets/data/car-options';
 import carModelYears from '../../../../assets/data/car-model-year.json';
 import fuelOptions from '../../../../assets/data/fuel-options.json';
@@ -17,7 +16,6 @@ class UpdateCar extends React.Component {
 
     this.state = {
       carId: this.props.carId,
-      userId: Cookies.get('userId'),
       adTitle: '',
       adDescription: '',
       carCategory: '',
@@ -76,7 +74,7 @@ class UpdateCar extends React.Component {
 
   handleDelete = (e) => {
     e.preventDefault();
-    CAR_API.delete(`${this.state.carId}}`)
+    CAR_API.delete(`${this.state.carId}`)
       .then(res => {
         console.log(res.data);
         if(res.status === 200) {
@@ -110,6 +108,7 @@ class UpdateCar extends React.Component {
   }
 
   render() {
+
     // SELECT OPTIONS
     let carOptionList = carOptions.map((option) =>
       <option key={option.name}>{option.name}</option>

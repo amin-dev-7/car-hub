@@ -42,10 +42,10 @@ module.exports = {
     const carId = req.params.carId;
     const car = req.body;
     try {
-      const deleteCar = await Car.findOneAndDelete(carId, car);
-      res.status(200).json('Car deleted');
+      const deleteCar = await Car.findByIdAndRemove(carId, car);
+      res.status(200).json(`Car deleted :${carId}`);
     } catch (err){
       res.status(404).json(`error: ${err}`)
-    }
+    };
   }
 };
