@@ -29,7 +29,13 @@ class AddCar extends React.Component {
       location: '',
       file: null,
       redirectTo: false,
-      imgPreview: null
+      imgPreview: null,
+      carOptions: carOptions,
+      carModelYears: carModelYears,
+      carList: carList,
+      cities: cities,
+      gearboxOptions: gearboxOptions,
+      fuelOptions: fuelOptions
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this);
@@ -85,28 +91,14 @@ class AddCar extends React.Component {
       })
   }
 
+  listGenerator = (optionsArray) => {
+    return (
+      optionsArray.map((option) =>
+      <option key={option.name}>{option.name}</option>)
+    )
+  }
+
   render() {
-
-    // SELECT OPTIONS
-    const carOptionList = carOptions.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-    const fuelOptionList = fuelOptions.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-    const gearboxOptionList = gearboxOptions.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-    const carModelYearList = carModelYears.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-    const carBrandList = carList.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-    const citiesList = cities.map((option) =>
-      <option key={option.name}>{option.name}</option>
-      );
-
     if (!this.state.token) {
       return <Redirect to="/login"/>
     }
@@ -145,7 +137,7 @@ class AddCar extends React.Component {
                     name="carCategory"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {carOptionList}
+                    {this.listGenerator(this.state.carOptions)}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
@@ -156,7 +148,7 @@ class AddCar extends React.Component {
                     name="carBrand"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {carBrandList}
+                    {this.listGenerator(this.state.carList)}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
@@ -167,7 +159,7 @@ class AddCar extends React.Component {
                     name="carModelYear"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {carModelYearList}
+                    {this.listGenerator(this.state.carModelYears)}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
@@ -178,7 +170,7 @@ class AddCar extends React.Component {
                     name="carFuel"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {fuelOptionList}
+                    {this.listGenerator(this.state.fuelOptions)}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
@@ -189,7 +181,7 @@ class AddCar extends React.Component {
                     name="gearbox"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {gearboxOptionList}
+                    {this.listGenerator(this.state.gearboxOptions)}
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect2">
@@ -200,7 +192,7 @@ class AddCar extends React.Component {
                     name="location"
                     required={true}>
                     <option value="" disabled>Välj ett alternativ...</option>
-                    {citiesList}
+                    {this.listGenerator(this.state.cities)}
                   </Form.Control>
                 </Form.Group>
                 <p className="text-left">Anonns titel</p>
